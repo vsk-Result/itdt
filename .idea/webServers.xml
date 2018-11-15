@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="92cdabed-c6ff-4bc5-9396-7da539ab638f" name="it.dttermo.com" url="http://172.17.177.101">
+        <fileTransfer host="172.17.177.101" port="21" rootFolder="/it.dttermo.com/">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

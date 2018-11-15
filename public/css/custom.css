@@ -1,0 +1,24 @@
+.tasks-list tbody tr:hover {
+    background-color: #eaf5ea;
+}
+.tasks-list tbody {
+    cursor: pointer;
+}
+.text-line-through {
+    text-decoration: line-through;
+}
+.subtask-container.stock.active {
+    background-color: #f5f5f5;
+}
+.subtask-container.stock:hover {
+    background-color: #f5f5f5;
+    cursor: pointer;
+}
+.card-body .datatable-header, .card-body .datatable-footer{
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+}
+.card-body .datatable-footer{
+    padding-bottom: 1.25rem;
+    border-top: 1px solid #ddd !important;
+}
