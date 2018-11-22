@@ -19,7 +19,7 @@ class TaskController extends Controller
 
     public function all()
     {
-        $tasks = Task::orderBy('status_id', 'ASC')->with('priority', 'status', 'user', 'subtasks', 'checkedSubtasks')->get();
+        $tasks = Task::orderBy('status_id')->orderBy('priority_id')->with('priority', 'status', 'user', 'subtasks', 'checkedSubtasks')->get();
         $tasks_render = view('task-manager.tasks.partials.all', compact('tasks'))->render();
         return response()->json(compact('tasks_render'));
     }
