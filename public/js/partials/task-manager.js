@@ -58,7 +58,7 @@ var TaskManagerList = function () {
                     targets: [5, 6]
                 }
             ],
-            order: [[4, 'asc']],
+            order: [[1, 'asc']],
             dom: '<"datatable-header"fl><"datatable-scroll-lg"t><"datatable-footer"ip>',
             language: {
                 search: '<span>Поиск:</span> _INPUT_',
