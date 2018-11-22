@@ -39,7 +39,6 @@ var TaskManagerList = function () {
                     targets: 0
                 },
                 {
-                    visible: false,
                     targets: 1
                 },
                 {
@@ -75,15 +74,15 @@ var TaskManagerList = function () {
                 var last=null;
 
                 // Grouod rows
-                api.column(1, {page:'current'}).data().each(function (group, i) {
-                    if (last !== group) {
-                        $(rows).eq(i).before(
-                            '<tr class="table-active table-border-double"><td colspan="8" class="font-weight-semibold">'+group+'</td></tr>'
-                        );
-
-                        last = group;
-                    }
-                });
+                // api.column(1, {page:'current'}).data().each(function (group, i) {
+                //     if (last !== group) {
+                //         $(rows).eq(i).before(
+                //             '<tr class="table-active table-border-double"><td colspan="8" class="font-weight-semibold">'+group+'</td></tr>'
+                //         );
+                //
+                //         last = group;
+                //     }
+                // });
 
                 // Initialize components
                 // _componentUiDatepicker();
@@ -192,6 +191,7 @@ var InputsCheckboxesRadios = function () {
 document.addEventListener('DOMContentLoaded', function() {
     updateTasksTable();
     edit_mod_enabled = false;
+    info_open = false;
 });
 
 $('body').on('click', '.tasks-list tbody tr.open-modal-task', function(e) {
@@ -208,6 +208,9 @@ $('body').on('click', '#tasks-store', function(e) {
     }).done(function (data) {
         updateTasksTable();
         showNotify('store', '', 'Задача успешно добавлена!');
+        setTimeout(function () {
+            $("tr[data-task-info-url='" + data.info_url + "']").trigger('click');
+        }, 1300);
     });
 });
 
@@ -322,6 +325,7 @@ $('body').on('click', '.cancel-edit', function() {
 });
 
 $('body').on('click', '.task-name-edit', function() {
+    info_open = true;
     var that = $(this);
     var url = that.data('name-edit-url');
     $.ajax({
@@ -332,6 +336,7 @@ $('body').on('click', '.task-name-edit', function() {
 });
 
 $('body').on('click', '.apply-task-edit', function() {
+    info_open = false;
     var that = $(this);
     var url = that.data('apply-url');
     var name = that.parents('.card').find('input#task-name').val();
@@ -350,12 +355,14 @@ $('body').on('click', '.apply-task-edit', function() {
 });
 
 $('body').on('click', '.cancel-task-edit', function() {
+    info_open = false;
     var that = $(this);
     var url = that.data('cancel-url');
     $.ajax({
         url: url
     }).done(function (data) {
         that.parents('.card').html(data.task_render);
+        handleSwitchEdit();
     });
 });
 
@@ -381,6 +388,9 @@ $('body').on('keydown', '#comment-body', function(e) {
 
 $('body').on('click', '#switch-edit', function(e) {
     handleSwitchEdit();
+    if (info_open) {
+        $('.apply-task-edit').trigger('click');
+    }
 });
 
 $('#taskInfo').on('hidden.bs.modal', function() {

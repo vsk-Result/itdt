@@ -43,7 +43,9 @@ class TaskController extends Controller
         $task->description = '';
         $task->save();
 
-        return response()->json(['status' => 'success']);
+        $info_url = route('tasks.show', $task->id);
+
+        return response()->json(compact('info_url'));
     }
 
     public function edit($id)

@@ -11,8 +11,7 @@
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.4.0",
-        "laravelrus/localized-carbon": "dev-master",
-        "zizaco/entrust": "5.2.x-dev"
+        "laravelrus/localized-carbon": "dev-master"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
