@@ -32,7 +32,7 @@ var TaskManagerList = function () {
         // Initialize data table
         $('.tasks-list').DataTable({
             autoWidth: false,
-            orderable: false,
+            ordering: false,
             columnDefs: [
                 {
                     type: "natural",
