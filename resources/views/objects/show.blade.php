@@ -5,18 +5,52 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
+        <div id="aniimated-thumbnials" class="row">
+            <div class="col-md-3">
                 <div class="card">
-                    <div class="card-body">
-                        <ul id="imageGallery" >
-                            <li data-thumb="https://storge.pic2.me/c/1360x800/423/52c1ee0032112.jpg" data-src="https://storge.pic2.me/c/1360x800/423/52c1ee0032112.jpg">
-                                <img class="card-img img-fluid" src="https://storge.pic2.me/c/1360x800/423/52c1ee0032112.jpg" />
-                            </li>
-                            <li data-thumb="https://storge.pic2.me/c/1360x800/423/52c1ee0032112.jpg" data-src="https://storge.pic2.me/c/1360x800/423/52c1ee0032112.jpg">
-                                <img class="card-img img-fluid" src="https://storge.pic2.me/c/1360x800/423/52c1ee0032112.jpg" />
-                            </li>
-                        </ul>
+                    <div class="card-img-actions m-1" data-src="https://storge.pic2.me/c/1360x800/423/52c1ee0032112.jpg">
+                        <img class="card-img img-fluid" src="https://storge.pic2.me/c/1360x800/423/52c1ee0032112.jpg" alt="">
+                        <div class="card-img-actions-overlay card-img">
+                            <a href="#" class="btn btn-outline bg-white text-white border-white border-2 btn-icon rounded-round ml-2">
+                                <i class="icon-search4"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-img-actions m-1" data-src="http://demo.interface.club/limitless/demo/bs4/Template/global_assets/images/demo/flat/2.png">
+                        <img class="card-img img-fluid" src="http://demo.interface.club/limitless/demo/bs4/Template/global_assets/images/demo/flat/2.png" alt="">
+                        <div class="card-img-actions-overlay card-img">
+                            <a href="#" class="btn btn-outline bg-white text-white border-white border-2 btn-icon rounded-round ml-2">
+                                <i class="icon-search4"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-img-actions m-1" data-src="http://demo.interface.club/limitless/demo/bs4/Template/global_assets/images/demo/flat/15.png">
+                        <img class="card-img img-fluid" src="http://demo.interface.club/limitless/demo/bs4/Template/global_assets/images/demo/flat/15.png" alt="">
+                        <div class="card-img-actions-overlay card-img">
+                            <a href="#" class="btn btn-outline bg-white text-white border-white border-2 btn-icon rounded-round ml-2">
+                                <i class="icon-search4"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-img-actions m-1" data-src="http://demo.interface.club/limitless/demo/bs4/Template/global_assets/images/demo/flat/5.png">
+                        <img class="card-img img-fluid" src="http://demo.interface.club/limitless/demo/bs4/Template/global_assets/images/demo/flat/5.png" alt="">
+                        <div class="card-img-actions-overlay card-img">
+                            <a href="#" class="btn btn-outline bg-white text-white border-white border-2 btn-icon rounded-round ml-2">
+                                <i class="icon-search4"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -162,107 +196,6 @@
                                 </tbody>
                             </table>
                         </div>
-
-                        <h3 class="font-weight-semibold">Uploaded files</h3>
-                        <p>A much goodness between destructive that save stupid firefly destructively dog goldfinch continually alas pinched for outside flailed inescapably hey brought rid crud and awakened sobbed extraordinarily wherever deer before tenable yet into dalmatian opposite save close ahead next independent mindful but far.</p>
-
-                        <div class="row">
-                            <div class="col-xl-3 col-sm-6">
-                                <div class="card">
-                                    <div class="card-img-actions mx-1 mt-1">
-                                        <img class="card-img img-fluid" src="../../../../global_assets/images/demo/flat/9.png" alt="">
-                                        <div class="card-img-actions-overlay card-img">
-                                            <a href="../../../../global_assets/images/demo/flat/9.png" class="btn btn-outline bg-white text-white border-white border-2 btn-icon rounded-round" data-popup="lightbox" rel="group">
-                                                <i class="icon-zoomin3"></i>
-                                            </a>
-
-                                            <a href="#" class="btn btn-outline bg-white text-white border-white border-2 btn-icon rounded-round ml-2">
-                                                <i class="icon-download"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-start flex-wrap">
-                                            <div class="font-weight-semibold">dashboard_draft.png</div>
-                                            <span class="font-size-sm text-muted ml-auto">378Kb</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-xl-3 col-sm-6">
-                                <div class="card">
-                                    <div class="card-img-actions mx-1 mt-1">
-                                        <img class="card-img img-fluid" src="../../../../global_assets/images/demo/flat/8.png" alt="">
-                                        <div class="card-img-actions-overlay card-img">
-                                            <a href="../../../../global_assets/images/demo/flat/9.png" class="btn btn-outline bg-white text-white border-white border-2 btn-icon rounded-round" data-popup="lightbox" rel="group">
-                                                <i class="icon-zoomin3"></i>
-                                            </a>
-
-                                            <a href="#" class="btn btn-outline bg-white text-white border-white border-2 btn-icon rounded-round ml-2">
-                                                <i class="icon-download"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-start flex-wrap">
-                                            <div class="font-weight-semibold">profile_page.png</div>
-                                            <span class="font-size-sm text-muted ml-auto">1.2Mb</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-xl-3 col-sm-6">
-                                <div class="card">
-                                    <div class="card-img-actions mx-1 mt-1">
-                                        <img class="card-img img-fluid" src="../../../../global_assets/images/demo/flat/6.png" alt="">
-                                        <div class="card-img-actions-overlay card-img">
-                                            <a href="../../../../global_assets/images/demo/flat/9.png" class="btn btn-outline bg-white text-white border-white border-2 btn-icon rounded-round" data-popup="lightbox" rel="group">
-                                                <i class="icon-zoomin3"></i>
-                                            </a>
-
-                                            <a href="#" class="btn btn-outline bg-white text-white border-white border-2 btn-icon rounded-round ml-2">
-                                                <i class="icon-download"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-start flex-wrap">
-                                            <div class="font-weight-semibold">shopping_cart.png</div>
-                                            <span class="font-size-sm text-muted ml-auto">1.8Mb</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-xl-3 col-sm-6">
-                                <div class="card">
-                                    <div class="card-img-actions mx-1 mt-1">
-                                        <img class="card-img img-fluid" src="../../../../global_assets/images/demo/flat/12.png" alt="">
-                                        <div class="card-img-actions-overlay card-img">
-                                            <a href="../../../../global_assets/images/demo/flat/9.png" class="btn btn-outline bg-white text-white border-white border-2 btn-icon rounded-round" data-popup="lightbox" rel="group">
-                                                <i class="icon-zoomin3"></i>
-                                            </a>
-
-                                            <a href="#" class="btn btn-outline bg-white text-white border-white border-2 btn-icon rounded-round ml-2">
-                                                <i class="icon-download"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-start flex-wrap">
-                                            <div class="font-weight-semibold">sales_statistics.png</div>
-                                            <span class="font-size-sm text-muted ml-auto">2.0Mb</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -272,96 +205,18 @@
 
 @push('css')
     <link href="{{ asset('vendors/lightGallery/dist/css/lightgallery.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('vendors/lightslider/dist/css/lightslider.min.css') }}" rel="stylesheet">
 @endpush
 
 @push('scripts')
     <script src="{{ asset('vendors/lightGallery/dist/js/lightgallery.min.js') }}"></script>
-    <script src="{{ asset('vendors/lightslider/dist/js/lightslider.min.js') }}"></script>
-    <!-- Theme JS files -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbF9O9Ks9_-QNWHi2SFxLqLUBOwrMyzXk"></script>
+    <script src="{{ asset('vendors/lightGallery/modules/lg-thumbnail.min.js') }}"></script>
+
     <script>
         $(document).ready(function() {
-            $('#imageGallery').lightSlider({
-                gallery:true,
-                item:1,
-                loop:true,
-                thumbItem:9,
-                slideMargin:0,
-                enableDrag: false,
-                currentPagerPosition:'left',
-                onSliderLoad: function(el) {
-                    el.lightGallery({
-                        selector: '#imageGallery .lslide'
-                    });
-                }
+            $('#aniimated-thumbnials').lightGallery({
+                thumbnail:true,
+                selector: '.card-img-actions'
             });
-        });
-
-        /* ------------------------------------------------------------------------------
- *
- *  # Basic map
- *
- *  Specific JS code additions for maps_google_basic.html page
- *
- * ---------------------------------------------------------------------------- */
-
-
-        // Setup module
-        // ------------------------------
-
-        var GoogleMapBasic = function() {
-
-
-            //
-            // Setup module components
-            //
-
-            // Line chart
-            var _googleMapBasic = function() {
-                if (typeof google == 'undefined') {
-                    console.warn('Warning - Google Maps library is not loaded.');
-                    return;
-                }
-
-                // Map settings
-                function initialize() {
-
-                    // Define map element
-                    var map_basic_element = document.getElementById('map_basic');
-
-                    // Optinos
-                    var mapOptions = {
-                        zoom: 12,
-                        center: new google.maps.LatLng(47.496, 19.037)
-                    };
-
-                    // Apply options
-                    var map = new google.maps.Map(map_basic_element, mapOptions);
-                }
-
-                // Load map
-                google.maps.event.addDomListener(window, 'load', initialize);
-            };
-
-
-            //
-            // Return objects assigned to module
-            //
-
-            return {
-                init: function() {
-                    _googleMapBasic();
-                }
-            }
-        }();
-
-
-        // Initialize module
-        // ------------------------------
-
-        document.addEventListener('DOMContentLoaded', function() {
-            GoogleMapBasic.init();
         });
     </script>
 @endpush

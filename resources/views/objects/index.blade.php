@@ -4,7 +4,7 @@
 @section('page-title', 'Объекты')
 
 @section('content')
-    @foreach($objects->chunk(6) as $chunk_objects)
+    @foreach($objects->chunk(4) as $chunk_objects)
         <div class="row">
             @each('objects.partials.object_card', $chunk_objects, 'object')
         </div>

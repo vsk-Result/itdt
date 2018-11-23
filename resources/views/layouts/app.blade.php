@@ -26,35 +26,39 @@
         @stack('css')
 
     </head>
-    <body class="navbar-top sidebar-xs">
+    <body class="layout-boxed-bg sidebar-xs">
 
-        <!-- Main navbar -->
-        @include('navbars.main')
+        <!-- Boxed layout wrapper -->
+        <div class="d-flex flex-column flex-1 layout-boxed">
 
-        <!-- Page content -->
-        <div class="page-content">
+            <!-- Main navbar -->
+            @include('navbars.main')
 
-            <!-- Main sidebar -->
-            @include('sidebars.main')
+            <!-- Page content -->
+            <div class="page-content">
 
-            <!-- Other sidebars -->
-            @yield('other_sidebars')
+                <!-- Main sidebar -->
+                @include('sidebars.main')
 
-            <!-- Main content -->
-            <div class="content-wrapper">
+                <!-- Other sidebars -->
+                @yield('other_sidebars')
 
-                <!-- Page header -->
-                @include('partials.page-header')
+                <!-- Main content -->
+                <div class="content-wrapper">
 
-                <!-- Content area -->
-                <div class="content">
-                    {{-- @include('flash::message') --}}
-                    @yield('content')
+                    <!-- Page header -->
+                    @include('partials.page-header')
+
+                    <!-- Content area -->
+                    <div class="content">
+                        {{-- @include('flash::message') --}}
+                        @yield('content')
+                    </div>
+
+                    <!-- Main footer -->
+                    @include('footers.main')
+
                 </div>
-
-                <!-- Main footer -->
-                @include('footers.main')
-
             </div>
         </div>
 
@@ -62,16 +66,13 @@
         <script src="{{ asset('js/core/jquery.min.js') }}"></script>
         <script src="{{ asset('js/core/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('js/core/app.js') }}"></script>
-        <script src="{{ asset('js/partials/layout_fixed_sidebar_custom.js') }}"></script>
 
         <!-- Vendors -->
-        <script src="{{ asset('vendors/scrollbar/perfect_scrollbar.min.js') }}"></script>
         <script src="{{ asset('vendors/loaders/blockui.min.js') }}"></script>
 
         <!-- Custom -->
         <script src="{{ asset('js/custom.js') }}"></script>
 
         @stack('scripts')
-
     </body>
 </html>

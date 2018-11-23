@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-md navbar-dark fixed-top">
+<div class="navbar navbar-expand-md navbar-dark">
     <div class="navbar-brand">
         <a href="../full/index.html" class="d-inline-block">
             <img src="{{ asset('images/dtsti_logo.png') }}" alt="">

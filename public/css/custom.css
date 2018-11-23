@@ -1,3 +1,6 @@
+.layout-boxed-bg {
+    background: url(http://demo.interface.club/limitless/demo/bs4/Template/global_assets/images/backgrounds/boxed_bg.png) repeat;
+}
 .tasks-list tbody tr:hover {
     background-color: #eaf5ea;
 }
@@ -21,4 +24,10 @@
 .card-body .datatable-footer{
     padding-bottom: 1.25rem;
     border-top: 1px solid #ddd !important;
+}
+
+
+#aniimated-thumbnials .card img {
+    width: 250px;
+    height: 150px;
 }

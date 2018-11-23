@@ -1,4 +1,4 @@
-<div class="col-md-2">
+<div class="col-md-3">
     <div class="card">
         <div class="card-img-actions">
             <img class="card-img-top img-fluid" src="http://demo.interface.club/limitless/demo/bs4/Template/global_assets/images/demo/flat/10.png" alt="">
