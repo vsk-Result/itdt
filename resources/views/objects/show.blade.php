@@ -54,6 +54,54 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-img-actions m-1" data-src="https://storge.pic2.me/c/1360x800/423/52c1ee0032112.jpg">
+                        <img class="card-img img-fluid" src="https://storge.pic2.me/c/1360x800/423/52c1ee0032112.jpg" alt="">
+                        <div class="card-img-actions-overlay card-img">
+                            <a href="#" class="btn btn-outline bg-white text-white border-white border-2 btn-icon rounded-round ml-2">
+                                <i class="icon-search4"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-img-actions m-1" data-src="http://demo.interface.club/limitless/demo/bs4/Template/global_assets/images/demo/flat/2.png">
+                        <img class="card-img img-fluid" src="http://demo.interface.club/limitless/demo/bs4/Template/global_assets/images/demo/flat/2.png" alt="">
+                        <div class="card-img-actions-overlay card-img">
+                            <a href="#" class="btn btn-outline bg-white text-white border-white border-2 btn-icon rounded-round ml-2">
+                                <i class="icon-search4"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-img-actions m-1" data-src="http://demo.interface.club/limitless/demo/bs4/Template/global_assets/images/demo/flat/15.png">
+                        <img class="card-img img-fluid" src="http://demo.interface.club/limitless/demo/bs4/Template/global_assets/images/demo/flat/15.png" alt="">
+                        <div class="card-img-actions-overlay card-img">
+                            <a href="#" class="btn btn-outline bg-white text-white border-white border-2 btn-icon rounded-round ml-2">
+                                <i class="icon-search4"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-img-actions m-1" data-src="http://demo.interface.club/limitless/demo/bs4/Template/global_assets/images/demo/flat/5.png">
+                        <img class="card-img img-fluid" src="http://demo.interface.club/limitless/demo/bs4/Template/global_assets/images/demo/flat/5.png" alt="">
+                        <div class="card-img-actions-overlay card-img">
+                            <a href="#" class="btn btn-outline bg-white text-white border-white border-2 btn-icon rounded-round ml-2">
+                                <i class="icon-search4"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="row">

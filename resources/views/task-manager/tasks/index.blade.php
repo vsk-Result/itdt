@@ -20,11 +20,9 @@
 
     @include('task-manager.modals.task_info')
 
-    <!-- Task manager table -->
     <div id="tasks-container" class="card" data-all-url="{{ route('tasks.all') }}">
         <div class="card-body p-0"></div>
     </div>
-    <!-- /task manager table -->
 @endsection
 
 @push('scripts')
