@@ -32,6 +32,7 @@ var TaskManagerList = function () {
         // Initialize data table
         $('.tasks-list').DataTable({
             autoWidth: false,
+            orderable: false,
             columnDefs: [
                 {
                     type: "natural",
@@ -39,7 +40,8 @@ var TaskManagerList = function () {
                     targets: 0
                 },
                 {
-                    targets: 1
+                    targets: 1,
+                    visible: false
                 },
                 {
                     width: '50%',
@@ -58,7 +60,6 @@ var TaskManagerList = function () {
                     targets: [5, 6]
                 }
             ],
-            order: [[1, 'asc']],
             dom: '<"datatable-header"fl><"datatable-scroll-lg"t><"datatable-footer"ip>',
             language: {
                 search: '<span>Поиск:</span> _INPUT_',
@@ -74,15 +75,15 @@ var TaskManagerList = function () {
                 var last=null;
 
                 // Grouod rows
-                // api.column(1, {page:'current'}).data().each(function (group, i) {
-                //     if (last !== group) {
-                //         $(rows).eq(i).before(
-                //             '<tr class="table-active table-border-double"><td colspan="8" class="font-weight-semibold">'+group+'</td></tr>'
-                //         );
-                //
-                //         last = group;
-                //     }
-                // });
+                api.column(1, {page:'current'}).data().each(function (group, i) {
+                    if (last !== group) {
+                        $(rows).eq(i).before(
+                            '<tr class="table-active table-border-double"><td colspan="8" class="font-weight-semibold">'+group+'</td></tr>'
+                        );
+
+                        last = group;
+                    }
+                });
 
                 // Initialize components
                 // _componentUiDatepicker();
