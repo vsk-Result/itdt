@@ -6,6 +6,7 @@ use App\Models\TaskManager\Attachment;
 use App\Models\TaskManager\Priority;
 use App\Models\TaskManager\Status;
 use App\Models\TaskManager\Task;
+use App\Models\TaskManager\Type;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
@@ -19,7 +20,7 @@ class TaskController extends Controller
 
     public function all()
     {
-        $tasks = Task::orderBy('status_id')->orderBy('priority_id')->with('priority', 'status', 'user', 'subtasks', 'checkedSubtasks')->get();
+        $tasks = Task::orderBy('status_id')->orderBy('priority_id')->with('priority', 'status', 'user', 'type', 'subtasks', 'checkedSubtasks')->get();
         $tasks_render = view('task-manager.tasks.partials.all', compact('tasks'))->render();
         return response()->json(compact('tasks_render'));
     }
@@ -39,6 +40,7 @@ class TaskController extends Controller
         $task->user_id = auth()->id();
         $task->priority_id = 2;
         $task->status_id = 1;
+        $task->type_id = 3;
         $task->name = 'НОВАЯ ЗАДАЧА';
         $task->description = '';
         $task->save();
@@ -51,7 +53,8 @@ class TaskController extends Controller
     public function edit($id)
     {
         $task = Task::findOrFail($id);
-        $task_render = view('task-manager.tasks.edit', compact('task'))->render();
+        $types = Type::pluck('name', 'id');
+        $task_render = view('task-manager.tasks.edit', compact('task', 'types'))->render();
         return response()->json(compact('task_render'));
     }
 
@@ -71,7 +74,7 @@ class TaskController extends Controller
         }
 
         $task->name = $request->name;
-        $task->description = $request->description;
+        $task->type_id = $request->type;
         $task->updated_at = Carbon::now();
         $task->update();
 

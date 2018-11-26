@@ -6,5 +6,5 @@
 </div>
 
 <div class="card-body">
-    <span class="text-muted">{{ $task->description }}</span>
+    <span class="text-muted">{{ $task->type->name }}</span>
 </div>

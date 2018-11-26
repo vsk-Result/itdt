@@ -24,6 +24,11 @@ class Task extends Model
         return $this->belongsTo(Priority::class);
     }
 
+    public function type()
+    {
+        return $this->belongsTo(Type::class);
+    }
+
     public function subtasks()
     {
         return $this->hasMany(Subtask::class);
@@ -48,5 +53,10 @@ class Task extends Model
 
     public function getDestinationPath() {
         return 'task-manager/';
+    }
+
+    public function isTaskType()
+    {
+        return $this->type->name == 'Задача';
     }
 }

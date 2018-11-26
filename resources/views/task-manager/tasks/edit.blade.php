@@ -4,8 +4,8 @@
         {{ Form::text('task_name', $task->name, ['id' => 'task-name', 'class' => 'form-control']) }}
     </div>
     <div class="w-100">
-        <h6 class="font-weight-semibold">Описание задачи</h6>
-        {{ Form::text('task_description', $task->description, ['id' => 'task-description', 'class' => 'form-control']) }}
+        <h6 class="font-weight-semibold">Тип задачи</h6>
+        {{ Form::select('type_id', $types, $task->type_id, ['id' => 'task-type', 'class' => 'form-control']) }}
     </div>
 </div>
 <div class="card-footer bg-white d-flex justify-content-between align-items-center">

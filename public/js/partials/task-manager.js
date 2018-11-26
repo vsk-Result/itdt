@@ -344,14 +344,14 @@ $('body').on('click', '.apply-task-edit', function() {
     info_open = false;
     var that = $(this);
     var url = that.data('apply-url');
-    var name = that.parents('.card').find('input#task-name').val();
-    var description = that.parents('.card').find('input#task-description').val();
+    var name = that.parents('.card').find('#task-name').val();
+    var type = that.parents('.card').find('#task-type').val();
     $.ajax({
         url: url,
         type: 'POST',
         data: {
             name: name,
-            description: description
+            type: type
         }
     }).done(function (data) {
         that.parents('.card').html(data.task_render);

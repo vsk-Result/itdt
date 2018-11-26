@@ -16,8 +16,13 @@
                 <td>#{{ $task->id }}</td>
                 <td>{{ $task->status->name }}</td>
                 <td>
-                    <div class="font-weight-semibold"><a href="#">{{ $task->name }}</a></div>
-                    <div class="text-muted">{{ $task->description }}</div>
+                    <div class="font-weight-semibold">
+                        @if (!$task->isTaskType())
+                            <span title="{{ $task->type->name }}" class="mr-1 {{ $task->type->color }}"><i class="icon {{ $task->type->icon }}"></i></span>
+                        @endif
+
+                        <a href="#">{{ $task->name }}</a>
+                    </div>
                 </td>
                 <td>
                     <div class="progress rounded-round">
