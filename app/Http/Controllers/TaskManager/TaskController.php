@@ -42,7 +42,6 @@ class TaskController extends Controller
         $task->status_id = 1;
         $task->type_id = 3;
         $task->name = 'НОВАЯ ЗАДАЧА';
-        $task->description = '';
         $task->save();
 
         $info_url = route('tasks.show', $task->id);
