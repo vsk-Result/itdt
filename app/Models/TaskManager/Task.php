@@ -44,6 +44,11 @@ class Task extends Model
         return $this->hasMany(Attachment::class);
     }
 
+    public static function getDefaultName()
+    {
+        return 'НОВАЯ ЗАДАЧА';
+    }
+
     public function getCompletePercentage()
     {
         $subtasks_count = $this->subtasks->count();

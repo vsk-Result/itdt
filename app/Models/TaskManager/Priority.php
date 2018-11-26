@@ -7,4 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Priority extends Model
 {
     protected $table = 'task_priorities';
+
+    const DEFAULT_ID = 2;
 }

@@ -38,10 +38,10 @@ class TaskController extends Controller
     {
         $task = new Task();
         $task->user_id = auth()->id();
-        $task->priority_id = 2;
-        $task->status_id = 1;
-        $task->type_id = 3;
-        $task->name = 'НОВАЯ ЗАДАЧА';
+        $task->priority_id = Priority::DEFAULT_ID;
+        $task->status_id = Status::DEFAULT_ID;
+        $task->type_id = Type::DEFAULT_ID;
+        $task->name = Task::getDefaultName();
         $task->save();
 
         $info_url = route('tasks.show', $task->id);
