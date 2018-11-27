@@ -56,7 +56,8 @@ class SubTaskController extends Controller
         $comment->save();
         $subtask->update();
 
+        $comments_count = $subtask->comments->count();
         $comments_render = view('task-manager.subtasks.comments', compact('subtask'))->render();
-        return response()->json(compact('comments_render'));
+        return response()->json(compact('comments_render', 'comments_count'));
     }
 }

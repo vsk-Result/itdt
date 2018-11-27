@@ -32,4 +32,9 @@ class Subtask extends Model
     {
         return 'Без названия';
     }
+
+    public function getLastComments()
+    {
+        return $this->comments()->orderByDesc('id')->get();
+    }
 }

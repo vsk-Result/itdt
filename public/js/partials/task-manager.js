@@ -409,7 +409,12 @@ function sendMessage(text) {
         $('#comments').html(data.comments_render);
         $('#comments').parents('.card').show();
         $('#comment-body').focus();
+        updateCommentCount(data.comments_count);
     });
+}
+
+function updateCommentCount(count) {
+    $('.subtask-comments.active:first span').text(count);
 }
 
 function updateTasksTable() {

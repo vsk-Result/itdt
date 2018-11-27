@@ -9,7 +9,7 @@
         <div class="mb-4">
             @isset($subtask)
                 <input id="comment-body" type="text" class="form-control" placeholder="Напишите сообщение..." data-send-url="{{ route('tasks.subtasks.comments.send_message', $subtask->id) }}">
-                @each('task-manager.subtasks.partials.comment', $subtask->comments, 'comment')
+                @each('task-manager.subtasks.partials.comment', $subtask->getLastComments(), 'comment')
             @endisset
         </div>
     </div>
