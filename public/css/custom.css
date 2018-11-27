@@ -48,7 +48,7 @@
     color: red !important;
 }
 .subtask-comments {
-    color: #bdbdbf;
+    color: #bdbdbf !important;
 }
 .subtask-comments i {
     margin-right: 5px;
