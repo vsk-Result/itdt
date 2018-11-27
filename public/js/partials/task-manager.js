@@ -196,12 +196,13 @@ var InputsCheckboxesRadios = function () {
 document.addEventListener('DOMContentLoaded', function() {
     updateTasksTable();
     edit_mod_enabled = false;
-    info_open = false;
+    was_changes = false;
 });
 
 $('body').on('click', '.tasks-list tbody tr.open-modal-task', function(e) {
     var url = $(this).data('task-info-url');
-    edit_mod_enabled = false;
+    setEditMod(false);
+    setChangesMod(false);
     getTaskInfo(url);
 });
 
@@ -225,65 +226,34 @@ $('body').on('click', '#tasks-update', function(e) {
 
 $('body').on('change', '.form-check-input-styled', function(e) {
     e.preventDefault();
-    var parent = $(this).parents('.form-check-label').find('span.subtask-name');
-    parent.toggleClass('text-line-through', $(this).prop('checked'));
+    var span = $(this).parents('li.media').find('span.subtask-name');
+    span.toggleClass('text-line-through', $(this).prop('checked'));
     sendCheckInfo($(this));
 });
 
-$('body').on('click', '.subtask-name', function(e) {
-    e.preventDefault();
+$('body').on('click', '.media-body', function(e) {
+    $(this).parents('li.media').find('.form-check-input-styled').trigger('click');
 });
 
 $('body').on('click', '#add-subtask', function() {
     addSubtask();
-    if (!edit_mod_enabled) {
-        $('#switch-edit').trigger('click');
-        handleSwitchEdit();
-    }
-    setTimeout(function () {
-        $('#subtasks-container .form-check:last .subtask-edit').trigger('click');
-    }, 200);
 });
 
-$('body').on('keydown', '.subtask-container input', function(e) {
-    if( e.keyCode === 13 ) {
-        e.preventDefault();
-        $(this).parent().find('.apply-edit').trigger('click');
-    }
-});
-
-$('body').on('click', '.subtask-edit', function() {
-    var that = $(this);
-    var url = that.data('edit-url');
-    $.ajax({
-        url: url
-    }).done(function (data) {
-        var container = that.parents('.subtask-container');
-        container.html(data.subtask_render);
-        container.find('input').select();
-    });
-});
-
-$('body').on('click', '.subtask-destroy', function() {
+$('body').on('click', '.destroy-subtask', function() {
     if (confirm('Вы действительно хотите удалить подзадачу?')) {
         var that = $(this);
         var url = that.data('destroy-url');
         $.ajax({
             url: url
         }).done(function (data) {
-            $('#subtasks-container').html(data.subtasks_render);
+            that.parents('li.media').remove();
         }).always(function() {
-            InputsCheckboxesRadios.initComponents();
-            handleSwitchEdit();
             showNotify('destroy', '', 'Подзадача успешно удалена!');
         });
     }
 });
 
-$('body').on('click', '.subtask-container', function() {
-
-    if (edit_mod_enabled) return false;
-
+$('body').on('click', '.subtask-comments', function() {
     var that = $(this);
     var url = that.data('comments-url');
     $.ajax({
@@ -292,82 +262,8 @@ $('body').on('click', '.subtask-container', function() {
         $('#comments').html(data.comments_render);
         $('#comments').show();
         $('#comment-body').focus();
-        $('.subtask-container').removeClass('active');
+        $('.subtask-comments').removeClass('active');
         that.addClass('active');
-    });
-});
-
-$('body').on('click', '.apply-edit', function() {
-    var that = $(this);
-    var url = that.data('apply-url');
-    var text = that.parents('.input-group').find('input').val();
-    $.ajax({
-        url: url,
-        type: 'POST',
-        data: {
-            name: text
-        }
-    }).done(function (data) {
-        that.parents('.subtask-container').html(data.subtask_render);
-    }).always(function() {
-        InputsCheckboxesRadios.initComponents();
-        handleSwitchEdit();
-        showNotify('update', '', 'Подзадача успешно изменена!');
-    });
-});
-
-$('body').on('click', '.cancel-edit', function() {
-    var that = $(this);
-    var url = that.data('cancel-url');
-    $.ajax({
-        url: url
-    }).done(function (data) {
-        that.parents('.subtask-container').html(data.subtask_render);
-    }).always(function() {
-        InputsCheckboxesRadios.initComponents();
-        handleSwitchEdit();
-    });
-});
-
-$('body').on('click', '.task-name-edit', function() {
-    info_open = true;
-    var that = $(this);
-    var url = that.data('name-edit-url');
-    $.ajax({
-        url: url
-    }).done(function (data) {
-        that.parents('.card').html(data.task_render);
-    });
-});
-
-$('body').on('click', '.apply-task-edit', function() {
-    info_open = false;
-    var that = $(this);
-    var url = that.data('apply-url');
-    var name = that.parents('.card').find('#task-name').val();
-    var type = that.parents('.card').find('#task-type').val();
-    $.ajax({
-        url: url,
-        type: 'POST',
-        data: {
-            name: name,
-            type: type
-        }
-    }).done(function (data) {
-        that.parents('.card').html(data.task_render);
-        showNotify('update', '', 'Задача успешно изменена!');
-    });
-});
-
-$('body').on('click', '.cancel-task-edit', function() {
-    info_open = false;
-    var that = $(this);
-    var url = that.data('cancel-url');
-    $.ajax({
-        url: url
-    }).done(function (data) {
-        that.parents('.card').html(data.task_render);
-        handleSwitchEdit();
     });
 });
 
@@ -383,6 +279,10 @@ $('body').on('change', '#task-status', function() {
     setTaskStatus($(this).val());
 });
 
+$('body').on('change', '#task-type', function() {
+    setTaskType($(this).val());
+});
+
 $('body').on('keydown', '#comment-body', function(e) {
     if( e.keyCode === 13 ) {
         e.preventDefault();
@@ -393,13 +293,12 @@ $('body').on('keydown', '#comment-body', function(e) {
 
 $('body').on('click', '#switch-edit', function(e) {
     handleSwitchEdit();
-    if (info_open) {
-        $('.apply-task-edit').trigger('click');
-    }
 });
 
 $('#taskInfo').on('hidden.bs.modal', function() {
-    updateTasksTable();
+    if (was_changes) {
+        updateTasksTable();
+    }
 });
 
 function getTaskInfo(url) {
@@ -409,9 +308,7 @@ function getTaskInfo(url) {
         $('#taskInfo .modal-body').html(data.info_render);
         $('#taskInfo').modal('show');
     }).always(function() {
-        InputsCheckboxesRadios.initComponents();
-        var elem = document.getElementById('task-attachments');
-        elem.addEventListener('change', setAttachment);
+        handleSwitchEdit();
     });
 }
 
@@ -423,22 +320,25 @@ function sendCheckInfo(elem) {
             checked: elem.prop('checked')
         }
     }).done(function (data) {
-
+        showNotify('update', '', 'Подзадача успешно изменена!');
+        setChangesMod(true);
     });
 }
 
 function addSubtask() {
+
+    if (!edit_mod_enabled) {
+        $('#switch-edit').trigger('click');
+    }
+
     var url = $('#add-subtask').data('add-url');
     $.ajax({
         url: url,
         type: 'POST'
     }).done(function (data) {
-        $('#subtasks-container').html(data.subtasks_render);
+        $('ul.list-edit').append(data.subtask_render);
     }).always(function() {
         InputsCheckboxesRadios.initComponents();
-        var elem = document.getElementById('task-attachments');
-        elem.addEventListener('change', setAttachment);
-        handleSwitchEdit();
         showNotify('store', '', 'Подзадача успешно добавлена!');
     });
 }
@@ -452,8 +352,9 @@ function setTaskPriority(priority_id) {
             priority_id: priority_id
         }
     }).done(function (data) {
-        updateTaskDetails(data.task_details);
+        $('#task-details').html(data.task_details);
         showNotify('update', '', 'Задача успешно изменена!');
+        setChangesMod(true);
     });
 }
 
@@ -466,30 +367,25 @@ function setTaskStatus(status_id) {
             status_id: status_id
         }
     }).done(function (data) {
-        updateTaskDetails(data.task_details);
+        $('#task-details').html(data.task_details);
         showNotify('update', '', 'Задача успешно изменена!');
+        setChangesMod(true);
     });
 }
 
-function setAttachment() {
-    var url = $("#formdata").data('url');
+function setTaskType(type_id) {
+    var url = $('#task-info-table').data('task-update-url');
     $.ajax({
         url: url,
         type: 'POST',
-        processData: false,
-        contentType: false,
-        data: new FormData($("#formdata")[0])
+        data: {
+            type_id: type_id
+        }
     }).done(function (data) {
-        $('#task-attachments').html(data.attachments_render);
-        handleSwitchEdit();
-        showNotify('store', '', 'Файлы успешно загружены!');
+        $('#task-details').html(data.task_details);
+        showNotify('update', '', 'Задача успешно изменена!');
+        setChangesMod(true);
     });
-}
-
-function updateTaskDetails(render_view) {
-    $('#task-details').html(render_view);
-    var elem = document.getElementById('task-attachments-input');
-    elem.addEventListener('change', setAttachment);
 }
 
 function sendMessage(text) {
@@ -504,25 +400,6 @@ function sendMessage(text) {
         $('#comments').parents('.card').show();
         $('#comment-body').focus();
     });
-}
-
-function handleSwitchEdit() {
-    var checked = $('#switch-edit').prop('checked');
-    if (checked) {
-        $('.task-name-edit').show();
-        $('.subtask-edit').show();
-        $('.subtask-destroy').show();
-        $('#formdata').show();
-        edit_mod_enabled = true;
-        $('.subtask-container').removeClass('stock');
-    } else {
-        $('.task-name-edit').hide();
-        $('.subtask-edit').hide();
-        $('.subtask-destroy').hide();
-        $('#formdata').hide();
-        edit_mod_enabled = false;
-        $('.subtask-container').addClass('stock');
-    }
 }
 
 function updateTasksTable() {
@@ -583,4 +460,92 @@ function showNotify(type, title, text) {
             break;
     }
     new PNotify(opts);
+}
+
+function handleSwitchEdit() {
+    var checked = $('#switch-edit').prop('checked');
+    if (checked) {
+        setEditMod(true);
+        setTaskGeneralEditMode(true);
+        setSubtasksEditMode(true);
+        setAttachmentEditMode(true);
+        $('#comments').hide();
+    } else {
+        setEditMod(false);
+        setTaskGeneralEditMode(false);
+        setSubtasksEditMode(false);
+        setAttachmentEditMode(false);
+        updateTasksTable();
+    }
+}
+
+function setEditMod(value) {
+    edit_mod_enabled = value;
+}
+
+function setChangesMod(value) {
+    was_changes = value;
+}
+
+function setTaskGeneralEditMode(value) {
+    var name = '';
+    var description = '';
+    if (value) {
+        var url = $('#task-general-info').data('edit-url');
+    } else {
+        var url = $('#task-general-info').data('show-url');
+        name = $('#task-name').val();
+        description = $('#task-description').val();
+    }
+
+    $.ajax({
+        url: url,
+        data: {
+            name: name,
+            description: description
+        }
+    }).done(function (data) {
+        $('#task-general-info').html(data.task_render);
+    });
+}
+
+function setSubtasksEditMode(value) {
+    subtasks_info = [];
+    if (value) {
+        var url = $('#subtasks-container').data('edit-url');
+    } else {
+        var url = $('#subtasks-container').data('show-url');
+        $('ul.list-edit li').each(function(index, elem) {
+           subtasks_info.push($(this).data('id') + '***' + $(this).find('input').val());
+        });
+    }
+
+    $.ajax({
+        url: url,
+        data: {
+            subtasks_info: subtasks_info
+        }
+    }).done(function (data) {
+        $('#subtasks-container').html(data.subtasks_render);
+    }).always(function() {
+        InputsCheckboxesRadios.initComponents();
+    });
+}
+
+function setAttachmentEditMode(value) {
+    if (value) {
+        $('#formdata').show();
+    } else {
+        var url = $("#formdata").data('url');
+        $.ajax({
+            url: url,
+            type: 'POST',
+            processData: false,
+            contentType: false,
+            data: new FormData($("#formdata")[0])
+        }).done(function (data) {
+            $('#task-attachments').html(data.attachments_render);
+            $('#formdata').hide();
+        });
+    }
 }

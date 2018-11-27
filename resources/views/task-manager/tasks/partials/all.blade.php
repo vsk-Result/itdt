@@ -12,7 +12,7 @@
     </thead>
     <tbody>
         @foreach($tasks as $task)
-            <tr class="open-modal-task" data-task-info-url="{{ route('tasks.show', $task->id) }}">
+            <tr class="open-modal-task" data-task-info-url="{{ route('tasks.info', $task->id) }}">
                 <td>#{{ $task->id }}</td>
                 <td>{{ $task->status->name }}</td>
                 <td>
@@ -25,11 +25,21 @@
                     </div>
                 </td>
                 <td>
-                    <div class="progress rounded-round">
-                        <div class="progress-bar bg-success" style="width: {{ $task->getCompletePercentage() }}%">
-                            <span>{{ $task->getCompletePercentage() }}%</span>
+                    @if ($task->subtasks->count() > 0)
+                        @php
+                            $percentage = $task->getCompletePercentage();
+                        @endphp
+                        <div class="w-auto h-auto">
+                            <div class="theme_bar_lg">
+                                <div class="pace_progress"
+                                     data-progress-text="{{ $percentage }}%"
+                                     data-progress="{{ $percentage }}"
+                                     style="width: {{ $percentage }}%;">
+                                </div>
+                                <span>{{ $task->getCompletePercentage(true) . ' (' . $percentage . '%)' }}</span>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 </td>
                 <td>
                     <span class="badge bg-{{ $task->priority->class }}">{{ $task->priority->name }}</span>

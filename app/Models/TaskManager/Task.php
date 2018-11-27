@@ -49,11 +49,15 @@ class Task extends Model
         return 'НОВАЯ ЗАДАЧА';
     }
 
-    public function getCompletePercentage()
+    public function getCompletePercentage($as_title = null)
     {
         $subtasks_count = $this->subtasks->count();
         $checked_subtasks = $this->checkedSubtasks->count();
-        return $subtasks_count == 0 ? 0 : round($checked_subtasks * 100 / $subtasks_count, 2);
+
+        if ($as_title) {
+            return $checked_subtasks . '/' . $subtasks_count;
+        }
+        return round($checked_subtasks * 100 / $subtasks_count, 2);
     }
 
     public function getDestinationPath() {

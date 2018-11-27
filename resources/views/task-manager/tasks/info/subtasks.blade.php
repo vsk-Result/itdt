@@ -8,7 +8,9 @@
         </div>
     </div>
 
-    <div class="card-body">
-        @each('task-manager.subtasks.partials.subtask', $task->subtasks, 'subtask')
+    <div id="subtasks-container"
+         class="card-body"
+         data-edit-url="{{ route('tasks.subtasks.edit', $task->id) }}"
+         data-show-url="{{ route('tasks.subtasks.show', $task->id) }}">
     </div>
 </div>

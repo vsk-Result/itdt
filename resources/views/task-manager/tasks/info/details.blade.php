@@ -22,6 +22,12 @@
             </td>
         </tr>
         <tr>
+            <td><i class="icon-file-check mr-2"></i> Тип:</td>
+            <td class="text-right">
+                {{ Form::select('task_type', $types, $task->type_id, ['id' => 'task-type', 'class' => 'form-control form-control-sm']) }}
+            </td>
+        </tr>
+        <tr>
             <td><i class="icon-file-check mr-2"></i> Статус:</td>
             <td class="text-right">
                 {{ Form::select('task_status', $statuses, $task->status_id, ['id' => 'task-status', 'class' => 'form-control form-control-sm']) }}

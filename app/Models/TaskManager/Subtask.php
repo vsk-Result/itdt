@@ -27,4 +27,9 @@ class Subtask extends Model
     {
         return $query->where('checked', true);
     }
+
+    public static function getDefaultName()
+    {
+        return 'Без названия';
+    }
 }

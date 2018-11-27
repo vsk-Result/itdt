@@ -5,6 +5,7 @@ namespace App\Http\Controllers\TaskManager;
 use App\Models\TaskManager\Attachment;
 use App\Models\TaskManager\Priority;
 use App\Models\TaskManager\Status;
+use App\Models\TaskManager\Subtask;
 use App\Models\TaskManager\Task;
 use App\Models\TaskManager\Type;
 use Illuminate\Http\Request;
@@ -25,12 +26,27 @@ class TaskController extends Controller
         return response()->json(compact('tasks_render'));
     }
 
-    public function show($id)
+    public function show($id, Request $request)
+    {
+        $task = Task::findOrFail($id);
+
+        if (!empty($request->name)) {
+            $task->name = $request->name;
+            $task->description = $request->description;
+            $task->update();
+        }
+
+        $task_render = view('task-manager.tasks.stock', compact('task'))->render();
+        return response()->json(compact('task_render'));
+    }
+
+    public function info($id)
     {
         $task = Task::findOrFail($id);
         $priorities = Priority::all();
         $statuses = Status::pluck('name', 'id');
-        $info_render = view('task-manager.tasks.show', compact('task', 'priorities', 'statuses'))->render();
+        $types = Type::pluck('name', 'id');
+        $info_render = view('task-manager.tasks.show', compact('task', 'priorities', 'statuses', 'types'))->render();
         return response()->json(compact('info_render'));
     }
 
@@ -52,8 +68,7 @@ class TaskController extends Controller
     public function edit($id)
     {
         $task = Task::findOrFail($id);
-        $types = Type::pluck('name', 'id');
-        $task_render = view('task-manager.tasks.edit', compact('task', 'types'))->render();
+        $task_render = view('task-manager.tasks.edit', compact('task'))->render();
         return response()->json(compact('task_render'));
     }
 
@@ -61,14 +76,16 @@ class TaskController extends Controller
     {
         $task = Task::findOrFail($id);
 
-        if (isset($request->priority_id) || isset($request->status_id)) {
+        if (isset($request->priority_id) || isset($request->status_id) || isset($request->type_id)) {
             $task->priority_id = isset($request->priority_id) ? $request->priority_id : $task->priority_id;
             $task->status_id = isset($request->status_id) ? $request->status_id : $task->status_id;
+            $task->type_id = isset($request->type_id) ? $request->type_id : $task->type_id;
             $task->updated_at = Carbon::now();
             $task->update();
             $priorities = Priority::all();
             $statuses = Status::pluck('name', 'id');
-            $task_details = view('task-manager.tasks.info.details', compact('task', 'priorities', 'statuses'))->render();
+            $types = Type::pluck('name', 'id');
+            $task_details = view('task-manager.tasks.info.details', compact('task', 'priorities', 'statuses', 'types'))->render();
             return response()->json(compact('task_details'));
         }
 
@@ -77,13 +94,6 @@ class TaskController extends Controller
         $task->updated_at = Carbon::now();
         $task->update();
 
-        $task_render = view('task-manager.tasks.stock', compact('task'))->render();
-        return response()->json(compact('task_render'));
-    }
-
-    public function cancelEdit($id)
-    {
-        $task = Task::findOrFail($id);
         $task_render = view('task-manager.tasks.stock', compact('task'))->render();
         return response()->json(compact('task_render'));
     }
@@ -110,5 +120,29 @@ class TaskController extends Controller
 
         $attachments_render = view('task-manager.tasks.info.attachments', compact('task'))->render();
         return response()->json(compact('attachments_render'));
+    }
+
+    public function getEdit($id)
+    {
+        $task = Task::findOrFail($id);
+        $subtasks_render = view('task-manager.subtasks.edit', compact('task'))->render();
+        return response()->json(compact('subtasks_render'));
+    }
+
+    public function getShow($id, Request $request)
+    {
+        if (isset($request->subtasks_info)) {
+            foreach ($request->subtasks_info as $info) {
+                $info_array = explode('***', $info);
+                $subtask = Subtask::findOrFail($info_array[0]);
+                $subtask->name = $info_array[1];
+                $subtask->updated_at = Carbon::now();
+                $subtask->update();
+            }
+        }
+
+        $task = Task::findOrFail($id);
+        $subtasks_render = view('task-manager.subtasks.stock', compact('task'))->render();
+        return response()->json(compact('subtasks_render'));
     }
 }

@@ -16,46 +16,21 @@ class SubTaskController extends Controller
     {
         $subtask = new Subtask();
         $subtask->task_id = $id;
-        $subtask->name = 'Без названия';
+        $subtask->name = Subtask::getDefaultName();
         $subtask->save();
 
-        $task = $subtask->task;
-        $subtasks_render = view('task-manager.tasks.info.subtasks', compact('task'))->render();
-        return response()->json(compact('subtasks_render'));
-    }
-
-    public function edit($id)
-    {
-        $subtask = Subtask::findOrFail($id);
-        $subtask_render = view('task-manager.subtasks.edit', compact('subtask'))->render();
+        $subtask_render = view('task-manager.subtasks.partials.edit_subtask', compact('subtask'))->render();
         return response()->json(compact('subtask_render'));
     }
 
     public function update($id, Request $request)
     {
         $subtask = Subtask::findOrFail($id);
-        if (isset($request->checked)) {
-            $subtask->checked = $request->checked == "true" ? 1 : 0;
-        }
-        if (isset($request->name)) {
-            $subtask->name = $request->name;
-        }
+        $subtask->checked = $request->checked == "true" ? 1 : 0;
         $subtask->updated_at = Carbon::now();
         $subtask->update();
 
-        if (isset($request->name)) {
-            $subtask_render = view('task-manager.subtasks.stock', compact('subtask'))->render();
-            return response()->json(compact('subtask_render'));
-        }
-
         return response()->json(['status' => 'success']);
-    }
-
-    public function cancelEdit($id)
-    {
-        $subtask = Subtask::findOrFail($id);
-        $subtask_render = view('task-manager.subtasks.stock', compact('subtask'))->render();
-        return response()->json(compact('subtask_render'));
     }
 
     public function destroy($id) {
@@ -63,8 +38,7 @@ class SubTaskController extends Controller
         $task = $subtask->task;
         $subtask->delete();
 
-        $subtasks_render = view('task-manager.tasks.info.subtasks', compact('task'))->render();
-        return response()->json(compact('subtasks_render'));
+        return response()->json(['status' => 'success']);
     }
 
     public function comments($id) {
