@@ -14,7 +14,7 @@
         <ul class="navbar-nav flex-wrap">
             <li class="nav-item dropdown">
                 <a href="javascript:void(0)" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
-                    <i class="icon-sort-time-asc mr-2"></i>
+                    <i class="icon-sort-alpha-asc mr-2"></i>
                     По типу
                 </a>
 
