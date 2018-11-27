@@ -11,7 +11,3 @@
     @include('task-manager.partials.info_general')
     @include('task-manager.partials.info_sidebar')
 </div>
-
-<div id="comments" style="display: none;">
-    @include('task-manager.subtasks.comments')
-</div>

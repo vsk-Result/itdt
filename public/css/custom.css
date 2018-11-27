@@ -2,7 +2,7 @@
     background: url(http://demo.interface.club/limitless/demo/bs4/Template/global_assets/images/backgrounds/boxed_bg.png) repeat;
 }
 .table-lg td, .table-lg th {
-    padding: .7rem 1.25rem;
+    padding: .5rem 1.25rem;
 }
 .theme_bar_lg {
     background-color: rgba(0, 0, 0, 0.13);
@@ -53,6 +53,10 @@
 .subtask-comments i {
     margin-right: 5px;
     font-size: 14px;
+}
+ul.media-list-linked li.active {
+    background-color: #e7f7f1;
+    border-radius: 6px;
 }
 .card-body .datatable-header, .card-body .datatable-footer {
     padding-left: 1.25rem;

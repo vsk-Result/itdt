@@ -232,7 +232,7 @@ $('body').on('change', '.form-check-input-styled', function(e) {
 });
 
 $('body').on('click', '.media-body', function(e) {
-    $(this).parents('li.media').find('.form-check-input-styled').trigger('click');
+    $(this).parents('li.media').find('.subtask-comments').trigger('click');
 });
 
 $('body').on('click', '#add-subtask', function() {
@@ -254,6 +254,16 @@ $('body').on('click', '.destroy-subtask', function() {
 });
 
 $('body').on('click', '.subtask-comments', function() {
+
+    if ($(this).parents('li.media').hasClass('active')) {
+        $('li.media').removeClass('active');
+        $('.subtask-comments').removeClass('active');
+        $('#comments').hide();
+        return true;
+    }
+
+    $('li.media').removeClass('active');
+    $('.subtask-comments').removeClass('active');
     var that = $(this);
     var url = that.data('comments-url');
     $.ajax({
@@ -262,8 +272,8 @@ $('body').on('click', '.subtask-comments', function() {
         $('#comments').html(data.comments_render);
         $('#comments').show();
         $('#comment-body').focus();
-        $('.subtask-comments').removeClass('active');
         that.addClass('active');
+        that.parents('li.media').addClass('active');
     });
 });
 
