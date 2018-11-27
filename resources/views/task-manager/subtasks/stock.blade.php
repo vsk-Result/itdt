@@ -11,8 +11,9 @@
 
             <div class="ml-3">
                 <div class="list-icons">
-                    <a href="#" class="list-icons-item subtask-comments" data-comments-url="{{ route('tasks.subtasks.comments.index', $subtask->id) }}">
-                        <i class="icon-comment-discussion"></i>
+                    <a href="#" class="list-icons-item subtask-comments position-relative" data-comments-url="{{ route('tasks.subtasks.comments.index', $subtask->id) }}">
+                        <i class="icon-comments"></i>
+                        <span>{{ $subtask->comments->count() }}</span>
                     </a>
                 </div>
             </div>

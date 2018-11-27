@@ -532,20 +532,31 @@ function setSubtasksEditMode(value) {
     });
 }
 
+function setAttachment() {
+    var url = $("#formdata").data('url');
+    $.ajax({
+        url: url,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        data: new FormData($("#formdata")[0])
+    }).done(function (data) {
+        $('#task-attachments').html(data.attachments_render);
+        showNotify('store', '', 'Файлы успешно добавлены!');
+        updateAttachmentListener();
+    });
+}
+
+function updateAttachmentListener() {
+    var elem = document.getElementById('task-attachments');
+    elem.addEventListener('change', setAttachment);
+}
+
 function setAttachmentEditMode(value) {
     if (value) {
         $('#formdata').show();
+        updateAttachmentListener();
     } else {
-        var url = $("#formdata").data('url');
-        $.ajax({
-            url: url,
-            type: 'POST',
-            processData: false,
-            contentType: false,
-            data: new FormData($("#formdata")[0])
-        }).done(function (data) {
-            $('#task-attachments').html(data.attachments_render);
-            $('#formdata').hide();
-        });
+        $('#formdata').hide();
     }
 }

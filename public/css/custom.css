@@ -1,6 +1,9 @@
 .layout-boxed-bg {
     background: url(http://demo.interface.club/limitless/demo/bs4/Template/global_assets/images/backgrounds/boxed_bg.png) repeat;
 }
+.table-lg td, .table-lg th {
+    padding: .7rem 1.25rem;
+}
 .theme_bar_lg {
     background-color: rgba(0, 0, 0, 0.13);
     box-shadow: inset 0 0.0625rem 0.0625rem rgba(0,0,0,.1);
@@ -43,6 +46,13 @@
 }
 .subtask-comments.active {
     color: red !important;
+}
+.subtask-comments {
+    color: #bdbdbf;
+}
+.subtask-comments i {
+    margin-right: 5px;
+    font-size: 14px;
 }
 .card-body .datatable-header, .card-body .datatable-footer {
     padding-left: 1.25rem;

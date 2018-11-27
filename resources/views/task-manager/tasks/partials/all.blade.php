@@ -18,7 +18,7 @@
                 <td>
                     <div class="font-weight-semibold">
                         @if (!$task->isTaskType())
-                            <span title="{{ $task->type->name }}" class="mr-1 {{ $task->type->color }}"><i class="icon {{ $task->type->icon }}"></i></span>
+                            <span title="{{ $task->type->name }}" class="mr-1 {{ $task->type->color }}"><i class="icon font-size-sm {{ $task->type->icon }}"></i></span>
                         @endif
 
                         <a href="#">{{ $task->name }}</a>
