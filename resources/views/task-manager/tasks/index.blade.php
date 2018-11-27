@@ -19,6 +19,7 @@
 @section('content')
 
     @include('task-manager.modals.task_info')
+    @include('task-manager.tasks.partials.filter_bar')
 
     <div id="tasks-container" class="card" data-all-url="{{ route('tasks.all') }}">
         <div class="card-body p-0"></div>

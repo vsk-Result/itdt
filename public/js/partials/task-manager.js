@@ -301,6 +301,20 @@ $('body').on('keydown', '#comment-body', function(e) {
     }
 });
 
+$('body').on('click', '#filter-bar a.filter-list-item', function(e) {
+    $(this).parent().find('a.filter-list-item').removeClass('active');
+    $(this).addClass('active');
+    updateTasksTable();
+});
+
+$('body').on('click', '#filter-reset', function(e) {
+    $('a.filter-list-item').removeClass('active');
+    $('a.type-list-item[data-type-id="all"]').addClass('active');
+    $('a.status-list-item[data-status-id="all"]').addClass('active');
+    $('a.priority-list-item[data-priority-id="all"]').addClass('active');
+    updateTasksTable();
+});
+
 $('body').on('click', '#switch-edit', function(e) {
     handleSwitchEdit();
 });
@@ -421,8 +435,16 @@ function updateTasksTable() {
     var container = $('#tasks-container');
     setBlockUI(container);
     var url = container.data('all-url');
+    var filter_type = $('.type-list-item.active').data('type-id');
+    var filter_status = $('.status-list-item.active').data('status-id');
+    var filter_priority = $('.priority-list-item.active').data('priority-id');
     $.ajax({
-        url: url
+        url: url,
+        data: {
+            filter_type: filter_type,
+            filter_status: filter_status,
+            filter_priority: filter_priority
+        }
     }).done(function (data) {
         container.find('.card-body').html(data.tasks_render);
     }).always(function() {

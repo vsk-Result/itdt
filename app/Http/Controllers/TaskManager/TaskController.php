@@ -16,12 +16,26 @@ class TaskController extends Controller
 {
     public function index()
     {
-        return view('task-manager.tasks.index');
+        $types = Type::all();
+        $statuses = Status::all();
+        $priorities = Priority::all();
+        return view('task-manager.tasks.index', compact('priorities', 'statuses', 'types'));
     }
 
-    public function all()
+    public function all(Request $request)
     {
-        $tasks = Task::orderBy('status_id')->orderBy('priority_id')->with('priority', 'status', 'user', 'type', 'subtasks', 'checkedSubtasks')->get();
+        $query = Task::query();
+
+        if ($request->filter_type != 'all') {
+            $query->where('type_id', $request->filter_type);
+        }
+        if ($request->filter_status != 'all') {
+            $query->where('status_id', $request->filter_status);
+        }
+        if ($request->filter_priority != 'all') {
+            $query->where('priority_id', $request->filter_priority);
+        }
+        $tasks = $query->orderBy('status_id')->orderBy('priority_id')->with('priority', 'status', 'user', 'type', 'subtasks', 'checkedSubtasks')->get();
         $tasks_render = view('task-manager.tasks.partials.all', compact('tasks'))->render();
         return response()->json(compact('tasks_render'));
     }
