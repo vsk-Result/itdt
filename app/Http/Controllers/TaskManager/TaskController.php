@@ -41,7 +41,7 @@ class TaskController extends Controller
         if ($request->sorting == 'id') {
             $query->orderBy('status_id')->orderBy('id', 'desc');
         } else {
-            $query->orderBy('status_id');
+            $query->orderBy('status_id')->orderBy('priority_id');
         }
 
         $tasks = $query->with('priority', 'status', 'user', 'type', 'subtasks', 'checkedSubtasks')->get();
