@@ -350,11 +350,6 @@ function sendCheckInfo(elem) {
 }
 
 function addSubtask() {
-
-    if (!edit_mod_enabled) {
-        $('#switch-edit').trigger('click');
-    }
-
     var url = $('#add-subtask').data('add-url');
     $.ajax({
         url: url,
