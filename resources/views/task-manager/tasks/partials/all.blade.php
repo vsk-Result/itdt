@@ -41,10 +41,10 @@
                         </div>
                     @endif
                 </td>
-                <td>
+                <td align="center">
                     <span class="badge bg-{{ $task->priority->class }}">{{ $task->priority->name }}</span>
                 </td>
-                <td>{{ $task->user->name }}</td>
+                <td align="center">{{ $task->user->name }}</td>
                 <td>
                     <div class="d-inline-flex align-items-center">
                         <i class="icon-calendar2 mr-2"></i>

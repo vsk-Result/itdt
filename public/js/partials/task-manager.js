@@ -53,11 +53,11 @@ var TaskManagerList = function () {
                     targets: 3
                 },
                 {
-                    width: '10%',
+                    width: '7%',
                     targets: 4
                 },
                 {
-                    width: '10%',
+                    width: '7%',
                     targets: 5
                 },
                 {
