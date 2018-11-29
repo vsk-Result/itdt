@@ -21,6 +21,7 @@
                 <a href="javascript:void(0)" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
                     <i class="icon-sort-alpha-asc mr-2"></i>
                     По типу
+                    <span class="filter-subtitle">(Все)</span>
                 </a>
 
                 <div class="dropdown-menu">
@@ -36,6 +37,7 @@
                 <a href="javascript:void(0)" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
                     <i class="icon-sort-amount-desc mr-2"></i>
                     По статусу
+                    <span class="filter-subtitle">(Все)</span>
                 </a>
 
                 <div class="dropdown-menu">
@@ -51,6 +53,7 @@
                 <a href="javascript:void(0)" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
                     <i class="icon-sort-numeric-asc mr-2"></i>
                     По приоритету
+                    <span class="filter-subtitle">(Все)</span>
                 </a>
 
                 <div class="dropdown-menu">

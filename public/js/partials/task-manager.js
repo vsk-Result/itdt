@@ -340,6 +340,14 @@ $('body').on('keydown', '#comment-body', function(e) {
 $('body').on('click', '#filter-bar a.filter-list-item', function(e) {
     $(this).parent().find('a.filter-list-item').removeClass('active');
     $(this).addClass('active');
+
+    var subtitle = $(this).text();
+    if (subtitle == 'Показать все') {
+        $(this).parents('.nav-item').find('.filter-subtitle').text('(Все)');
+    } else {
+        $(this).parents('.nav-item').find('.filter-subtitle').text('(' + subtitle + ')');
+    }
+
     updateTasksTable();
 });
 
