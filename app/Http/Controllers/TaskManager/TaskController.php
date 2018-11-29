@@ -38,10 +38,11 @@ class TaskController extends Controller
         if ($request->is_only_me == "true") {
             $query->where('user_id', auth()->id());
         }
+
         if ($request->sorting == 'id') {
             $query->orderBy('status_id')->orderBy('id', 'desc');
         } else {
-            $query->orderBy('status_id')->orderBy('priority_id');
+            $query->orderBy('status_id')->orderBy('priority_id')->orderBy('id', 'desc');
         }
 
         $tasks = $query->with('priority', 'status', 'user', 'type', 'subtasks', 'checkedSubtasks')->get();
