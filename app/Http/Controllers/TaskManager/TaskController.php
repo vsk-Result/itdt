@@ -39,10 +39,12 @@ class TaskController extends Controller
             $query->where('user_id', auth()->id());
         }
         if ($request->sorting == 'id') {
-            $query->orderBy('id', 'desc');
+            $query->orderBy('status_id')->$query->orderBy('id', 'desc');
+        } else {
+            $query->orderBy('status_id');
         }
 
-        $tasks = $query->orderBy('status_id')->orderBy('priority_id')->with('priority', 'status', 'user', 'type', 'subtasks', 'checkedSubtasks')->get();
+        $tasks = $query->with('priority', 'status', 'user', 'type', 'subtasks', 'checkedSubtasks')->get();
         $tasks_render = view('task-manager.tasks.partials.all', compact('tasks'))->render();
         return response()->json(compact('tasks_render'));
     }
