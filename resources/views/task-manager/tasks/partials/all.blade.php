@@ -45,9 +45,7 @@
                     <span class="badge bg-{{ $task->priority->class }}">{{ $task->priority->name }}</span>
                 </td>
                 <td align="center">
-                    @if(auth()->id() != $task->user_id)
-                        {{ $task->user->name }}
-                    @endif
+                    {{ $task->user->name }}
                 </td>
                 <td>
                     <div class="d-inline-flex align-items-center">
