@@ -39,7 +39,7 @@ class TaskController extends Controller
             $query->where('user_id', auth()->id());
         }
         if ($request->sorting == 'id') {
-            $query->orderBy('status_id')->$query->orderBy('id', 'desc');
+            $query->orderBy('status_id')->orderBy('id', 'desc');
         } else {
             $query->orderBy('status_id');
         }
