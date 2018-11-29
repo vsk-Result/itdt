@@ -34,6 +34,7 @@ var TaskManagerList = function () {
             autoWidth: false,
             ordering: false,
             paginate: false,
+            searching: false,
             columnDefs: [
                 {
                     type: "natural",
@@ -261,6 +262,31 @@ $('body').on('change', '.form-check-input-styled', function(e) {
     var span = $(this).parents('li.media').find('span.subtask-name');
     span.toggleClass('text-line-through', $(this).prop('checked'));
     sendCheckInfo($(this));
+});
+
+$('#filter-search-btn').on('click', function() {
+    var text = $('#filter-search-input').val();
+    if (text.length >= 3) {
+        var url = $(this).data('search-url');
+        var container = $('#tasks-container');
+        setBlockUI(container);
+        $.ajax({
+            url: url,
+            data: {
+                text: text
+            }
+        }).done(function (data) {
+            container.find('.card-body').html(data.tasks_render);
+        }).always(function() {
+            TaskManagerList.init();
+        });
+    }
+});
+
+$('#filter-search-input').on('keydown', function(e) {
+    if (e.keyCode === 13) {
+        $('#filter-search-btn').trigger('click');
+    }
 });
 
 $('body').on('click', '.media-body', function(e) {

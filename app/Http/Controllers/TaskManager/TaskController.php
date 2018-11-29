@@ -6,6 +6,7 @@ use App\Models\TaskManager\Attachment;
 use App\Models\TaskManager\Priority;
 use App\Models\TaskManager\Status;
 use App\Models\TaskManager\Subtask;
+use App\Models\TaskManager\SubtaskComment;
 use App\Models\TaskManager\Task;
 use App\Models\TaskManager\Type;
 use Illuminate\Http\Request;
@@ -20,6 +21,22 @@ class TaskController extends Controller
         $statuses = Status::all();
         $priorities = Priority::all();
         return view('task-manager.tasks.index', compact('priorities', 'statuses', 'types'));
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->text;
+
+        $one_search = Task::where('name', 'LIKE', '%' . $query . '%')->orWhere('description', 'LIKE', '%' . $query . '%')->pluck('id')->toArray();
+        $two_search = Subtask::where('name', 'LIKE', '%' . $query . '%')->pluck('task_id')->toArray();
+        $three_search = SubtaskComment::where('text', 'LIKE', '%' . $query . '%')->pluck('subtask_id')->toArray();
+        $three_search = Subtask::whereIn('id', $three_search)->pluck('task_id')->toArray();
+
+        $task_ids = array_merge($one_search, $two_search, $three_search);
+        $tasks = Task::whereIn('id', $task_ids)->with('priority', 'status', 'user', 'type', 'subtasks', 'checkedSubtasks')->get();
+
+        $tasks_render = view('task-manager.tasks.partials.all', compact('tasks'))->render();
+        return response()->json(compact('tasks_render'));
     }
 
     public function all(Request $request)

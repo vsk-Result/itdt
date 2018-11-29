@@ -83,5 +83,16 @@
         <span class="navbar-text font-weight-semibold mr-3 ml-md-auto">
             <a href="javascript:void(0)" id="filter-reset">Сбросить</a>
         </span>
+
+        <div class="navbar-collapse collapse" id="navbar-form-icons">
+            <form class="my-3 my-xl-0">
+                <div class="form-group-feedback form-group-feedback-left mb-3 mb-xl-0">
+                    <input id="filter-search-input" type="text" class="form-control" style="width: 165px;" placeholder="Поиск...">
+                    <div id="filter-search-btn" class="form-control-feedback cursor-pointer" data-search-url="{{ route('tasks.search') }}">
+                        <i class="icon-search4 text-muted font-size-base"></i>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>

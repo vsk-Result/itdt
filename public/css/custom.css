@@ -7,6 +7,9 @@
 .table-xs td, .table-xs th {
     padding: .5rem 1rem;
 }
+.datatable-header {
+    display: none;
+}
 .priority-danger {
     border-left: 3px solid #f44336;
 }
