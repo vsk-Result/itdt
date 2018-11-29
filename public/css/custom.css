@@ -7,6 +7,15 @@
 .table-xs td, .table-xs th {
     padding: .5rem 1rem;
 }
+.priority-danger {
+    border-left: 3px solid #f44336;
+}
+.priority-primary {
+    border-left: 3px solid #2196f3;
+}
+.priority-success {
+    border-left: 3px solid #4caf50;
+}
 .theme_bar_lg {
     background-color: rgba(0, 0, 0, 0.13);
     box-shadow: inset 0 0.0625rem 0.0625rem rgba(0,0,0,.1);

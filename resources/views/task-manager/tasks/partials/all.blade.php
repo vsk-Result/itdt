@@ -5,7 +5,6 @@
         <th>Статус</th>
         <th>Задача</th>
         <th>Выполнение</th>
-        <th>Приоритет</th>
         <th class="text-center">Автор</th>
         <th>Последнее изменение</th>
     </tr>
@@ -13,7 +12,7 @@
     <tbody>
         @foreach($tasks as $task)
             <tr class="open-modal-task" data-task-info-url="{{ route('tasks.info', $task->id) }}">
-                <td>#{{ $task->id }}</td>
+                <td class="priority-{{ $task->priority->class }}">#{{ $task->id }}</td>
                 <td>{{ $task->status->name }}</td>
                 <td>
                     <div class="font-weight-semibold">
@@ -40,9 +39,6 @@
                             </div>
                         </div>
                     @endif
-                </td>
-                <td align="center">
-                    <span class="badge bg-{{ $task->priority->class }}">{{ $task->priority->name }}</span>
                 </td>
                 <td align="center">
                     {{ $task->user->name }}

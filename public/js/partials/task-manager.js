@@ -45,24 +45,20 @@ var TaskManagerList = function () {
                     visible: false
                 },
                 {
-                    width: '35%',
+                    width: '40%',
                     targets: 2
                 },
                 {
-                    width: '15%',
+                    width: '20%',
                     targets: 3
                 },
                 {
-                    width: '7%',
+                    width: '10%',
                     targets: 4
                 },
                 {
-                    width: '7%',
-                    targets: 5
-                },
-                {
                     width: '15%',
-                    targets: 6
+                    targets: 5
                 }
             ],
             dom: '<"datatable-header"fl><"datatable-scroll-lg"t><"datatable-footer"ip>',
