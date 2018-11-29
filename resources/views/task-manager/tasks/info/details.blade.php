@@ -8,23 +8,31 @@
         <tr>
             <td><i class="icon-circles2 mr-2"></i> Приоритет:</td>
             <td class="text-right">
-                <div class="btn-group">
-                    <a href="javascript:void(0)" class="badge bg-{{ $task->priority->class }} dropdown-toggle" data-toggle="dropdown">{{ $task->priority->name }}</a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        @foreach($priorities as $priority)
-                            <a href="javascript:void(0)" class="task-priority dropdown-item {{ $priority->id == $task->priority_id ? 'active' : '' }}" data-priority-id="{{ $priority->id }}">
-                                <span class="badge badge-mark mr-2 bg-{{ $priority->class }} border-{{ $priority->class }}"></span>
-                                {{ $priority->name }}
-                            </a>
-                        @endforeach
+                @if (auth()->id() == $task->user_id)
+                    <div class="btn-group">
+                        <a href="javascript:void(0)" class="badge bg-{{ $task->priority->class }} dropdown-toggle" data-toggle="dropdown">{{ $task->priority->name }}</a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            @foreach($priorities as $priority)
+                                <a href="javascript:void(0)" class="task-priority dropdown-item {{ $priority->id == $task->priority_id ? 'active' : '' }}" data-priority-id="{{ $priority->id }}">
+                                    <span class="badge badge-mark mr-2 bg-{{ $priority->class }} border-{{ $priority->class }}"></span>
+                                    {{ $priority->name }}
+                                </a>
+                            @endforeach
+                        </div>
                     </div>
-                </div>
+                @else
+                    <span class="badge bg-{{ $task->priority->class }}">{{ $task->priority->name }}</span>
+                @endif
             </td>
         </tr>
         <tr>
             <td><i class="icon-file-check mr-2"></i> Тип:</td>
             <td class="text-right">
-                {{ Form::select('task_type', $types, $task->type_id, ['id' => 'task-type', 'class' => 'form-control form-control-sm']) }}
+                @if (auth()->id() == $task->user_id)
+                    {{ Form::select('task_type', $types, $task->type_id, ['id' => 'task-type', 'class' => 'form-control form-control-sm']) }}
+                @else
+                    {{ $task->type->name }}
+                @endif
             </td>
         </tr>
         <tr>
