@@ -5,7 +5,7 @@
         <th>Статус</th>
         <th>Задача</th>
         <th>Выполнение</th>
-        <th class="text-center">Автор</th>
+        <th>Автор</th>
         <th>Последнее изменение</th>
     </tr>
     </thead>
@@ -40,7 +40,7 @@
                         </div>
                     @endif
                 </td>
-                <td align="center">
+                <td>
                     {{ $task->user->name }}
                 </td>
                 <td>
