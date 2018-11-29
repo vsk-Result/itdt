@@ -4,6 +4,9 @@
 .table-lg td, .table-lg th {
     padding: .5rem 1.25rem;
 }
+.table-xs td, .table-xs th {
+    padding: .5rem 1rem;
+}
 .theme_bar_lg {
     background-color: rgba(0, 0, 0, 0.13);
     box-shadow: inset 0 0.0625rem 0.0625rem rgba(0,0,0,.1);

@@ -33,6 +33,7 @@ var TaskManagerList = function () {
         $('.tasks-list').DataTable({
             autoWidth: false,
             ordering: false,
+            paginate: false,
             columnDefs: [
                 {
                     type: "natural",
@@ -71,8 +72,6 @@ var TaskManagerList = function () {
                 lengthMenu: '<span>Показать:</span> _MENU_',
                 paginate: { 'первая': 'Первая', 'последняя': 'Последняя', 'следующая': $('html').attr('dir') == 'rtl' ? '&larr;' : '&rarr;', 'предыдущая': $('html').attr('dir') == 'rtl' ? '&rarr;' : '&larr;' }
             },
-            lengthMenu: [ 15, 25, 50, 75, 100 ],
-            displayLength: 25,
             drawCallback: function (settings) {
                 var api = this.api();
                 var rows = api.rows({page:'current'}).nodes();
@@ -215,7 +214,7 @@ $('body').on('click', '#tasks-store', function(e) {
         updateTasksTable();
         showNotify('store', '', 'Задача успешно добавлена!');
         setTimeout(function () {
-            $("tr[data-task-info-url='" + data.info_url + "']").trigger('click');
+            $('tr[data-task-info-url="' + data.info_url + '"]').trigger('click');
         }, 1300);
     });
 });

@@ -74,7 +74,7 @@ class TaskController extends Controller
         $task->name = Task::getDefaultName();
         $task->save();
 
-        $info_url = route('tasks.show', $task->id);
+        $info_url = route('tasks.info', $task->id);
 
         return response()->json(compact('info_url'));
     }
