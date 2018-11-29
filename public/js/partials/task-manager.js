@@ -193,9 +193,11 @@ var InputsCheckboxesRadios = function () {
 // ------------------------------
 
 document.addEventListener('DOMContentLoaded', function() {
-    updateTasksTable();
+    filter_switch_enabled = true;
     edit_mod_enabled = false;
     was_changes = false;
+    updateTasksTable();
+    InputsCheckboxesRadios.initComponents();
 });
 
 $('body').on('click', '.tasks-list tbody tr.open-modal-task', function(e) {
@@ -220,6 +222,11 @@ $('body').on('click', '#tasks-store', function(e) {
 });
 
 $('body').on('click', '#tasks-update', function(e) {
+    updateTasksTable();
+});
+
+$('body').on('click', '#tasks-my-other', function(e) {
+    filter_switch_enabled = !filter_switch_enabled;
     updateTasksTable();
 });
 
@@ -311,6 +318,9 @@ $('body').on('click', '#filter-reset', function(e) {
     $('a.type-list-item[data-type-id="all"]').addClass('active');
     $('a.status-list-item[data-status-id="all"]').addClass('active');
     $('a.priority-list-item[data-priority-id="all"]').addClass('active');
+    if (!filter_switch_enabled) {
+        $('#tasks-my-other').trigger('click');
+    }
     updateTasksTable();
 });
 
@@ -432,12 +442,14 @@ function updateTasksTable() {
     var filter_type = $('.type-list-item.active').data('type-id');
     var filter_status = $('.status-list-item.active').data('status-id');
     var filter_priority = $('.priority-list-item.active').data('priority-id');
+    var is_only_me = !filter_switch_enabled;
     $.ajax({
         url: url,
         data: {
             filter_type: filter_type,
             filter_status: filter_status,
-            filter_priority: filter_priority
+            filter_priority: filter_priority,
+            is_only_me: is_only_me
         }
     }).done(function (data) {
         container.find('.card-body').html(data.tasks_render);

@@ -7,11 +7,16 @@
     </div>
 
     <div class="navbar-collapse collapse" id="navbar-filter">
-        <span class="navbar-text font-weight-semibold mr-3">
-            Фильтр:
-        </span>
 
-        <ul class="navbar-nav flex-wrap">
+        <div class="form-check form-check-switchery form-check-switchery-double form-check-filter-switchery mb-3 mb-lg-0">
+            <label class="form-check-label">
+                Мои
+                <input id="tasks-my-other" type="checkbox" class="form-check-input-switchery" checked data-fouc>
+                Все
+            </label>
+        </div>
+
+        <ul class="navbar-nav flex-wrap ml-2">
             <li class="nav-item dropdown">
                 <a href="javascript:void(0)" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
                     <i class="icon-sort-alpha-asc mr-2"></i>
