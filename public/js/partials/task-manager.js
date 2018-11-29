@@ -45,11 +45,11 @@ var TaskManagerList = function () {
                     visible: false
                 },
                 {
-                    width: '40%',
+                    width: '35%',
                     targets: 2
                 },
                 {
-                    width: '15%',
+                    width: '20%',
                     targets: 3
                 },
                 {
