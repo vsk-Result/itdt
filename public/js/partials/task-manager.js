@@ -574,7 +574,7 @@ function setAttachment() {
     }).done(function (data) {
         $('#task-attachments').html(data.attachments_render);
         showNotify('store', '', 'Файлы успешно добавлены!');
-        updateAttachmentListener();
+        setAttachmentEditMode(true);
     });
 }
 
