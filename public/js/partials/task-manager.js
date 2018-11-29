@@ -338,10 +338,14 @@ $('body').on('click', '#filter-bar a.filter-list-item', function(e) {
     $(this).addClass('active');
 
     var subtitle = $(this).text();
+    $(this).parents('.nav-item').find('.filter-subtitle').text('(' + subtitle + ')');
+
     if (subtitle == 'Показать все') {
         $(this).parents('.nav-item').find('.filter-subtitle').text('(Все)');
-    } else {
-        $(this).parents('.nav-item').find('.filter-subtitle').text('(' + subtitle + ')');
+    }
+
+    if (subtitle == 'Сброс') {
+        $(this).parents('.nav-item').find('.filter-subtitle').text('');
     }
 
     updateTasksTable();
@@ -352,6 +356,7 @@ $('body').on('click', '#filter-reset', function(e) {
     $('a.type-list-item[data-type-id="all"]').addClass('active');
     $('a.status-list-item[data-status-id="all"]').addClass('active');
     $('a.priority-list-item[data-priority-id="all"]').addClass('active');
+    $('a.sort-list-item[data-sort-id="all"]').addClass('active');
     if (!filter_switch_enabled) {
         $('#tasks-my-other').trigger('click');
     }
@@ -476,6 +481,7 @@ function updateTasksTable() {
     var filter_type = $('.type-list-item.active').data('type-id');
     var filter_status = $('.status-list-item.active').data('status-id');
     var filter_priority = $('.priority-list-item.active').data('priority-id');
+    var sorting = $('.sort-list-item.active').data('sort-id');
     var is_only_me = !filter_switch_enabled;
     $.ajax({
         url: url,
@@ -483,6 +489,7 @@ function updateTasksTable() {
             filter_type: filter_type,
             filter_status: filter_status,
             filter_priority: filter_priority,
+            sorting: sorting,
             is_only_me: is_only_me
         }
     }).done(function (data) {
@@ -547,12 +554,14 @@ function handleSwitchEdit() {
         setSubtasksEditMode(true);
         setAttachmentEditMode(true);
         $('#comments').hide();
+        $('#add-subtask').show();
     } else {
         setEditMod(false);
         setTaskGeneralEditMode(false);
         setSubtasksEditMode(false);
         setAttachmentEditMode(false);
         updateTasksTable();
+        $('#add-subtask').hide();
     }
 }
 

@@ -38,6 +38,10 @@ class TaskController extends Controller
         if ($request->is_only_me == "true") {
             $query->where('user_id', auth()->id());
         }
+        if ($request->sorting == 'id') {
+            $query->orderBy('id', 'desc');
+        }
+
         $tasks = $query->orderBy('status_id')->orderBy('priority_id')->with('priority', 'status', 'user', 'type', 'subtasks', 'checkedSubtasks')->get();
         $tasks_render = view('task-manager.tasks.partials.all', compact('tasks'))->render();
         return response()->json(compact('tasks_render'));

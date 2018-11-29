@@ -35,7 +35,7 @@
 
             <li class="nav-item dropdown">
                 <a href="javascript:void(0)" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
-                    <i class="icon-sort-amount-desc mr-2"></i>
+                    <i class="icon-sort-time-asc mr-2"></i>
                     По статусу
                     <span class="filter-subtitle">(Все)</span>
                 </a>
@@ -62,6 +62,20 @@
                     @foreach($priorities as $priority)
                         <a href="javascript:void(0)" data-priority-id="{{ $priority->id }}" class="priority-list-item filter-list-item dropdown-item">{{ $priority->name }}</a>
                     @endforeach
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a href="javascript:void(0)" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
+                    <i class="icon-sort-amount-asc mr-2"></i>
+                    Сортировка
+                    <span class="filter-subtitle"></span>
+                </a>
+
+                <div class="dropdown-menu">
+                    <a href="javascript:void(0)" data-priority-id="all" class="sort-list-item filter-list-item dropdown-item active">Сброс</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="javascript:void(0)" data-sort-id="id" class="sort-list-item filter-list-item dropdown-item">ID</a>
                 </div>
             </li>
         </ul>
