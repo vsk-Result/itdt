@@ -176,7 +176,6 @@ var InputsCheckboxesRadios = function () {
         var primary = document.querySelector('.form-check-input-switchery-primary');
         var switchery = new Switchery(primary, { color: '#2196F3' });
     };
-
     //
     // Return objects assigned to module
     //
@@ -189,6 +188,37 @@ var InputsCheckboxesRadios = function () {
     }
 }();
 
+var InputsFilterRadios = function () {
+
+    //
+    // Setup components
+    //
+
+    // Switchery
+    var _componentFilterSwitchery = function() {
+        if (typeof Switchery == 'undefined') {
+            console.warn('Warning - switchery.min.js is not loaded.');
+            return;
+        }
+
+        // Initialize multiple switches
+        var elems = Array.prototype.slice.call(document.querySelectorAll('.form-check-filter-input-switchery'));
+        elems.forEach(function(html) {
+            var switchery = new Switchery(html);
+        });
+    };
+
+    //
+    // Return objects assigned to module
+    //
+
+    return {
+        initComponents: function() {
+            _componentFilterSwitchery();
+        }
+    }
+}();
+
 // Initialize module
 // ------------------------------
 
@@ -197,7 +227,7 @@ document.addEventListener('DOMContentLoaded', function() {
     edit_mod_enabled = false;
     was_changes = false;
     updateTasksTable();
-    InputsCheckboxesRadios.initComponents();
+    InputsFilterRadios.initComponents();
 });
 
 $('body').on('click', '.tasks-list tbody tr.open-modal-task', function(e) {
