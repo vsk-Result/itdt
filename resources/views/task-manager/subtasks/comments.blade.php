@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header header-elements-inline">
         @isset($subtask)
-            <h5 class="card-title">Комментарии подзадачи <b>"{{ $subtask->name }}"</b></h5>
+            <h5 class="card-title">Комментарии чек-листа <b>"{{ $subtask->name }}"</b></h5>
         @endisset
     </div>
 

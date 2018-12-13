@@ -122,6 +122,15 @@ class TaskController extends Controller
             $task->status_id = isset($request->status_id) ? $request->status_id : $task->status_id;
             $task->type_id = isset($request->type_id) ? $request->type_id : $task->type_id;
             $task->updated_at = Carbon::now();
+
+            if (isset($request->status_id) && $request->status_id == Task::COMPLETE_STATUS_ID) {
+                $task->completed_at = Carbon::now();
+                $task->user_complete_id = auth()->id();
+            } else {
+                $task->completed_at = null;
+                $task->user_complete_id = null;
+            }
+
             $task->update();
             $priorities = Priority::all();
             $statuses = Status::pluck('name', 'id');
@@ -161,6 +170,14 @@ class TaskController extends Controller
 
         $attachments_render = view('task-manager.tasks.info.attachments', compact('task'))->render();
         return response()->json(compact('attachments_render'));
+    }
+
+    public function destroyFile($id, $f_id)
+    {
+        $attachment = Attachment::findOrFail($f_id);
+        $attachment->delete();
+
+        return response()->json(['status' => 'success']);
     }
 
     public function getEdit($id)

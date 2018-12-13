@@ -46,13 +46,27 @@
             <td class="text-right"><a href="#">{{ $task->user->name }}</a></td>
         </tr>
         <tr>
-            <td><i class="icon-alarm-check mr-2"></i> Изменено:</td>
-            <td class="text-right text-muted">{{ $task->updated_at->format('d.m.Y H:i') }}</td>
+            <td><i class="icon-alarm-check mr-2"></i> Изменена:</td>
+            <td class="text-right text-muted">{{ $task->updated_at->format('d/m/Y H:i') }}</td>
         </tr>
         <tr>
-            <td><i class="icon-alarm-add mr-2"></i> Создано:</td>
-            <td class="text-right text-muted">{{ $task->created_at->format('d.m.Y H:i') }}</td>
+            <td><i class="icon-alarm-add mr-2"></i> Создана:</td>
+            <td class="text-right text-muted">{{ $task->created_at->format('d/m/Y H:i') }}</td>
         </tr>
+
+        @if ($task->isComplete())
+            <tr>
+                <td colspan="2"><hr></td>
+            </tr>
+            <tr>
+                <td><i class="icon-alarm-check mr-2"></i> Закрыта:</td>
+                <td class="text-right text-muted">{{ $task->completed_at->format('d/m/Y H:i') }}</td>
+            </tr>
+            <tr>
+                <td><i class="icon-alarm-check mr-2"></i> Закрыл:</td>
+                <td class="text-right"><a href="#">{{ $task->complete_user->name }}</a></td>
+            </tr>
+        @endif
         </tbody>
     </table>
 </div>

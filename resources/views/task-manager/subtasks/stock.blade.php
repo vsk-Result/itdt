@@ -1,5 +1,5 @@
 <ul class="media-list media-list-linked">
-    @foreach($task->subtasks as $subtask)
+    @forelse($task->subtasks as $subtask)
         <li class="media">
             <div class="mr-3">
                 {{ Form::checkbox('check', null, $subtask->checked, ['class' => 'form-check-input-styled', 'data-info-url' => route('tasks.subtasks.update', $subtask->id)]) }}
@@ -18,5 +18,7 @@
                 </div>
             </div>
         </li>
-    @endforeach
+    @empty
+        <p>Записи отсутствуют</p>
+    @endforelse
 </ul>

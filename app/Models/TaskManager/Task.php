@@ -8,10 +8,18 @@ use Illuminate\Support\Facades\DB;
 class Task extends Model
 {
     protected $table = 'tasks';
+    protected $dates = ['completed_at'];
+
+    const COMPLETE_STATUS_ID = 3;
 
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function complete_user()
+    {
+        return $this->belongsTo('App\User', 'user_complete_id');
     }
 
     public function status()
@@ -67,5 +75,10 @@ class Task extends Model
     public function isTaskType()
     {
         return $this->type->name == 'Задача';
+    }
+
+    public function isComplete()
+    {
+        return $this->status_id == self::COMPLETE_STATUS_ID;
     }
 }

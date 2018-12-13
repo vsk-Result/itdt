@@ -12,6 +12,7 @@ Route::group(['prefix' => 'task-manager', 'namespace' => 'TaskManager'], functio
     Route::get('/{id}/edit', 'TaskController@edit')->name('tasks.edit');
     Route::post('/{id}/update', 'TaskController@update')->name('tasks.update');
     Route::post('/{id}/attach_files', 'TaskController@attachFiles')->name('tasks.attach_files');
+    Route::post('/{id}/attach_files/{f_id}/destroy_file', 'TaskController@destroyFile')->name('tasks.attach_files.destroy');
     Route::get('/{id}/subtasks/edit', 'TaskController@getEdit')->name('tasks.subtasks.edit');
     Route::get('/{id}/subtasks/show', 'TaskController@getShow')->name('tasks.subtasks.show');
 

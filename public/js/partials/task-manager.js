@@ -259,9 +259,21 @@ $('body').on('click', '#tasks-my-other', function(e) {
 
 $('body').on('change', '.form-check-input-styled', function(e) {
     e.preventDefault();
-    var span = $(this).parents('li.media').find('span.subtask-name');
-    span.toggleClass('text-line-through', $(this).prop('checked'));
-    sendCheckInfo($(this));
+    var that = $(this);
+    var checked = that.prop('checked');
+    if (!checked) {
+        if (confirm('Вы действительно хотите отменить подазадчу?')) {
+            var span = that.parents('li.media').find('span.subtask-name');
+            span.toggleClass('text-line-through', checked);
+            sendCheckInfo(that);
+        } else {
+            that.prop('checked', true);
+        }
+    } else {
+        var span = that.parents('li.media').find('span.subtask-name');
+        span.toggleClass('text-line-through', checked);
+        sendCheckInfo(that);
+    }
 });
 
 $('#filter-search-btn').on('click', function() {
@@ -375,6 +387,20 @@ $('body').on('click', '#filter-bar a.filter-list-item', function(e) {
     }
 
     updateTasksTable();
+});
+
+$('body').on('click', '.destroy-attachment', function() {
+    if (confirm('Вы действительно хотите удалить вложение?')) {
+        var that = $(this);
+        var url = that.data('destroy-url');
+        $.ajax({
+            url: url,
+            type: 'POST'
+        }).done(function (data) {
+            that.parents('li.media').remove();
+            showNotify('destroy', '', 'Вложение успешно удалено!');
+        });
+    }
 });
 
 $('body').on('click', '#filter-reset', function(e) {
@@ -667,8 +693,10 @@ function updateAttachmentListener() {
 function setAttachmentEditMode(value) {
     if (value) {
         $('#formdata').show();
+        $('.destroy-attachment').show();
         updateAttachmentListener();
     } else {
         $('#formdata').hide();
+        $('.destroy-attachment').hide();
     }
 }

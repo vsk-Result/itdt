@@ -3,11 +3,15 @@
 namespace App\Models\TaskManager;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 
 class Attachment extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'task_attachments';
+    protected $dates = ['deleted_at'];
 
     public function task()
     {

@@ -15,10 +15,14 @@
                     </div>
 
                     <div class="media-body">
-                        <div class="font-weight-semibold">{{ $attachment->getFilename() }}</div>
+                        <div class="font-weight-semibold">
+                            {{ $attachment->getFilename() }}
+                            <span class="destroy-attachment text-danger cursor-pointer important" data-destroy-url="{{ route('tasks.attach_files.destroy', [$task->id, $attachment->id]) }}">(<i class="icon-trash font-size-xs"></i>)</span>
+                        </div>
                         <ul class="list-inline list-inline-dotted list-inline-condensed font-size-sm text-muted">
                             <li class="list-inline-item">Размер: {{ $attachment->getSize() }}</li>
                             <li class="list-inline-item">{{ $attachment->user->name }}</li>
+                            <li class="list-inline-item">{{ $attachment->created_at->format('d/m/Y H:i') }}</li>
                         </ul>
                     </div>
 

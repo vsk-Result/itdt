@@ -30,12 +30,17 @@ class SubTaskController extends Controller
         $subtask->updated_at = Carbon::now();
         $subtask->update();
 
+        if ($request->checked == "true") {
+            $comment = $this->storeComment($id, 'Пользователь выполнил подзадачу');
+        } else {
+            $comment = $this->storeComment($id, 'Пользователь отменил выполнение подзадачи');
+        }
+
         return response()->json(['status' => 'success']);
     }
 
     public function destroy($id) {
         $subtask = Subtask::findOrFail($id);
-        $task = $subtask->task;
         $subtask->delete();
 
         return response()->json(['status' => 'success']);
@@ -49,15 +54,22 @@ class SubTaskController extends Controller
 
     public function sendMessage($id, Request $request) {
         $subtask = Subtask::findOrFail($id);
-        $comment = new SubtaskComment();
-        $comment->subtask_id = $id;
-        $comment->user_id = auth()->id();
-        $comment->text = $request->text;
-        $comment->save();
+        $comment = $this->storeComment($id, $request->text);
         $subtask->update();
 
         $comments_count = $subtask->comments->count();
         $comments_render = view('task-manager.subtasks.comments', compact('subtask'))->render();
         return response()->json(compact('comments_render', 'comments_count'));
+    }
+
+    private function storeComment($subtask_id, $text)
+    {
+        $comment = new SubtaskComment();
+        $comment->subtask_id = $subtask_id;
+        $comment->user_id = auth()->id();
+        $comment->text = $text;
+        $comment->save();
+
+        return $comment;
     }
 }
