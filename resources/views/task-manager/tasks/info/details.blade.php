@@ -60,11 +60,11 @@
             </tr>
             <tr>
                 <td><i class="icon-alarm-check mr-2"></i> Закрыта:</td>
-                <td class="text-right text-muted">{{ $task->completed_at->format('d/m/Y H:i') }}</td>
+                <td class="text-right text-muted">{{ is_null($task->completed_at) ?: $task->completed_at->format('d/m/Y H:i') }}</td>
             </tr>
             <tr>
                 <td><i class="icon-alarm-check mr-2"></i> Закрыл:</td>
-                <td class="text-right"><a href="#">{{ $task->complete_user->name }}</a></td>
+                <td class="text-right"><a href="#">{{ is_null($task->complete_user) ?: $task->complete_user->name }}</a></td>
             </tr>
         @endif
         </tbody>
