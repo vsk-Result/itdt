@@ -54,17 +54,17 @@
             <td class="text-right text-muted">{{ $task->created_at->format('d/m/Y H:i') }}</td>
         </tr>
 
-        @if ($task->isComplete())
+        @if ($task->isComplete() && !is_null($task->completed_at))
             <tr>
                 <td colspan="2"><hr></td>
             </tr>
             <tr>
                 <td><i class="icon-alarm-check mr-2"></i> Закрыта:</td>
-                <td class="text-right text-muted">{{ is_null($task->completed_at) ?: $task->completed_at->format('d/m/Y H:i') }}</td>
+                <td class="text-right text-muted">{{ $task->completed_at->format('d/m/Y H:i') }}</td>
             </tr>
             <tr>
                 <td><i class="icon-alarm-check mr-2"></i> Закрыл:</td>
-                <td class="text-right"><a href="#">{{ is_null($task->complete_user) ?: $task->complete_user->name }}</a></td>
+                <td class="text-right"><a href="#">{{ $task->complete_user->name }}</a></td>
             </tr>
         @endif
         </tbody>
