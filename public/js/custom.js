@@ -12,23 +12,6 @@ $.ajaxSetup({
 });
 $(function() {
 
-    document.ready = function () {
-        if (document.body.scrollHeight <= document.documentElement.clientHeight) {
-            document.body.style.position = 'absolute';
-            document.body.style.width = document.documentElement.clientWidth + 17 + 'px';
-            document.body.style.left = -17 + 'px';
-        }
-    }
-
-    window.onresize = function () {
-        if (document.body.scrollHeight <= document.documentElement.clientHeight) {
-            document.body.style.position = 'absolute';
-            document.body.style.width = document.documentElement.clientWidth + 17 + 'px';
-            document.body.style.left = -17 + 'px';
-        }
-    }
-
-
     // Активный элемент меню
     var href = window.location.href;
     // $('.nav-sidebar li a').removeClass('active');

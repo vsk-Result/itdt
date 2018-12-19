@@ -85,16 +85,6 @@ ul.media-list-linked li.active {
     width: 250px;
     height: 150px;
 }
-
-header, main, footer {
-    max-width: 1200px;
-    margin: 0 auto;
-    border-left: 1px solid green;
-    border-right: 1px solid green;
-}
-@media screen and (min-width: 1200px) {/* если окно браузера больше максимальной ширины сайта */
-    html {
-        margin-left: calc(100vw - 100%);
-        margin-right: 0;
-    }
+body {
+    overflow-y: scroll;
 }
