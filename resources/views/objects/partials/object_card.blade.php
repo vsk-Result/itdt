@@ -14,7 +14,7 @@
 
         <div class="card-body">
             <h5 class="card-title"><a href="{{ route('objects.show', [$object->id]) }}">{{ $object->getFullName() }}</a></h5>
-            <p class="card-text">Здесь должен быть адрес. Здесь должен быть адрес. Здесь должен быть адрес. Здесь должен быть адрес. Здесь должен быть адрес.</p>
+            <p class="card-text">{{ $object->address }}</p>
         </div>
 
         <div class="card-footer d-flex justify-content-between">
