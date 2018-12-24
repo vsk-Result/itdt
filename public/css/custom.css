@@ -88,3 +88,43 @@ ul.media-list-linked li.active {
 body {
     overflow-y: scroll;
 }
+.create-zone {
+    position: relative;
+    border: 2px dashed rgba(0,0,0,.125);
+    min-height: 2rem;
+    width: auto;
+    background-color: #fff;
+    padding: .3125rem;
+    border-radius: .1875rem;
+}
+.create-zone:hover {
+    background-color: #eee;
+    cursor: pointer;
+}
+.create-zone .cz-message {
+    height: 2rem;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+    opacity: 1;
+    border-radius: .1875rem;
+    transition: opacity ease-in-out .15s;
+}
+.create-zone .cz-message:before {
+    content: '\ed5e';
+    font-family: icomoon;
+    font-size: 1rem;
+    display: inline-block;
+    position: absolute;
+    top: .3rem;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    line-height: 1;
+    z-index: 2;
+    color: #ccc;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

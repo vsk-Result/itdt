@@ -9,6 +9,6 @@
             <span class="font-size-sm text-muted ml-sm-2 mb-2 mb-sm-0 d-block d-sm-inline-block">{{ $comment->created_at->format('d/m/Y H:i') }}</span>
         </div>
 
-        <p>{{ $comment->text }}</p>
+        <p>{!! $comment->getText() !!}</p>
     </div>
 </div>
