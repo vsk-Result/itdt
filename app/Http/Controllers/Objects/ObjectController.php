@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Objects;
 
 use App\Models\Objects\CObject;
+use App\Models\Objects\Image;
 use App\Models\Objects\InfoPart;
 use App\Models\Objects\InfoPartAttachment;
+use App\Models\Objects\Person;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -42,6 +44,7 @@ class ObjectController extends Controller
 
         if (isset($request->title)) {
             foreach ($request->title as $index => $title) {
+                if (is_null($title)) continue;
                 $infopart = new InfoPart();
                 $infopart->object_id = $object->id;
                 $infopart->title = $title;
@@ -61,6 +64,45 @@ class ObjectController extends Controller
                         $attachment->save();
                     }
                 }
+            }
+        }
+
+        if (isset($request->fullname)) {
+            foreach ($request->fullname as $index => $fullname) {
+                if (is_null($fullname)) continue;
+                $person = new Person();
+                $person->object_id = $object->id;
+                $person->fullname = $fullname;
+                $person->appointment = isset($request->appointment) ? $request->appointment[$index] : '';
+                $person->phone = isset($request->phone) ? $request->phone[$index] : '';
+                $person->email = isset($request->email) ? $request->email[$index] : '';
+                $person->save();
+
+                $image = $request->file('avatar_' . $index);
+                if (!empty($image) && !is_null($image)) {
+                    $filename = $object->id . '_' . $person->id . '_' . str_random(2) . '_' . rus2translit($image->getClientOriginalName());
+                    $image->storeAs($object->getDestinationPath(), $filename);
+                    $person->image = $filename;
+                } else {
+                    $person->image = null;
+                }
+                $person->update();
+            }
+        }
+
+        $gallery_files = $request->file('gallery_files');
+        if (is_array($gallery_files) && count($gallery_files) > 0) {
+            for ($i = 0; $i < count($gallery_files); $i++) {
+                $file = $gallery_files[$i];
+                $filename = $object->id . '_' . str_random(2) . '_' . rus2translit($file->getClientOriginalName());
+                $file->storeAs($object->getDestinationPath(), $filename);
+
+                $attachment = new Image();
+                $attachment->object_id = $object->id;
+                $attachment->filename = $filename;
+                $attachment->description = '';
+                $attachment->order = 0;
+                $attachment->save();
             }
         }
 
@@ -91,6 +133,7 @@ class ObjectController extends Controller
 
         if (isset($request->title)) {
             foreach ($request->title as $index => $title) {
+                if (is_null($title)) continue;
                 $infopart_id = $request->ip_id[$index];
                 $infopart = $infopart_id == 'none' ? new InfoPart() : InfoPart::findOrFail($infopart_id);
                 $infopart->object_id = $object->id;
@@ -114,6 +157,45 @@ class ObjectController extends Controller
             }
         }
 
+        if (isset($request->fullname)) {
+            foreach ($request->fullname as $index => $fullname) {
+                if (is_null($fullname)) continue;
+                $person_id = $request->p_id[$index];
+                $person = $person_id == 'none' ? new Person() : Person::findOrFail($person_id);
+                $person->object_id = $object->id;
+                $person->fullname = $fullname;
+                $person->appointment = isset($request->appointment) ? $request->appointment[$index] : '';
+                $person->phone = isset($request->phone) ? $request->phone[$index] : '';
+                $person->email = isset($request->email) ? $request->email[$index] : '';
+                $person_id == 'none' ? $person->save() : $person->update();
+
+                $image = $request->file('avatar_' . $index);
+                if (!empty($image) && !is_null($image)) {
+                    $filename = $object->id . '_' . $person->id . '_' . str_random(2) . '_' . rus2translit($image->getClientOriginalName());
+                    $image->storeAs($object->getDestinationPath(), $filename);
+                    $person->image = $filename;
+                }
+
+                $person->update();
+            }
+        }
+
+        $gallery_files = $request->file('gallery_files');
+        if (is_array($gallery_files) && count($gallery_files) > 0) {
+            for ($i = 0; $i < count($gallery_files); $i++) {
+                $file = $gallery_files[$i];
+                $filename = $object->id . '_' . str_random(2) . '_' . rus2translit($file->getClientOriginalName());
+                $file->storeAs($object->getDestinationPath(), $filename);
+
+                $attachment = new Image();
+                $attachment->object_id = $object->id;
+                $attachment->filename = $filename;
+                $attachment->description = '';
+                $attachment->order = 0;
+                $attachment->save();
+            }
+        }
+
         return redirect()->route('objects.show', $object->id);
     }
 
@@ -127,5 +209,11 @@ class ObjectController extends Controller
     {
         $infopart_render = view('objects.partials.new_infopart')->render();
         return response()->json(compact('infopart_render'));
+    }
+
+    public function createPerson()
+    {
+        $person_render = view('objects.partials.new_person')->render();
+        return response()->json(compact('person_render'));
     }
 }

@@ -10,6 +10,16 @@ class Image extends Model
 
     public function object()
     {
-        return $this->belongsTo(CObject::class);
+        return $this->belongsTo(CObject::class, 'object_id');
+    }
+
+    public function getUrl()
+    {
+        return \Storage::url($this->getPath());
+    }
+
+    public function getPath()
+    {
+        return $this->object->getDestinationPath() . $this->filename;
     }
 }

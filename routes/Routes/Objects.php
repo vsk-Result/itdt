@@ -10,4 +10,5 @@ Route::group(['prefix' => 'objects', 'namespace' => 'Objects'], function () {
     Route::post('/{id}/edit', 'ObjectController@update')->name('objects.update');
     Route::get('/{id}/info', 'ObjectController@show')->name('objects.show');
     Route::get('/create_infopart', 'ObjectController@createInfopart')->name('objects.create_infopart');
+    Route::get('/create_person', 'ObjectController@createPerson')->name('objects.create_person');
 });

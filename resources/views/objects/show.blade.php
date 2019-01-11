@@ -38,6 +38,9 @@
 @push('css')
     <style>
         p { margin-bottom: 0; }
+        .gallery img {
+            height: 84px;
+        }
     </style>
 @endpush
 

@@ -19,45 +19,43 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-md-flex">
+                        {{ Form::open(['url' => route('objects.store'), 'id' => 'infopartForm', 'files' => true, 'method' => 'POST', 'style' => 'display:contents;'] ) }}
                         <ul class="nav nav-tabs nav-tabs-vertical flex-column mr-md-3 wmin-md-250 mb-md-0 border-bottom-0">
                             <li class="nav-item"><a href="#vertical-left-tab1" class="nav-link active" data-toggle="tab"><i class="icon-menu7 mr-2"></i> Информация</a></li>
-                            <li class="nav-item"><a href="#vertical-left-tab2" class="nav-link" data-toggle="tab"><i class="icon-mention mr-2"></i> Руководители</a></li>
-                            <li class="nav-item"><a href="#vertical-left-tab2" class="nav-link" data-toggle="tab"><i class="icon-mention mr-2"></i> Галерея</a></li>
+                            <li class="nav-item"><a href="#vertical-left-tab2" class="nav-link" data-toggle="tab"><i class="icon-mention mr-2"></i> Ответственные</a></li>
+                            <li class="nav-item"><a href="#vertical-left-tab3" class="nav-link" data-toggle="tab"><i class="icon-mention mr-2"></i> Галерея</a></li>
                         </ul>
 
                         <div class="tab-content w-100">
                             <div class="tab-pane fade show active" id="vertical-left-tab1">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        {{ Form::open(['url' => route('objects.store'), 'id' => 'infopartForm', 'files' => true, 'method' => 'POST'] ) }}
+                                        <h3 class="font-weight-semibold">Основная информация</h3>
 
-                                            <h3 class="font-weight-semibold">Основная информация</h3>
+                                        <div class="form-group">
+                                            <label>Код</label>
+                                            <input type="text" name="code" class="form-control">
+                                        </div>
 
-                                            <div class="form-group">
-                                                <label>Код</label>
-                                                <input type="text" name="code" class="form-control">
-                                            </div>
+                                        <div class="form-group">
+                                            <label>Название</label>
+                                            <input type="text" name="name" class="form-control">
+                                        </div>
 
-                                            <div class="form-group">
-                                                <label>Название</label>
-                                                <input type="text" name="name" class="form-control">
-                                            </div>
+                                        <div class="form-group">
+                                            <label>Адрес</label>
+                                            <input type="text" name="address" class="form-control">
+                                        </div>
 
-                                            <div class="form-group">
-                                                <label>Адрес</label>
-                                                <input type="text" name="address" class="form-control">
-                                            </div>
+                                        <div class="form-group">
+                                            <label>Главное изображение</label>
+                                            <input type="file" name="image" class="form-control">
+                                        </div>
 
-                                            <div class="form-group">
-                                                <label>Главное изображение</label>
-                                                <input type="file" name="image" class="form-control">
-                                            </div>
+                                        <h3 class="font-weight-semibold">Блоки информации</h3>
 
-                                            <h3 class="font-weight-semibold">Блоки информации</h3>
+                                        <div class="infoparts"></div>
 
-                                            <div class="infoparts"></div>
-                                        {{ Form::close() }}
-                                        
                                         <div class="create-zone mt-3">
                                             <div class="cz-message add-infopart" data-create-url="{{ route('objects.create_infopart') }}"></div>
                                         </div>
@@ -66,13 +64,22 @@
                             </div>
 
                             <div class="tab-pane fade" id="vertical-left-tab2">
-                                Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid laeggin.
+                                <h3 class="font-weight-semibold">Ответственные лица</h3>
+
+                                <div class="persons"></div>
+
+                                <div class="create-zone mt-3">
+                                    <div class="cz-message add-person" data-create-url="{{ route('objects.create_person') }}"></div>
+                                </div>
                             </div>
 
                             <div class="tab-pane fade" id="vertical-left-tab3">
-                                DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg whatever.
+                                <h3 class="font-weight-semibold">Галерея</h3>
+
+                                <input type="file" name="gallery_files[]" multiple="multiple" class="fileuplouder">
                             </div>
                         </div>
+                        {{ Form::close() }}
                     </div>
                 </div>
             </div>
@@ -91,6 +98,13 @@
     <script src="{{ asset('vendors/summernote/summernote.min.js') }}"></script>
     <script>
         $(document).ready(function() {
+            $('.fileuplouder').fileuploader({
+                theme: 'onebutton',
+                captions:
+                    {
+                        button: function(options) { return 'Выберите ' + (options.limit == 1 ? 'файл' : 'файлы'); },
+                    }
+            });
             initialize();
         });
 
@@ -104,6 +118,17 @@
                 url:url
             }).done(function(data) {
                 $('.infoparts').append(data.infopart_render);
+            }).always(function () {
+                initialize();
+            });
+        });
+
+        $('.add-person').on('click', function () {
+            var url = $(this).data('create-url');
+            $.ajax({
+                url:url
+            }).done(function(data) {
+                $('.persons').append(data.person_render);
             }).always(function () {
                 initialize();
             });
@@ -128,6 +153,10 @@
             var files_index = 0;
             $('.infoparts input.fileuplouder').each(function() {
                 $(this).attr('name', 'files_' + files_index++ + '[]');
+            });
+            var files_index = 0;
+            $('.persons input.avatar').each(function() {
+                $(this).attr('name', 'avatar_' + files_index++);
             });
         }
     </script>
