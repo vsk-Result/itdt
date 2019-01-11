@@ -28,7 +28,7 @@
             margin-bottom: 0;
         }
         .card-body .card-text {
-            margin-top: -8px;
+            margin-top: 8px;
         }
         .card-body {
             padding-bottom: 0;
