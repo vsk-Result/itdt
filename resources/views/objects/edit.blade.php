@@ -135,6 +135,7 @@
 
         function initialize() {
             $('.fileuplouder').fileuploader({
+                addMore: true,
                 theme: 'onebutton',
                 captions:
                     {
@@ -161,6 +162,7 @@
 
         function initializeLast() {
             $('.infoparts .card:last .fileuplouder').fileuploader({
+                addMore: true,
                 theme: 'onebutton',
                 captions:
                     {

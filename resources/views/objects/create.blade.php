@@ -99,6 +99,7 @@
     <script>
         $(document).ready(function() {
             $('.fileuplouder').fileuploader({
+                addMore: true,
                 theme: 'onebutton',
                 captions:
                     {
@@ -136,6 +137,7 @@
 
         function initialize() {
             $('.infoparts .card:last .fileuplouder').fileuploader({
+                addMore: true,
                 theme: 'onebutton',
                 captions:
                     {
