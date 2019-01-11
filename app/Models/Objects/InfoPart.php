@@ -10,11 +10,11 @@ class InfoPart extends Model
 
     public function object()
     {
-        return $this->belongsTo(CObject::class);
+        return $this->belongsTo(CObject::class, 'object_id');
     }
 
     public function attachments()
     {
-        return $this->hasMany(InfoPartAttachment::class);
+        return $this->hasMany(InfoPartAttachment::class, 'infopart_id');
     }
 }

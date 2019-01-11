@@ -8,10 +8,7 @@ class CObject extends Model
 {
     protected $table = 'objects';
 
-    public function image()
-    {
-        return $this->belongsTo(Image::class);
-    }
+    const DEFAULT_FILENAME = 'object_default.jpg';
 
     public function images()
     {
@@ -20,7 +17,7 @@ class CObject extends Model
 
     public function infoparts()
     {
-        return $this->hasMany(InfoPart::class);
+        return $this->hasMany(InfoPart::class, 'object_id');
     }
 
     public function persons()
@@ -31,5 +28,20 @@ class CObject extends Model
     public function getFullName()
     {
         return $this->code . ' - ' . $this->name;
+    }
+
+    public function getDestinationPath() {
+        return 'objects/';
+    }
+
+    public function getImageUrl()
+    {
+        return \Storage::url($this->getImagePath());
+    }
+
+    public function getImagePath()
+    {
+        $filename = is_null($this->image) ? self::DEFAULT_FILENAME : $this->image;
+        return $this->getDestinationPath() . $filename;
     }
 }

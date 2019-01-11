@@ -8,7 +8,7 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'IT') }} - @yield('title')</title>
+        <title>{{ config('app.name', 'IT') }} | @yield('title')</title>
 
         <!-- Fonts -->
 

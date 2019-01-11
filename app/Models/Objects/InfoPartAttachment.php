@@ -3,6 +3,7 @@
 namespace App\Models\Objects;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class InfoPartAttachment extends Model
 {
@@ -10,6 +11,16 @@ class InfoPartAttachment extends Model
 
     public function infopart()
     {
-        return $this->belongsTo(InfoPart::class);
+        return $this->belongsTo(InfoPart::class, 'infopart_id');
+    }
+
+    public function getUrl()
+    {
+        return Storage::url($this->getPath());
+    }
+
+    public function getPath()
+    {
+        return $this->infopart->object->getDestinationPath() . $this->filename;
     }
 }
