@@ -25,6 +25,13 @@
     <style>
         .card-body .card-title, .card-body .card-text {
             min-height: 52px;
+            margin-bottom: 0;
+        }
+        .card-body .card-text {
+            margin-top: -8px;
+        }
+        .card-body {
+            padding-bottom: 0;
         }
     </style>
 @endpush
