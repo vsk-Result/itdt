@@ -128,3 +128,6 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+.card-img-top {
+    height: 140px;
+}
