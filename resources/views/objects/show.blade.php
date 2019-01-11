@@ -3,6 +3,16 @@
 @section('title', 'Объект ' . $object->getFullName())
 @section('page-title', 'Объекты -  ' . $object->getFullName())
 
+@section('header-elements')
+    <div class="header-elements d-none">
+        <div class="d-flex justify-content-center">
+            <a href="{{ route('objects.edit', $object->id) }}" title="Изменить объект" class="btn btn-sm bg-primary-400 btn-icon rounded-round">
+                <i class="icon-pencil5"></i>
+            </a>
+        </div>
+    </div>
+@endsection
+
 @section('content')
     <div class="text-center mb-3 py-2">
         <h4 class="font-weight-semibold mb-1">{{ $object->getFullName() }}</h4>

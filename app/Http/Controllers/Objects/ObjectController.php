@@ -67,6 +67,56 @@ class ObjectController extends Controller
         return redirect()->route('objects.show', $object->id);
     }
 
+    public function edit($id)
+    {
+        $object = CObject::findOrFail($id);
+        return view('objects.edit', compact('object'));
+    }
+
+    public function update($id, Request $request)
+    {
+        $object = CObject::findOrFail($id);
+        $object->code = $request->code;
+        $object->name = $request->name;
+        $object->address = $request->address;
+
+        $image = $request->file('image');
+        if (!empty($image) && !is_null($image)) {
+            $filename = $object->id . '_' . str_random(2) . '_' . rus2translit($image->getClientOriginalName());
+            $image->storeAs($object->getDestinationPath(), $filename);
+            $object->image = $filename;
+        }
+
+        $object->update();
+
+        if (isset($request->title)) {
+            foreach ($request->title as $index => $title) {
+                $infopart_id = $request->ip_id[$index];
+                $infopart = $infopart_id == 'none' ? new InfoPart() : InfoPart::findOrFail($infopart_id);
+                $infopart->object_id = $object->id;
+                $infopart->title = $title;
+                $infopart->body = isset($request->content) ? $request->content[$index] : '';
+                $infopart_id == 'none' ? $infopart->save() : $infopart->update();
+
+                $infopart_files = $request->file('files_' . $index);
+                if (is_array($infopart_files) && count($infopart_files) > 0) {
+                    for ($i = 0; $i < count($infopart_files); $i++) {
+                        $file = $infopart_files[$i];
+                        $filename = $object->id . '_' . $infopart->id . '_' . str_random(2) . '_' . rus2translit($file->getClientOriginalName());
+                        $file->storeAs($object->getDestinationPath(), $filename);
+
+                        $attachment = new InfoPartAttachment();
+                        $attachment->infopart_id = $infopart->id;
+                        $attachment->filename = $filename;
+                        $attachment->save();
+                    }
+                }
+            }
+        }
+
+        return redirect()->route('objects.show', $object->id);
+    }
+
     public function show($id)
     {
         $object = CObject::findOrFail($id);
