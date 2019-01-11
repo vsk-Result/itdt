@@ -4,7 +4,7 @@
     </a>
     <div class="media-body">
         <a href="#" class="media-title font-weight-semibold text-default cursor-default">{{ $person->fullname }}</a>
-        <span class="font-size-sm text-muted d-block"><span class="badge badge-mark border-success mr-1"></span> {{ $person->appointment }}</span>
+        <span class="font-size-sm text-muted d-block">{{ $person->appointment }}</span>
     </div>
     <div class="align-self-center ml-3">
         <div class="list-icons">
