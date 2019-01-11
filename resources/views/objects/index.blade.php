@@ -20,3 +20,11 @@
         </div>
     @endforeach
 @endsection
+
+@push('css')
+    <style>
+        .card-body {
+            min-height: 120px;
+        }
+    </style>
+@endpush
