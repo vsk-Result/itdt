@@ -23,7 +23,7 @@
 
 @push('css')
     <style>
-        .card-body {
+        .card-body .card-text {
             min-height: 120px;
         }
     </style>
