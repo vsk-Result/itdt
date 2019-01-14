@@ -1,5 +1,5 @@
-<li class="media">
-    <a href="#" class="mr-3 cursor-default">
+<li class="media lightgallery">
+    <a href="{{ $person->getImageUrl() }}" class="mr-3 light-item cursor-pointer">
         <img src="{{ $person->getImageUrl() }}" class="rounded-circle" width="36" height="36" alt="">
     </a>
     <div class="media-body">

@@ -36,6 +36,7 @@
 @endsection
 
 @push('css')
+    <link rel="stylesheet" href="{{ asset('vendors/lightGallery/dist/css/lightgallery.min.css') }}">
     <style>
         p { margin-bottom: 0; }
         .gallery img {
@@ -45,5 +46,18 @@
 @endpush
 
 @push('scripts')
-
+    <script src="{{ asset('vendors/lightGallery/dist/js/lightgallery.min.js') }}"></script>
+    <script src="{{ asset('vendors/lightGallery/modules/lg-fullscreen.min.js') }}"></script>
+    <script src="{{ asset('vendors/lightGallery/modules/lg-thumbnail.min.js') }}"></script>
+    <script src="{{ asset('vendors/lightGallery/modules/lg-zoom.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $(".lightgallery").lightGallery({
+                selector: '.light-item',
+                thumbnail: true,
+                zoom: true,
+                fullscreen: true
+            });
+        });
+    </script>
 @endpush
