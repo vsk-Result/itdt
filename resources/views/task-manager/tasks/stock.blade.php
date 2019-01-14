@@ -3,5 +3,5 @@
 </div>
 
 <div class="card-body">
-    <span class="text-muted">{{ $task->description }}</span>
+    <span class="text-muted">{!! $task->getDescription() !!}</span>
 </div>
