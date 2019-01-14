@@ -20,13 +20,6 @@ class SubtaskComment extends Model
 
     public function getText()
     {
-        return $this->findLinks($this->text);
-    }
-
-    private function findLinks($text) {
-        $regex = '#\bhttps?://[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/))#';
-        return preg_replace_callback($regex, function ($matches) {
-            return '<a target="_blank" href="' . $matches[0] . '">' . $matches[0] . '</a>';
-        }, $text);
+        return findLinks($this->text);
     }
 }

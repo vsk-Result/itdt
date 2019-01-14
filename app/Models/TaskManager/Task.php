@@ -84,13 +84,6 @@ class Task extends Model
 
     public function getDescription()
     {
-        return $this->findLinks($this->description);
-    }
-
-    private function findLinks($text) {
-        $regex = '#\bhttps?://[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/))#';
-        return preg_replace_callback($regex, function ($matches) {
-            return '<a target="_blank" href="' . $matches[0] . '">' . $matches[0] . '</a>';
-        }, $text);
+        return findLinks($this->description);
     }
 }

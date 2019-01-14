@@ -26,3 +26,12 @@ if (!function_exists('rus2translit')) {
         return str_replace($cyr, $lat, $text);
     }
 }
+
+if (!function_exists('findLinks')) {
+    function findLinks($text) {
+        $regex = '#\bhttps?://[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/))#';
+        return preg_replace_callback($regex, function ($matches) {
+            return '<a target="_blank" href="' . $matches[0] . '">' . $matches[0] . '</a>';
+        }, $text);
+    }
+}
