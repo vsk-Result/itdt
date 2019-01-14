@@ -21,9 +21,10 @@
                     <div class="d-md-flex">
                         {{ Form::open(['url' => route('objects.store'), 'id' => 'infopartForm', 'files' => true, 'method' => 'POST', 'style' => 'display:contents;'] ) }}
                         <ul class="nav nav-tabs nav-tabs-vertical flex-column mr-md-3 wmin-md-250 mb-md-0 border-bottom-0">
-                            <li class="nav-item"><a href="#vertical-left-tab1" class="nav-link active" data-toggle="tab"><i class="icon-menu7 mr-2"></i> Информация</a></li>
-                            <li class="nav-item"><a href="#vertical-left-tab2" class="nav-link" data-toggle="tab"><i class="icon-mention mr-2"></i> Ответственные</a></li>
-                            <li class="nav-item"><a href="#vertical-left-tab3" class="nav-link" data-toggle="tab"><i class="icon-mention mr-2"></i> Галерея</a></li>
+                            <li class="nav-item"><a href="#vertical-left-tab1" class="nav-link active" data-toggle="tab"><i class="icon-info3
+ mr-2"></i> Информация</a></li>
+                            <li class="nav-item"><a href="#vertical-left-tab2" class="nav-link" data-toggle="tab"><i class="icon-people mr-2"></i> Ответственные</a></li>
+                            <li class="nav-item"><a href="#vertical-left-tab3" class="nav-link" data-toggle="tab"><i class="icon-gallery mr-2"></i> Галерея</a></li>
                         </ul>
 
                         <div class="tab-content w-100">

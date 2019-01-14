@@ -46,10 +46,10 @@
             <ul class="nav nav-sidebar" data-nav-type="accordion">
                 <!-- Main -->
                 <li class="nav-item">
-                    <a href="{{ route('home') }}" class="nav-link"><i class="icon-home4"></i><span>Главная</span></a>
+                    <a href="{{ route('home') }}" class="nav-link"><i class="icon-city"></i><span>Главная</span></a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('tasks.index') }}" class="nav-link"><i class="icon-city"></i><span>Менеджер задач</span></a>
+                    <a href="{{ route('tasks.index') }}" class="nav-link"><i class="icon-task"></i><span>Менеджер задач</span></a>
                 </li>
             </ul>
         </div>
