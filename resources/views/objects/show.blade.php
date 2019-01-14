@@ -21,9 +21,16 @@
 
     <div class="d-flex align-items-start flex-column flex-md-row">
         <div class="w-100 overflow-auto order-2 order-md-1">
-            <div class="card-group-control card-group-control-right">
-                @each('objects.partials.infopart', $object->infoparts, 'infopart')
-            </div>
+            @if ($object->infoparts->count() > 0)
+                <div class="card-group-control card-group-control-right">
+                    @each('objects.partials.infopart', $object->infoparts, 'infopart')
+                </div>
+            @else
+                <div class="card card-body">
+                    <p class="font-weight-bold pb-2">Блоки информации</p>
+                    <p>Данные отсутствуют</p>
+                </div>
+            @endif
         </div>
 
         <div class="sidebar sidebar-light bg-transparent sidebar-component sidebar-component-right border-0 shadow-0 wmin-sm-300 order-1 order-md-2 sidebar-expand-lg d-block">
