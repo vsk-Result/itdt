@@ -35,8 +35,8 @@
 
         <div class="sidebar sidebar-light bg-transparent sidebar-component sidebar-component-right border-0 shadow-0 wmin-sm-300 order-1 order-md-2 sidebar-expand-lg d-block">
             <div class="sidebar-content">
-                @include('objects.partials.gallery')
                 @include('objects.partials.persons')
+                @include('objects.partials.gallery')
             </div>
         </div>
     </div>

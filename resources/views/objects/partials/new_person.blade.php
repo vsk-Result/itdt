@@ -9,7 +9,7 @@
             </div>
             <div class="form-group">
                 <label for="">Фотография</label>
-                <input type="file" name="avatar[]" class="form-control avatar">
+                <input type="file" name="avatar[]" class="form-control avatar fileuplouder-single">
             </div>
             <div class="form-group">
                 {{ Form::hidden('p_id[]', 'none', []) }}

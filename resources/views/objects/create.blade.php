@@ -50,7 +50,7 @@
 
                                         <div class="form-group">
                                             <label>Главное изображение</label>
-                                            <input type="file" name="image" class="form-control">
+                                            <input type="file" name="image" class="form-control fileuplouder-single">
                                         </div>
 
                                         <h3 class="font-weight-semibold">Блоки информации</h3>
@@ -107,6 +107,14 @@
                         button: function(options) { return 'Выберите ' + (options.limit == 1 ? 'файл' : 'файлы'); },
                     }
             });
+            $('.fileuplouder-single').fileuploader({
+                limit: 1,
+                theme: 'onebutton',
+                captions:
+                    {
+                        button: function(options) { return 'Выберите ' + (options.limit == 1 ? 'файл' : 'файлы'); },
+                    }
+            });
             initialize();
         });
 
@@ -139,6 +147,14 @@
         function initialize() {
             $('.infoparts .card:last .fileuplouder').fileuploader({
                 addMore: true,
+                theme: 'onebutton',
+                captions:
+                    {
+                        button: function(options) { return 'Выберите ' + (options.limit == 1 ? 'файл' : 'файлы'); },
+                    }
+            });
+            $('.persons .card:last .fileuplouder-single').fileuploader({
+                limit: 1,
                 theme: 'onebutton',
                 captions:
                     {

@@ -52,7 +52,7 @@
 
                                         <div class="form-group">
                                             <label>Изменить главное изображение</label>
-                                            <input type="file" name="image" class="form-control">
+                                            <input type="file" name="image" class="form-control fileuplouder-single">
                                         </div>
 
                                         <h3 class="font-weight-semibold">Блоки информации</h3>
@@ -130,13 +130,21 @@
             }).done(function(data) {
                 $('.persons').append(data.person_render);
             }).always(function () {
-                initialize();
+                initializeLast();
             });
         });
 
         function initialize() {
             $('.fileuplouder').fileuploader({
                 addMore: true,
+                theme: 'onebutton',
+                captions:
+                    {
+                        button: function(options) { return 'Выберите ' + (options.limit == 1 ? 'файл' : 'файлы'); },
+                    }
+            });
+            $('.fileuplouder-single').fileuploader({
+                limit: 1,
                 theme: 'onebutton',
                 captions:
                     {
@@ -164,6 +172,14 @@
         function initializeLast() {
             $('.infoparts .card:last .fileuplouder').fileuploader({
                 addMore: true,
+                theme: 'onebutton',
+                captions:
+                    {
+                        button: function(options) { return 'Выберите ' + (options.limit == 1 ? 'файл' : 'файлы'); },
+                    }
+            });
+            $('.persons .card:last .fileuplouder-single').fileuploader({
+                limit: 1,
                 theme: 'onebutton',
                 captions:
                     {
