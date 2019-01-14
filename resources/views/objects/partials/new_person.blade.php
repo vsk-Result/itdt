@@ -22,6 +22,10 @@
             <div class="form-group">
                 {{ Form::text('email[]', null, ['class' => 'form-control', 'placeholder' => 'Email(ы)']) }}
             </div>
+            <div class="form-group">
+                <label for="">Ссылка на профиль</label>
+                {{ Form::text('link[]', null, ['class' => 'form-control', 'placeholder' => 'http(s)://...']) }}
+            </div>
         </div>
     </div>
 </div>

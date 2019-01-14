@@ -8,7 +8,15 @@
     </div>
     <div class="align-self-center ml-3">
         <div class="list-icons">
-            <a href="#" class="list-icons-item"><i class="icon-info3"></i></a>
+            @if (!empty($person->phone) && !is_null($person->phone))
+                <a href="#" class="list-icons-item mr-2 text-success" data-popup="tooltip" title="{{ $person->phone }}" data-trigger="click"><i class="icon-phone2"></i></a>
+            @endif
+            @if (!empty($person->email) && !is_null($person->email))
+                <a href="#" class="list-icons-item mr-2 text-warning" data-popup="tooltip" title="{{ $person->email }}" data-trigger="click"><i class="icon-mail5"></i></a>
+            @endif
+            @if (!empty($person->link) && !is_null($person->link))
+                <a target="_blank" href="{{ $person->link }}" class="list-icons-item text-primary"><i class="icon-link"></i></a>
+            @endif
         </div>
     </div>
 </li>

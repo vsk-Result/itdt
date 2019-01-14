@@ -76,6 +76,7 @@ class ObjectController extends Controller
                 $person->appointment = isset($request->appointment) ? $request->appointment[$index] : '';
                 $person->phone = isset($request->phone) ? $request->phone[$index] : '';
                 $person->email = isset($request->email) ? $request->email[$index] : '';
+                $person->link = isset($request->link) ? $request->link[$index] : '';
                 $person->save();
 
                 $image = $request->file('avatar_' . $index);
@@ -167,6 +168,7 @@ class ObjectController extends Controller
                 $person->appointment = isset($request->appointment) ? $request->appointment[$index] : '';
                 $person->phone = isset($request->phone) ? $request->phone[$index] : '';
                 $person->email = isset($request->email) ? $request->email[$index] : '';
+                $person->link = isset($request->link) ? $request->link[$index] : '';
                 $person_id == 'none' ? $person->save() : $person->update();
 
                 $image = $request->file('avatar_' . $index);
