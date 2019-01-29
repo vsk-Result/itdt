@@ -91,4 +91,19 @@ class Task extends Model
     {
         return findLinks($this->description);
     }
+
+    public function scopeOpened($query)
+    {
+        return $query->where('status_id', 1);
+    }
+
+    public function scopeDelayed($query)
+    {
+        return $query->where('status_id', 2);
+    }
+
+    public function scopeSolved($query)
+    {
+        return $query->where('status_id', 3);
+    }
 }

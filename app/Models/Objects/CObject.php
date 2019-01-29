@@ -25,6 +25,11 @@ class CObject extends Model
         return $this->hasMany(Person::class, 'object_id');
     }
 
+    public function tasks()
+    {
+        return $this->hasMany('App\Models\TaskManager\Task', 'object_id');
+    }
+
     public function getFullName()
     {
         return $this->code . ' - ' . $this->name;
@@ -52,5 +57,20 @@ class CObject extends Model
             $lists[$object->id] = $object->getFullName();
         }
         return $lists;
+    }
+
+    public function getOpenedTasksCount()
+    {
+        return $this->tasks()->opened()->count();
+    }
+
+    public function getDelayedTasksCount()
+    {
+        return $this->tasks()->delayed()->count();
+    }
+
+    public function getSolvedTasksCount()
+    {
+        return $this->tasks()->solved()->count();
     }
 }
