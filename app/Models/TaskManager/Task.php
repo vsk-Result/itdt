@@ -92,6 +92,11 @@ class Task extends Model
         return findLinks($this->description);
     }
 
+    public function scopeActive($query)
+    {
+        return $query->where('status_id', 1)->orWhere('status_id', 2);
+    }
+
     public function scopeOpened($query)
     {
         return $query->where('status_id', 1);
@@ -105,5 +110,20 @@ class Task extends Model
     public function scopeSolved($query)
     {
         return $query->where('status_id', 3);
+    }
+
+    public function scopeTasks($query)
+    {
+        return $query->where('type_id', 3);
+    }
+
+    public function scopePurchases($query)
+    {
+        return $query->where('type_id', 1);
+    }
+
+    public function scopeEvolutions($query)
+    {
+        return $query->where('type_id', 2);
     }
 }

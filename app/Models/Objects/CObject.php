@@ -59,14 +59,22 @@ class CObject extends Model
         return $lists;
     }
 
-    public function getOpenedTasksCount()
+    public function getTasksPercentage()
     {
-        return $this->tasks()->opened()->count();
+        $active_tasks = $this->tasks()->active()->count();
+        return $active_tasks == 0 ? 0 : round($this->tasks()->tasks()->count() * 100 / $active_tasks, 0);
     }
 
-    public function getDelayedTasksCount()
+    public function getPurchasesPercentage()
     {
-        return $this->tasks()->delayed()->count();
+        $active_tasks = $this->tasks()->active()->count();
+        return $active_tasks == 0 ? 0 : round($this->tasks()->purchases()->count() * 100 / $active_tasks, 0);
+    }
+
+    public function getEvolutionsPercentage()
+    {
+        $active_tasks = $this->tasks()->active()->count();
+        return $active_tasks == 0 ? 0 : round($this->tasks()->evolutions()->count() * 100 / $active_tasks, 0);
     }
 
     public function getSolvedTasksCount()
