@@ -62,19 +62,19 @@ class CObject extends Model
     public function getTasksPercentage()
     {
         $active_tasks = $this->tasks()->active()->count();
-        return $active_tasks == 0 ? 0 : round($this->tasks()->tasks()->count() * 100 / $active_tasks, 0);
+        return $active_tasks == 0 ? 0 : round($this->tasks()->active()->tasks()->count() * 100 / $active_tasks, 0);
     }
 
     public function getPurchasesPercentage()
     {
         $active_tasks = $this->tasks()->active()->count();
-        return $active_tasks == 0 ? 0 : round($this->tasks()->purchases()->count() * 100 / $active_tasks, 0);
+        return $active_tasks == 0 ? 0 : round($this->tasks()->active()->purchases()->count() * 100 / $active_tasks, 0);
     }
 
     public function getEvolutionsPercentage()
     {
         $active_tasks = $this->tasks()->active()->count();
-        return $active_tasks == 0 ? 0 : round($this->tasks()->evolutions()->count() * 100 / $active_tasks, 0);
+        return $active_tasks == 0 ? 0 : round($this->tasks()->active()->evolutions()->count() * 100 / $active_tasks, 0);
     }
 
     public function getSolvedTasksCount()

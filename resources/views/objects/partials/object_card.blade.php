@@ -22,21 +22,21 @@
 
                 <div>
                     <div class="progress rounded-round" style="width: 85%; float: left;">
-                        {{--<div class="progress-bar bg-primary-400" style="width: {{ $object->getTasksPercentage() }}%">--}}
-                            {{--<span>{{ $object->getTasksPercentage() }}%</span>--}}
-                        {{--</div>--}}
+                        <div class="progress-bar bg-primary-400" style="width: {{ $object->getTasksPercentage() }}%">
+                            <span>{{ $object->getTasksPercentage() }}%</span>
+                        </div>
 
-                        {{--<div class="progress-bar bg-warning" style="width: {{ $object->getPurchasesPercentage() }}%">--}}
-                            {{--<span>{{ $object->getPurchasesPercentage() }}%</span>--}}
-                        {{--</div>--}}
+                        <div class="progress-bar bg-warning" style="width: {{ $object->getPurchasesPercentage() }}%">
+                            <span>{{ $object->getPurchasesPercentage() }}%</span>
+                        </div>
 
-                        {{--<div class="progress-bar bg-success" style="width: {{ $object->getEvolutionsPercentage() }}%">--}}
-                            {{--<span>{{ $object->getEvolutionsPercentage() }}%</span>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                    {{--@if ($object->getSolvedTasksCount() > 0)--}}
-                        {{--<span class="badge badge-flat badge-pill border-danger text-danger-600 ml-2" style="padding: calc(.2625rem - 1px) calc(.475rem - 1px);">{{ $object->getSolvedTasksCount() }}</span>--}}
-                        {{--@endif--}}
+                        <div class="progress-bar bg-success" style="width: {{ $object->getEvolutionsPercentage() }}%">
+                            <span>{{ $object->getEvolutionsPercentage() }}%</span>
+                        </div>
+                    </div>
+                    @if ($object->getSolvedTasksCount() > 0)
+                        <span class="badge badge-flat badge-pill border-danger text-danger-600 ml-2" style="padding: calc(.2625rem - 1px) calc(.475rem - 1px);">{{ $object->getSolvedTasksCount() }}</span>
+                        @endif
                 </div>
             </ul>
         </div>
