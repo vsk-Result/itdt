@@ -37,6 +37,11 @@ class Task extends Model
         return $this->belongsTo(Type::class);
     }
 
+    public function object()
+    {
+        return $this->belongsTo('App\Models\Objects\CObject', 'object_id');
+    }
+
     public function subtasks()
     {
         return $this->hasMany(Subtask::class);

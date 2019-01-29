@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\TaskManager;
 
+use App\Models\Objects\CObject;
 use App\Models\TaskManager\Attachment;
 use App\Models\TaskManager\Priority;
 use App\Models\TaskManager\Status;
@@ -20,7 +21,7 @@ class TaskController extends Controller
         $types = Type::all();
         $statuses = Status::all();
         $priorities = Priority::all();
-        return view('task-manager.tasks.index', compact('priorities', 'statuses', 'types'));
+        return view('task-manager.tasks.index', compact('priorities', 'statuses', 'types', 'objects'));
     }
 
     public function search(Request $request)
@@ -86,8 +87,9 @@ class TaskController extends Controller
         $task = Task::findOrFail($id);
         $priorities = Priority::all();
         $statuses = Status::pluck('name', 'id');
+        $objects = CObject::getList();
         $types = Type::pluck('name', 'id');
-        $info_render = view('task-manager.tasks.show', compact('task', 'priorities', 'statuses', 'types'))->render();
+        $info_render = view('task-manager.tasks.show', compact('task', 'priorities', 'statuses', 'types', 'objects'))->render();
         return response()->json(compact('info_render'));
     }
 
@@ -98,6 +100,7 @@ class TaskController extends Controller
         $task->priority_id = Priority::DEFAULT_ID;
         $task->status_id = Status::DEFAULT_ID;
         $task->type_id = Type::DEFAULT_ID;
+        $task->object_id = null;
         $task->name = Task::getDefaultName();
         $task->save();
 
@@ -116,11 +119,11 @@ class TaskController extends Controller
     public function update($id, Request $request)
     {
         $task = Task::findOrFail($id);
-
-        if (isset($request->priority_id) || isset($request->status_id) || isset($request->type_id)) {
+        if (isset($request->priority_id) || isset($request->status_id) || isset($request->type_id) || (isset($request->object_id) || is_null($request->object_id))) {
             $task->priority_id = isset($request->priority_id) ? $request->priority_id : $task->priority_id;
             $task->status_id = isset($request->status_id) ? $request->status_id : $task->status_id;
             $task->type_id = isset($request->type_id) ? $request->type_id : $task->type_id;
+            $task->object_id = (isset($request->object_id) || is_null($request->object_id)) ? $request->object_id : $task->object_id;
             $task->updated_at = Carbon::now();
 
             if (isset($request->status_id) && $request->status_id == Task::COMPLETE_STATUS_ID) {
@@ -134,8 +137,9 @@ class TaskController extends Controller
             $task->update();
             $priorities = Priority::all();
             $statuses = Status::pluck('name', 'id');
+            $objects = CObject::getList();
             $types = Type::pluck('name', 'id');
-            $task_details = view('task-manager.tasks.info.details', compact('task', 'priorities', 'statuses', 'types'))->render();
+            $task_details = view('task-manager.tasks.info.details', compact('task', 'priorities', 'statuses', 'types', 'objects'))->render();
             return response()->json(compact('task_details'));
         }
 

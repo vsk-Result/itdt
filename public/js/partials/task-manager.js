@@ -323,6 +323,22 @@ $('body').on('click', '.destroy-subtask', function() {
     }
 });
 
+$('body').on('click', '.destroy-comment', function() {
+    if (confirm('Вы действительно хотите удалить комментарий?')) {
+        var that = $(this);
+        var url = that.data('source');
+        $.ajax({
+            url: url,
+            type: 'POST'
+        }).done(function (data) {
+            that.parents('div.media').remove();
+            updateCommentCount(data.comments_count);
+        }).always(function() {
+            showNotify('destroy', '', 'Комментарий успешно удален!');
+        });
+    }
+});
+
 $('body').on('click', '.subtask-comments', function() {
 
     if ($(this).parents('li.media').hasClass('active')) {
@@ -357,6 +373,10 @@ $('body').on('click', '.task-priority', function() {
 
 $('body').on('change', '#task-status', function() {
     setTaskStatus($(this).val());
+});
+
+$('body').on('change', '#task-object', function() {
+    setTaskObject($(this).val());
 });
 
 $('body').on('change', '#task-type', function() {
@@ -484,6 +504,21 @@ function setTaskStatus(status_id) {
         type: 'POST',
         data: {
             status_id: status_id
+        }
+    }).done(function (data) {
+        $('#task-details').html(data.task_details);
+        showNotify('update', '', 'Задача успешно изменена!');
+        setChangesMod(true);
+    });
+}
+
+function setTaskObject(object_id) {
+    var url = $('#task-info-table').data('task-update-url');
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: {
+            object_id: object_id
         }
     }).done(function (data) {
         $('#task-details').html(data.task_details);

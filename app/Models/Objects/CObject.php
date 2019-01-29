@@ -44,4 +44,13 @@ class CObject extends Model
         $filename = is_null($this->image) ? self::DEFAULT_FILENAME : $this->image;
         return $this->getDestinationPath() . $filename;
     }
+
+    public static function getList()
+    {
+        $lists = [null => ''];
+        foreach (self::orderBy('code')->get() as $object) {
+            $lists[$object->id] = $object->getFullName();
+        }
+        return $lists;
+    }
 }

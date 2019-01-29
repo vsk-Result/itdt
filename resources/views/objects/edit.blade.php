@@ -50,11 +50,18 @@
                                             {{ Form::text('address', $object->address, ['class' => 'form-control']) }}
                                         </div>
 
-                                        <div class="form-group">
+                                        @if ($object->image)
                                             <label>Изменить главное изображение</label>
-                                            <input type="file" name="image" class="form-control fileuplouder-single">
-                                        </div>
+                                            <p><a href=""><img class="card-img img-fluid" src="{{ $object->getImageUrl() }}" alt=""></a></p>
+                                            <a href="#" class="btn btn-sm bg-danger-400">Удалить</a>
+                                        @else
+                                            <div class="form-group">
+                                                <label>Изменить главное изображение</label>
+                                                <input type="file" name="image" class="form-control fileuplouder-single">
+                                            </div>
+                                        @endif
 
+                                        <hr>
                                         <h3 class="font-weight-semibold">Блоки информации</h3>
 
                                         <div class="infoparts">
@@ -98,6 +105,11 @@
     <link href="{{ asset('vendors/fileuploader/src/jquery.fileuploader.css') }}" rel="stylesheet">
     <link href="{{ asset('vendors/fileuploader/src/css/jquery.fileuploader-theme-onebutton.css') }}" rel="stylesheet">
     <link href="{{ asset('vendors/summernote/summernote.css') }}" rel="stylesheet">
+    <style>
+        .card-img {
+            width: 140px;
+        }
+    </style>
 @endpush
 
 @push('scripts')

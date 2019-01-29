@@ -6,7 +6,7 @@
         <th>Задача</th>
         <th>Выполнение</th>
         <th>Автор</th>
-        <th>Последнее изменение</th>
+        <th>Объект</th>
     </tr>
     </thead>
     <tbody>
@@ -44,10 +44,7 @@
                     {{ $task->user->name }}
                 </td>
                 <td>
-                    <div class="d-inline-flex align-items-center">
-                        <i class="icon-calendar2 mr-2"></i>
-                        <span>{{ $task->updated_at->diffForHumans() }}</span>
-                    </div>
+                    {{ $task->object ? $task->object->getFullName() : '' }}
                 </td>
             </tr>
         @endforeach

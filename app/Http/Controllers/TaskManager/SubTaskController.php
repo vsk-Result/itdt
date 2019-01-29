@@ -49,7 +49,17 @@ class SubTaskController extends Controller
     public function comments($id) {
         $subtask = Subtask::findOrFail($id);
         $comments_render = view('task-manager.subtasks.comments', compact('subtask'))->render();
+
         return response()->json(compact('comments_render'));
+    }
+
+    public function destroyComment($id) {
+        $comment = SubtaskComment::findOrFail($id);
+        $subtask = $comment->subtask;
+        $comment->delete();
+        $comments_count = $subtask->comments->count();
+
+        return response()->json(compact('comments_count'));
     }
 
     public function sendMessage($id, Request $request) {
