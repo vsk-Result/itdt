@@ -14,22 +14,22 @@
         <div class="card-footer" style="min-height: 50px;">
             <div>
                 @if ($object->tasks()->active()->count() > 0)
-                    <div class="progress rounded-round" style="width: 80%; float: left;">
-                        <div class="progress-bar bg-primary-400" style="width: {{ $object->getTasksPercentage() }}%">
-                            <span>{{ $object->getTasksPercentage() }}%</span>
-                        </div>
+                    <div style="background: #fff;padding: 2px 25px 2px 2px;border: 1px solid #bebfbf;border-radius: 45px;position: relative;">
+                        <div class="progress rounded-round">
+                            <div class="progress-bar bg-primary-400" style="width: {{ $object->getTasksPercentage() }}%">
+                                <span title="Задачи">{{ $object->getTasksPercentage() }}%</span>
+                            </div>
 
-                        <div class="progress-bar bg-warning" style="width: {{ $object->getPurchasesPercentage() }}%">
-                            <span>{{ $object->getPurchasesPercentage() }}%</span>
-                        </div>
+                            <div class="progress-bar bg-warning" style="width: {{ $object->getPurchasesPercentage() }}%">
+                                <span title="Закупка">{{ $object->getPurchasesPercentage() }}%</span>
+                            </div>
 
-                        <div class="progress-bar bg-success" style="width: {{ $object->getEvolutionsPercentage() }}%">
-                            <span>{{ $object->getEvolutionsPercentage() }}%</span>
+                            <div class="progress-bar bg-success" style="width: {{ $object->getEvolutionsPercentage() }}%">
+                                <span title="Развитие">{{ $object->getEvolutionsPercentage() }}%</span>
+                            </div>
                         </div>
+                        <div style="position: absolute; top: 0; right: 10px; font-size: .9rem;">{{ $object->getSolvedTasksCount() }}</div>
                     </div>
-                @endif
-                @if ($object->getSolvedTasksCount() > 0)
-                    <span class="badge badge-flat badge-pill border-danger text-danger-600 ml-2" style="padding: calc(.2625rem - 1px) calc(.475rem - 1px);">{{ $object->getSolvedTasksCount() }}</span>
                 @endif
             </div>
         </div>
