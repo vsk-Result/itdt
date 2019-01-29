@@ -14,7 +14,7 @@
         <div class="card-footer" style="min-height: 50px;">
             <div>
                 @if ($object->tasks()->active()->count() > 0)
-                    <div style="background: #fff;padding: 2px 25px 2px 2px;border: 1px solid #bebfbf;border-radius: 45px;position: relative;">
+                    <div style="background: #fff;padding: 1px 25px 1px 1px;border: 1px solid #bebfbf;border-radius: 45px;position: relative;">
                         <div class="progress rounded-round">
                             <div class="progress-bar bg-primary-400" style="width: {{ $object->getTasksPercentage() }}%">
                                 <span title="Задачи">{{ $object->getTasksPercentage() }}%</span>
@@ -28,7 +28,7 @@
                                 <span title="Развитие">{{ $object->getEvolutionsPercentage() }}%</span>
                             </div>
                         </div>
-                        <div style="position: absolute; top: 0; right: 10px; font-size: .9rem;">{{ $object->getSolvedTasksCount() }}</div>
+                        <div style="position: absolute; top: 4px; right: 10px; font-size: .7rem;">{{ $object->getSolvedTasksCount() }}</div>
                     </div>
                 @endif
             </div>
