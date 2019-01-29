@@ -28,7 +28,7 @@
                                 <span title="Развитие">{{ $object->getEvolutionsPercentage() }}%</span>
                             </div>
                         </div>
-                        <div style="position: absolute; top: 2px; right: 8px; font-size: .7rem;">{{ $object->getSolvedTasksCount() }}</div>
+                        <div title="Завершенные" style="position: absolute; top: 2px; right: 8px; font-size: .7rem;">{{ $object->getSolvedTasksCount() }}</div>
                     </div>
                 @endif
             </div>
