@@ -7,7 +7,7 @@
         <div class="media-title">
             <a href="javascript:void(0)" class="font-weight-semibold">{{ $comment->user->name }}</a>
             <span class="font-size-sm text-muted ml-sm-2 mb-2 mb-sm-0 d-block d-sm-inline-block">{{ $comment->created_at->format('d/m/Y H:i') }}</span>
-            @if (substr_count($comment->text, 'Пользователь') == 0)
+            @if (substr_count($comment->text, 'Пользователь') == 0 && Auth::id() == $comment->user_id)
                 <span class="destroy-comment float-right text-danger cursor-pointer" data-source="{{ route('tasks.subtasks.comments.destroy', $comment->id) }}"><i class="icon-cross3"></i></span>
             @endif
         </div>
