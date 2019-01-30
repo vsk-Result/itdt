@@ -16,7 +16,7 @@
 @section('content')
     <div class="text-center mb-3 py-2">
         <h4 class="font-weight-semibold mb-1">{{ $object->getFullName() }}</h4>
-        <span class="text-muted d-block">{{ $object->address }}</span>
+        <span id="object-address" class="text-muted d-block">{{ $object->address }}</span>
     </div>
 
     <div class="d-flex align-items-start flex-column flex-md-row">
@@ -37,6 +37,10 @@
             <div class="sidebar-content">
                 @include('objects.partials.persons')
                 @include('objects.partials.gallery')
+
+                @if (!empty($object->address))
+                    @include('objects.partials.map')
+                @endif
             </div>
         </div>
     </div>
@@ -57,6 +61,8 @@
     <script src="{{ asset('vendors/lightGallery/modules/lg-fullscreen.min.js') }}"></script>
     <script src="{{ asset('vendors/lightGallery/modules/lg-thumbnail.min.js') }}"></script>
     <script src="{{ asset('vendors/lightGallery/modules/lg-zoom.min.js') }}"></script>
+    <script src="//api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU" type="text/javascript"></script>
+    <script src="{{ asset('js/partials/yamap.js') }}"></script>
     <script>
         $(document).ready(function() {
             $(".lightgallery").lightGallery({
@@ -67,4 +73,6 @@
             });
         });
     </script>
+
+
 @endpush
