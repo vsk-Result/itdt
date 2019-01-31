@@ -257,25 +257,6 @@ $('body').on('click', '#tasks-my-other', function(e) {
     updateTasksTable();
 });
 
-$('body').on('change', '.form-check-input-styled', function(e) {
-    e.preventDefault();
-    var that = $(this);
-    var checked = that.prop('checked');
-    if (!checked) {
-        if (confirm('Вы действительно хотите отменить подазадчу?')) {
-            var span = that.parents('li.media').find('span.subtask-name');
-            span.toggleClass('text-line-through', checked);
-            sendCheckInfo(that);
-        } else {
-            that.prop('checked', true);
-        }
-    } else {
-        var span = that.parents('li.media').find('span.subtask-name');
-        span.toggleClass('text-line-through', checked);
-        sendCheckInfo(that);
-    }
-});
-
 $('#filter-search-btn').on('click', function() {
     var text = $('#filter-search-input').val();
     if (text.length >= 3) {
@@ -292,6 +273,25 @@ $('#filter-search-btn').on('click', function() {
         }).always(function() {
             TaskManagerList.init();
         });
+    }
+});
+
+$('body').on('change', '.form-check-input-styled', function(e) {
+    e.preventDefault();
+    var that = $(this);
+    var checked = that.prop('checked');
+    if (!checked) {
+        if (confirm('Вы действительно хотите отменить подазадчу?')) {
+            var span = that.parents('li.media').find('span.subtask-name');
+            span.toggleClass('text-line-through', checked);
+            sendCheckInfo(that);
+        } else {
+            that.prop('checked', true);
+        }
+    } else {
+        var span = that.parents('li.media').find('span.subtask-name');
+        span.toggleClass('text-line-through', checked);
+        sendCheckInfo(that);
     }
 });
 
@@ -650,6 +650,11 @@ function handleSwitchEdit() {
         updateTasksTable();
         $('#add-subtask').hide();
     }
+    $('.popover-info').popover({
+        title: 'Информация о вложении',
+        placement: 'top',
+        trigger: 'click'
+    });
 }
 
 function setEditMod(value) {

@@ -35,7 +35,7 @@ class Attachment extends Model
 
     public function getSize()
     {
-        return round(Storage::size($this->getPath()) / 1024, 2) . ' КБ';
+        return round(Storage::size($this->getPath()) / 1024, 0) . ' КБ';
     }
 
     public function getExtension()
@@ -71,6 +71,6 @@ class Attachment extends Model
     {
         $filename = substr($this->filename, 0, strrpos($this->filename, '.'));
         $extension = $this->getExtension();
-        return strlen($filename) <= 20 ? $this->filename : (substr($filename, 0, 20) . '...' . $extension);
+        return strlen($filename) <= 30 ? $this->filename : (substr($filename, 0, 30) . '...' . $extension);
     }
 }
