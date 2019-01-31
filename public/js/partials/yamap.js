@@ -18,9 +18,6 @@ function init(){
             map.zoomRange.get(coord).then(function(range){
                 map.setCenter(coord, range[1] - 1)
             });
-            map.controls.add('mapTools')
-                .add('zoomControl')
-                .add('typeSelector');
         }
     );
 }
