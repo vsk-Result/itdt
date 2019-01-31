@@ -653,7 +653,7 @@ function handleSwitchEdit() {
     $('.popover-info').popover({
         title: 'Информация о вложении',
         placement: 'top',
-        trigger: 'click'
+        trigger: 'focus'
     });
 }
 
