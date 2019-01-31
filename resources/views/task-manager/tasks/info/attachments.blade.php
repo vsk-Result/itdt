@@ -24,8 +24,8 @@
                             <li class="list-inline-item">
                                 <a target="_blank" href="{{ $attachment->getUrl() }}">Открыть</a>
                             </li>
-                            <li class="list-inline-item destroy-attachment" data-destroy-url="{{ route('tasks.attach_files.destroy', [$task->id, $attachment->id]) }}">
-                                <a class="text-danger" href="{{ $attachment->getUrl() }}">Удалить</a>
+                            <li class="list-inline-item">
+                                <a class="text-danger destroy-attachment" href="javascript:void(0);" data-destroy-url="{{ route('tasks.attach_files.destroy', [$task->id, $attachment->id]) }}">Удалить</a>
                             </li>
                             </li>
                         </ul>
