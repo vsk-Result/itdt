@@ -71,6 +71,6 @@ class Attachment extends Model
     {
         $filename = substr($this->filename, 0, strrpos($this->filename, '.'));
         $extension = $this->getExtension();
-        return strlen($filename) <= 30 ? $this->filename : (substr($filename, 0, 30) . '...' . $extension);
+        return strlen($filename) <= 20 ? $this->filename : (substr($filename, 0, 20) . '...' . $extension);
     }
 }
