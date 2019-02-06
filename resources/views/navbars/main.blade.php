@@ -1,9 +1,9 @@
 <div class="navbar navbar-expand-md navbar-dark">
-    <div class="navbar-brand">
-        <a href="#" class="d-inline-block">
+    {{--<div class="navbar-brand">--}}
+        {{--<a href="#" class="d-inline-block">--}}
             {{--<img src="{{ asset('images/dtsti_logo.png') }}" alt="">--}}
-        </a>
-    </div>
+        {{--</a>--}}
+    {{--</div>--}}
 
     <div class="d-md-none">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-mobile">
@@ -17,7 +17,7 @@
         </button>
     </div>
 
-    <div class="collapse navbar-collapse" id="navbar-mobile">
+    <div class="collapse navbar-collapse" id="navbar-mobile" style="margin-left: -2.3rem;">
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a href="#" class="navbar-nav-link sidebar-control sidebar-main-toggle d-none d-md-block">
