@@ -518,7 +518,8 @@ function setTaskObject(object_id) {
         url: url,
         type: 'POST',
         data: {
-            object_id: object_id
+            object_id: object_id,
+            is_object: 'object'
         }
     }).done(function (data) {
         $('#task-details').html(data.task_details);

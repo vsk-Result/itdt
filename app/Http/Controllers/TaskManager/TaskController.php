@@ -119,11 +119,12 @@ class TaskController extends Controller
     public function update($id, Request $request)
     {
         $task = Task::findOrFail($id);
-        if (isset($request->priority_id) || isset($request->status_id) || isset($request->type_id) || (isset($request->object_id) || is_null($request->object_id))) {
+
+        if (isset($request->priority_id) || isset($request->status_id) || isset($request->type_id) || (isset($request->is_object))) {
             $task->priority_id = isset($request->priority_id) ? $request->priority_id : $task->priority_id;
             $task->status_id = isset($request->status_id) ? $request->status_id : $task->status_id;
             $task->type_id = isset($request->type_id) ? $request->type_id : $task->type_id;
-            $task->object_id = (isset($request->object_id) || is_null($request->object_id)) ? $request->object_id : $task->object_id;
+            $task->object_id = (isset($request->object_id) && isset($request->is_object)) ? $request->object_id : $task->object_id;
             $task->updated_at = Carbon::now();
 
             if (isset($request->status_id) && $request->status_id == Task::COMPLETE_STATUS_ID) {
