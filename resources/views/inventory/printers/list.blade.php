@@ -1,7 +1,10 @@
 <ul class="list-group list-group-flush">
         @forelse($printers as $printer)
                 <li class="list-group-item">
-                        {{ $printer->getFullName() }}
+                        <div>
+                            {{ $printer->getFullName() }}
+                            <p class="text-muted mb-0 font-size-xs">{{ $printer->object->getFullName() }}</p>
+                        </div>
                         <div class="list-icons ml-auto">
                                 <div class="list-icons-item dropdown">
                                         <a href="#" class="list-icons-item dropdown-toggle caret-0" data-toggle="dropdown" aria-expanded="false"><i class="icon-menu7"></i></a>
