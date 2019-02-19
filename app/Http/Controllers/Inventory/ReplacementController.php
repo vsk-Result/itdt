@@ -8,6 +8,7 @@ use App\Models\Inventory\Consumables\Movement;
 use App\Models\Inventory\Consumables\Replacement;
 use App\UseCases\Inventory\Consumable\ReplacementService;
 use App\UseCases\Inventory\Consumable\StockService;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -40,7 +41,8 @@ class ReplacementController extends Controller
 
     public function edit(Consumable $consumable, Replacement $replacement)
     {
-        return response()->json(compact('replacement'));
+        $replaced_at = Carbon::parse($replacement->replaced_at)->format('Y-m-d');
+        return response()->json(compact('replacement', 'replaced_at'));
     }
 
     public function update(Request $request, Consumable $consumable, Replacement $replacement)

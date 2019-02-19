@@ -55,7 +55,7 @@ $('.edit-replacement').on('click', function () {
         url: edit_url
     }).done(function(data) {
         $('#replacement-printer').val(data.replacement.printer_id);
-        $('#replacement-replaced-date').val(data.replacement.replaced_at);
+        $('#replacement-replaced-date').val(data.replaced_at);
         $('#replacement-comment').val(data.replacement.comment);
         $('#edit-replacement-form').attr('action', update_url);
     }).always(function() {

@@ -14,7 +14,7 @@
                 </div>
                 <div class="form-group">
                     <label>Дата замены</label>
-                    {{ Form::text('replaced_at', null, ['class' => 'form-control date', 'id' => 'replacement-replaced-date']) }}
+                    {{ Form::date('replaced_at', null, ['class' => 'form-control date', 'id' => 'replacement-replaced-date']) }}
                 </div>
                 <div class="form-group">
                     <label>Комментарий</label>
