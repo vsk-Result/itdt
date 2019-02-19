@@ -49,6 +49,8 @@
                     <!-- Page header -->
                     @include('partials.page-header')
 
+                    @yield('second_navbar')
+
                     <!-- Content area -->
                     <div class="content">
                         {{-- @include('flash::message') --}}

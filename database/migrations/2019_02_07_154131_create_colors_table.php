@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class EditObjectPersonsTable extends Migration
+class CreateColorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class EditObjectPersonsTable extends Migration
      */
     public function up()
     {
-        Schema::table('object_persons', function (Blueprint $table) {
-            $table->string('image')->nullable();
+        Schema::create('colors', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name', 25);
+            $table->string('hex_color', 7)->nullable();
         });
     }
 
@@ -25,8 +27,6 @@ class EditObjectPersonsTable extends Migration
      */
     public function down()
     {
-        Schema::table('object_persons', function (Blueprint $table) {
-            $table->dropColumn('image');
-        });
+        Schema::dropIfExists('colors');
     }
 }

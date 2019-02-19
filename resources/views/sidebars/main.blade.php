@@ -27,6 +27,9 @@
                 <li class="nav-item">
                     <a href="{{ route('tasks.index') }}" class="nav-link"><i class="icon-task"></i><span>Менеджер задач</span></a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('inventory.index') }}" class="nav-link"><i class="icon-printer"></i><span>Расходные материалы</span></a>
+                </li>
             </ul>
         </div>
         <!-- /main navigation -->

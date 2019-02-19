@@ -73,4 +73,9 @@ class Attachment extends Model
         $extension = $this->getExtension();
         return strlen($filename) <= 20 ? $this->filename : (substr($filename, 0, 20) . '...' . $extension);
     }
+
+    public function isImage()
+    {
+        return strpos($this->filename, '.jpg') > 0 || strpos($this->filename, '.png') > 0;
+    }
 }

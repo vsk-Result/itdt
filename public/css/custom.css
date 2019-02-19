@@ -131,3 +131,20 @@ body {
 .card-img-top {
     height: 140px;
 }
+.consumable-color {
+    margin-right: 3px;
+    margin-top: 1px;
+    height: 15px;
+    width: 15px;
+}
+.movements-list tbody td {
+    padding-bottom: .3rem;
+    padding-top: .3rem;
+}
+.printers-list tbody tr:hover, .printers-list tbody tr.active{
+    background-color: #eaf5ea !important;
+    cursor: pointer;
+}
+.dropdown-item.filled {
+    background-color: #4caf505e !important;
+}

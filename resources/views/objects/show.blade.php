@@ -50,28 +50,8 @@
     <link rel="stylesheet" href="{{ asset('vendors/lightGallery/dist/css/lightgallery.min.css') }}">
     <link href="{{ asset('vendors/fileuploader/src/jquery.fileuploader.min.css') }}" rel="stylesheet">
     <link href="{{ asset('vendors/fileuploader/src/css/jquery.fileuploader-theme-thumbnails.css') }}" rel="stylesheet">
-    <style>
-        p { margin-bottom: 0; }
-        .fileuploader-theme-thumbnails .fileuploader-items-list .fileuploader-item {
-            width: calc(54% - 16px);
-            padding-top: 35%;
-            margin: 0;
-            margin-bottom: 10px;
-        }
-        .fileuploader {
-             background: #fff;
-        }
-        @media (max-width: 480px) {
-            .fileuploader-theme-thumbnails .fileuploader-thumbnails-input, .fileuploader-theme-thumbnails .fileuploader-items-list .fileuploader-item {
-                padding-top: 40%;
-            }
-        }
-        .fileuploader-theme-thumbnails .fileuploader-item .content-holder {
-            background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 100%);
-            background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 100%);
-            background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 100%);
-        }
-    </style>
+    <link href="{{ asset('css/partials/fileuploader.css') }}" rel="stylesheet">
+    <style> p { margin-bottom: 0; } </style>
 @endpush
 
 @push('scripts')
@@ -83,7 +63,7 @@
     <script src="//api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU" type="text/javascript"></script>
     <script src="{{ asset('js/partials/yamap.js') }}"></script>
     <script>
-        $(document).ready(function() {
+        $(function() {
             $(".lightgallery").lightGallery({
                 selector: '.light-item',
                 thumbnail: true,
@@ -92,6 +72,4 @@
             });
         });
     </script>
-
-
 @endpush
