@@ -62,5 +62,6 @@
 @push('scripts')
     <script src="{{ asset('vendors/tables/datatables/datatables.min.js') }}"></script>
     <script src="{{ asset('vendors/tables/datatables/extensions/natural_sort.js') }}"></script>
+    <script src="{{ asset('vendors/select2/select2.min.js') }}"></script>
     <script src="{{ asset('js/partials/consumable.js') }}"></script>
 @endpush

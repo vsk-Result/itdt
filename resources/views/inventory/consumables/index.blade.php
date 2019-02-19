@@ -107,6 +107,7 @@
 @endsection
 
 @push('scripts')
+    <script src="{{ asset('vendors/select2/select2.min.js') }}"></script>
     <script src="{{ asset('js/partials/printers.js') }}"></script>
     <script src="{{ asset('js/partials/consumable.js') }}"></script>
 @endpush

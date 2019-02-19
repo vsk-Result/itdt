@@ -5,6 +5,9 @@ $(function() {
         placement: 'top',
         trigger: 'focus'
     });
+    $('.select').select2({
+        minimumResultsForSearch: -1
+    });
 });
 
 $('.arrival-check').on('change', function () {
@@ -28,8 +31,8 @@ $('.edit-movement').on('click', function () {
     $.ajax({
         url: edit_url
     }).done(function(data) {
-        $('#movement-sender').val(data.movement.sender_id);
-        $('#movement-recipient').val(data.movement.recipient_id);
+        $('#movement-sender').val(data.movement.sender_id).trigger('change');
+        $('#movement-recipient').val(data.movement.recipient_id).trigger('change');
         $('#movement-count').val(data.movement.count);
         $('#movement-comment').val(data.movement.comment);
         $('#movement-arrival').prop('checked', data.movement.is_arrival);
@@ -54,7 +57,7 @@ $('.edit-replacement').on('click', function () {
     $.ajax({
         url: edit_url
     }).done(function(data) {
-        $('#replacement-printer').val(data.replacement.printer_id);
+        $('#replacement-printer').val(data.replacement.printer_id).trigger('change');
         $('#replacement-replaced-date').val(data.replaced_at);
         $('#replacement-comment').val(data.replacement.comment);
         $('#edit-replacement-form').attr('action', update_url);
@@ -77,8 +80,8 @@ $('body').on('click', '.edit-consumable', function () {
         url: edit_url
     }).done(function(data) {
         $('#consumable-name').val(data.consumable.name);
-        $('#consumable-color').val(data.consumable.color_id);
-        $('#consumable-printers').val(data.printers);
+        $('#consumable-color').val(data.consumable.color_id).trigger('change');
+        $('#consumable-printers').val(data.printers).trigger('change');
         $('#edit-consumable-form').attr('action', update_url);
     }).always(function() {
         $('#editConsumable').modal('show');

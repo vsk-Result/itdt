@@ -6,8 +6,8 @@ $('body').on('click', '.edit-printer', function () {
     }).done(function(data) {
         $('#printer-name').val(data.printer.name);
         $('#printer-description').val(data.printer.description);
-        $('#printer-model').val(data.printer.model_id);
-        $('#printer-object').val(data.printer.object_id);
+        $('#printer-model').val(data.printer.model_id).trigger('change');
+        $('#printer-object').val(data.printer.object_id).trigger('change');
         $('#edit-printer-form').attr('action', update_url);
     }).always(function() {
         $('#editPrinter').modal('show');

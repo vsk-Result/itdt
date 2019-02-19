@@ -148,3 +148,7 @@ body {
 .dropdown-item.filled {
     background-color: #4caf505e !important;
 }
+
+.select2-selection--single {
+    min-height: 36px !important;
+}
