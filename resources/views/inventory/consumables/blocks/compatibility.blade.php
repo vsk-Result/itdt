@@ -7,7 +7,7 @@
         <ul class="list list-unstyled mb-0">
             @foreach($consumable->printers as $printer)
                 <li>
-                    <a href="#">{{ $printer->name }}</a>
+                    {{ $printer->name }}
                 </li>
             @endforeach
         </ul>

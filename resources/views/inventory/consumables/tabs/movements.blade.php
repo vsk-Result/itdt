@@ -19,6 +19,7 @@
                     {{ $movement->isArrival() ? 'Приход материала' : $movement->sender->getFullName() }}
                     ->
                     {{ $movement->recipient->getFullName() }}
+                    <p class="text-muted mb-0 font-size-xs">{{ $movement->comment }}</p>
                 </td>
                 <td>{{ $movement->count }}</td>
                 <td>
