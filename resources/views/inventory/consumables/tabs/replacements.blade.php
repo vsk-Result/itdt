@@ -15,7 +15,10 @@
                 {{ $replacement->user->name }} <br>
                 <p class="text-muted mb-0 font-size-xs">{{ $replacement->created_at->format('d.m.Y H:i') }}</p>
             </td>
-            <td>{{ $replacement->printer->name }}</td>
+            <td>
+                {{ $replacement->printer->name }}
+                <p class="text-muted mb-0 font-size-xs">{{ $replacement->object->getFullName() }}</p>
+            </td>
             <td>{{ $replacement->replaced_at->format('d.m.Y') }}</td>
             <td>{{ $replacement->comment }}</td>
             <td>
