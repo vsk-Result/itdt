@@ -80,7 +80,7 @@ class ConsumableController extends Controller
     public function show(Consumable $consumable)
     {
         $objects = CObject::getList();
-        $printers = Printer::pluck('name', 'id');
+        $printers = $consumable->getPrintersList();
         $colors = Color::pluck('name', 'id');
         $printer_models_list = PModel::pluck('name', 'id');
         return view('inventory.consumables.show', compact('consumable', 'objects', 'printers', 'colors', 'printer_models_list'));

@@ -17,4 +17,9 @@ class PModel extends Model
     {
         return $this->belongsToMany(Consumable::class, 'printer_consumable', 'printer_id', 'consumable_id');
     }
+
+    public function printers()
+    {
+        return $this->hasMany(Printer::class, 'model_id', 'id');
+    }
 }

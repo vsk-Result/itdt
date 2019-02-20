@@ -72,4 +72,15 @@ class Consumable extends Model
             $subQuery->where('id', $model_id);
         });
     }
+
+    public function getPrintersList()
+    {
+        $list = [];
+        foreach ($this->printers as $model) {
+            foreach ($model->printers as $printer) {
+                $list[$printer->id] = $printer->getFullName();
+            }
+        }
+        return $list;
+    }
 }
