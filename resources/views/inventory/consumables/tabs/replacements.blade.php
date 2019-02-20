@@ -3,8 +3,7 @@
         <tr>
             <th>Автор</th>
             <th>Принтер</th>
-            <th>Дата замены</th>
-            <th>Комментарий</th>
+            <th>Дата замены / Комментарий</th>
             <th></th>
         </tr>
     </thead>
@@ -19,8 +18,10 @@
                 {{ $replacement->printer->name }}
                 <p class="text-muted mb-0 font-size-xs">{{ $replacement->object->getFullName() }}</p>
             </td>
-            <td>{{ $replacement->replaced_at->format('d.m.Y') }}</td>
-            <td>{{ $replacement->comment }}</td>
+            <td>
+                {{ $replacement->replaced_at->format('d.m.Y') }}
+                <p class="text-muted mb-0 font-size-xs">{{ $replacement->comment }}</p>
+            </td>
             <td>
                 <div class="list-icons">
                     <div class="list-icons-item dropdown">
