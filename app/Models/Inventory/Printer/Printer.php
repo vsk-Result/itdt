@@ -33,6 +33,6 @@ class Printer extends Model
 
     public function getFullName()
     {
-        return $this->name . (empty($this->description) ?: ' (' . $this->description . ')');
+        return $this->name . (empty($this->description) ? '' : ' (' . $this->description . ')');
     }
 }
