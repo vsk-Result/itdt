@@ -20,12 +20,12 @@
                     Заказ материалов
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="#" class="navbar-nav-link">
-                    <i class="icon-file-excel mr-2"></i>
-                    Отчеты
-                </a>
-            </li>
+            {{--<li class="nav-item">--}}
+                {{--<a href="#" class="navbar-nav-link">--}}
+                    {{--<i class="icon-file-excel mr-2"></i>--}}
+                    {{--Отчеты--}}
+                {{--</a>--}}
+            {{--</li>--}}
         </ul>
     </div>
 </div>
