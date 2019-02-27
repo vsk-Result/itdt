@@ -29,16 +29,16 @@
                         {{ Form::text('count', null, ['class' => 'form-control']) }}
                     </div>
                     <div class="form-group">
+                        <label>Комментарий</label>
+                        {{ Form::text('comment', null, ['class' => 'form-control']) }}
+                    </div>
+                    <div class="form-group">
                         <div class="form-check">
                             <label class="form-check-label">
                                 <input type="checkbox" name="is_write_off" class="form-check-input write-off-check" value="is_write_off">
                                 Списание без подтверждения замены
                             </label>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Комментарий</label>
-                        {{ Form::text('comment', null, ['class' => 'form-control']) }}
                     </div>
                     <div class="text-right">
                         <button type="submit" class="btn btn-primary">Добавить</button>
