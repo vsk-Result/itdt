@@ -17,11 +17,14 @@ $('.arrival-check').on('change', function () {
 function handleArrival(checkbox) {
     var check = checkbox.prop('checked');
     var select = checkbox.parents('.modal-body').find('.sender-select');
+    var write_off = checkbox.parents('.modal-body').find('.write-off-check').parents('.form-group');
 
     if (check) {
         select.hide();
+        write_off.hide();
     } else {
         select.show();
+        write_off.show();
     }
 }
 

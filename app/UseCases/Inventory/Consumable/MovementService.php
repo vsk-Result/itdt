@@ -17,14 +17,15 @@ class MovementService
 
         return DB::transaction(function () use ($request, $user, $consumable) {
 
+            $is_arrival = isset($request['is_arrival']) ? true : false;
             $movement = Movement::make([
                 'sender_id' => isset($request['is_arrival']) ? null : $request['sender_id'],
                 'recipient_id' => $request['recipient_id'],
                 'count' => $request['count'],
                 'comment' => $request['comment'],
                 'status' => Movement::STATUS_PENDING,
-                'is_arrival' => isset($request['is_arrival']) ? true : false,
-                'is_write_off' => isset($request['is_write_off']) ? true : false,
+                'is_arrival' => $is_arrival,
+                'is_write_off' => (isset($request['is_write_off']) && !$is_arrival) ? true : false,
             ]);
 
             $movement->user()->associate($user);
@@ -43,10 +44,12 @@ class MovementService
             'count',
             'comment',
         ]));
+
+        $is_arrival = isset($request['is_arrival']) ? true : false;
         $movement->update([
             'sender_id' => isset($request['is_arrival']) ? null : $request['sender_id'],
             'is_arrival' => isset($request['is_arrival']) ? true : false,
-            'is_write_off' => isset($request['is_write_off']) ? true : false,
+            'is_write_off' => (isset($request['is_write_off']) && !$is_arrival) ? true : false,
         ]);
     }
 
