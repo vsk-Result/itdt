@@ -18,7 +18,7 @@ class CreatePrintersTable extends Migration
             $table->integer('model_id')->references('id')->on('printer_models');
             $table->integer('object_id')->references('id')->on('objects');
             $table->string('name');
-            $table->string('description', 30)->nullable();
+            $table->string('description')->nullable();
             $table->string('file')->nullable();
             $table->softDeletes();
             $table->timestamps();

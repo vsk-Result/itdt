@@ -83,6 +83,7 @@ class ConsumableController extends Controller
         $printers = $consumable->getPrintersList();
         $colors = Color::pluck('name', 'id');
         $printer_models_list = PModel::pluck('name', 'id');
+
         return view('inventory.consumables.show', compact('consumable', 'objects', 'printers', 'colors', 'printer_models_list'));
     }
 }
