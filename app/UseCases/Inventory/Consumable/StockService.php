@@ -25,6 +25,7 @@ class StockService
 
             $count = $this->calculateStockCount(
                 $consumable->movements()->where('recipient_id', $object_id)->where('status', Movement::STATUS_CONFIRMED)->sum('count'),
+                $consumable->movements()->writeOff()->where('recipient_id', $object_id)->where('status', Movement::STATUS_CONFIRMED)->sum('count'),
                 $consumable->movements()->where('sender_id', $object_id)->where('status', Movement::STATUS_CONFIRMED)->sum('count'),
                 $consumable->replacements()->where('object_id', $object_id)->count()
             );
@@ -39,8 +40,8 @@ class StockService
         }
     }
 
-    private function calculateStockCount($arrival, $consumption, $replaces): int
+    private function calculateStockCount($arrival, $write_off, $consumption, $replaces): int
     {
-        return $arrival - $consumption - $replaces;
+        return $arrival - $write_off - $consumption - $replaces;
     }
 }

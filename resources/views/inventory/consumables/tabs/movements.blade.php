@@ -19,6 +19,9 @@
                     {{ $movement->isArrival() ? 'Приход материала' : $movement->sender->getFullName() }}
                     ->
                     {{ $movement->recipient->getFullName() }}
+                    @if ($movement->isWriteOff())
+                        <p class="mb-0 font-size-xs text-danger-800">Списание без подтверждения замены</p>
+                    @endif
                     <p class="text-muted mb-0 font-size-xs">{{ $movement->comment }}</p>
                 </td>
                 <td>{{ $movement->count }}</td>

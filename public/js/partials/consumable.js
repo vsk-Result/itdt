@@ -36,6 +36,7 @@ $('.edit-movement').on('click', function () {
         $('#movement-count').val(data.movement.count);
         $('#movement-comment').val(data.movement.comment);
         $('#movement-arrival').prop('checked', data.movement.is_arrival);
+        $('#movement-write-off').prop('checked', data.movement.is_write_off);
 
         $('#edit-movement-form').attr('action', update_url);
         handleArrival( $('#edit-movement-form .arrival-check'));

@@ -92,4 +92,14 @@ class Movement extends Model
     {
         return $this->is_arrival;
     }
+
+    public function isWriteOff()
+    {
+        return $this->is_write_off;
+    }
+
+    public function scopeWriteOff($query)
+    {
+        return $query->where('is_write_off', true);
+    }
 }

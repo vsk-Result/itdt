@@ -24,6 +24,7 @@ class MovementService
                 'comment' => $request['comment'],
                 'status' => Movement::STATUS_PENDING,
                 'is_arrival' => isset($request['is_arrival']) ? true : false,
+                'is_write_off' => isset($request['is_write_off']) ? true : false,
             ]);
 
             $movement->user()->associate($user);
@@ -45,6 +46,7 @@ class MovementService
         $movement->update([
             'sender_id' => isset($request['is_arrival']) ? null : $request['sender_id'],
             'is_arrival' => isset($request['is_arrival']) ? true : false,
+            'is_write_off' => isset($request['is_write_off']) ? true : false,
         ]);
     }
 
