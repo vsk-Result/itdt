@@ -10,6 +10,7 @@
                     <strong>{{ $printer->name }}</strong>
                     <ul class="list-group list-group-flush">
                         @foreach($printer->consumables as $o_consumable)
+                            @continue($o_consumable->id == $consumable->id)
                             <li class="list-group-item px-0">
                                 <span class="badge badge-mark mr-1" style="border-color: {{ $o_consumable->getHexColor() }}"></span>
                                 <a href="{{ route('inventory.consumables.show', $o_consumable) }}">
