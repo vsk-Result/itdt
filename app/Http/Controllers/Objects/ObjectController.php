@@ -235,6 +235,11 @@ class ObjectController extends Controller
         $document->setValue('object_address', $object->address);
         $document->saveAs(storage_path($output_path));
 
-        return response()->download(storage_path($output_path));
+        $headers = [
+            'Content-Type' =>  'application/application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            'Content-Disposition' => 'attachment;filename="' . $output_name . '"',
+        ];
+
+        return response()->download(storage_path($output_path), $output_name, $headers);
     }
 }
