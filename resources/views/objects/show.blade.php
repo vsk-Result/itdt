@@ -15,8 +15,10 @@
 
 @section('content')
     <div class="text-center mb-3 py-2">
-        <h4 class="font-weight-semibold mb-1">{{ $object->getFullName() }}</h4>
-        <span id="object-address" class="text-muted d-block">{{ $object->address }}</span>
+        <a href="{{ route('objects.word', $object->id) }}">
+            <h4 class="font-weight-semibold mb-1">{{ $object->getFullName() }}</h4>
+            <span id="object-address" class="text-muted d-block">{{ $object->address }}</span>
+        </a>
     </div>
 
     <div class="d-flex align-items-start flex-column flex-md-row">

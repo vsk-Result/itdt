@@ -218,4 +218,23 @@ class ObjectController extends Controller
         $person_render = view('objects.partials.new_person')->render();
         return response()->json(compact('person_render'));
     }
+
+    public function word($id)
+    {
+        $object = CObject::findOrFail($id);
+
+        $template_name = 'object_template.docx';
+        $output_dir = 'app/public/temp_files/';
+        $output_name = str_replace(' ', '_', $object->getFullName()) . '.docx';
+        $output_path = $output_dir . $output_name;
+
+        $PHPWord = new \PhpOffice\PhpWord\PhpWord();
+        $document = $PHPWord->loadTemplate(public_path('/templates/' . $template_name));
+
+        $document->setValue('object_name', $object->getFullName());
+        $document->setValue('object_address', $object->address);
+        $document->saveAs(storage_path($output_path));
+
+        return response()->download(storage_path($output_path));
+    }
 }
