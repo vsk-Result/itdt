@@ -90,6 +90,10 @@
                             <div class="tab-pane fade" id="vertical-left-tab3">
                                 <h3 class="font-weight-semibold">Галерея</h3>
 
+                                <div class="row mb-3">
+                                    @each('objects.partials.edit_gallery', $object->images, 'image')
+                                </div>
+
                                 <input type="file" name="gallery_files[]" multiple="multiple" class="fileuplouder">
                             </div>
                         </div>
@@ -102,6 +106,7 @@
 @endsection
 
 @push('css')
+    <link rel="stylesheet" href="{{ asset('vendors/lightGallery/dist/css/lightgallery.min.css') }}">
     <link href="{{ asset('vendors/fileuploader/src/jquery.fileuploader.css') }}" rel="stylesheet">
     <link href="{{ asset('vendors/fileuploader/src/css/jquery.fileuploader-theme-onebutton.css') }}" rel="stylesheet">
     <link href="{{ asset('vendors/summernote/summernote.css') }}" rel="stylesheet">
@@ -113,11 +118,21 @@
 @endpush
 
 @push('scripts')
+    <script src="{{ asset('vendors/lightGallery/dist/js/lightgallery.min.js') }}"></script>
+    <script src="{{ asset('vendors/lightGallery/modules/lg-fullscreen.min.js') }}"></script>
+    <script src="{{ asset('vendors/lightGallery/modules/lg-thumbnail.min.js') }}"></script>
+    <script src="{{ asset('vendors/lightGallery/modules/lg-zoom.min.js') }}"></script>
     <script src="{{ asset('vendors/fileuploader/src/jquery.fileuploader.min.js') }}"></script>
     <script src="{{ asset('vendors/summernote/summernote.min.js') }}"></script>
     <script>
         $(document).ready(function() {
             initialize();
+            $(".lightgallery").lightGallery({
+                selector: '.light-item',
+                thumbnail: true,
+                zoom: true,
+                fullscreen: true
+            });
         });
 
         $('#edit-object').on('click', function () {

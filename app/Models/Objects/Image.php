@@ -3,10 +3,14 @@
 namespace App\Models\Objects;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Image extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'object_images';
+    protected $dates = ['deleted_at'];
 
     public function object()
     {

@@ -182,6 +182,20 @@ class ObjectController extends Controller
             }
         }
 
+        if (isset($request->image_id)) {
+            foreach ($request->image_id as $index => $image_id) {
+                $description = $request->image_description[$index];
+                if (is_null($description)) continue;
+                $image = Image::findOrFail($image_id);
+                $image->description = $description;
+                $image->update();
+            }
+        }
+
+        if (isset($request->image_delete)) {
+            Image::whereIn('id', $request->image_delete)->delete();
+        }
+
         $gallery_files = $request->file('gallery_files');
         if (is_array($gallery_files) && count($gallery_files) > 0) {
             for ($i = 0; $i < count($gallery_files); $i++) {
