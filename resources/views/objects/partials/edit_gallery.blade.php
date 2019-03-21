@@ -4,7 +4,7 @@
         <div class="media mt-0">
             <div class="mr-3 lightgallery">
                 <a href="{{ $image->getUrl() }}" class="light-item">
-                    <img src="{{ $image->getUrl() }}" width="60" height="60" class="rounded-round" alt="">
+                    <img src="{{ $image->getUrl() }}" width="120" alt="">
                 </a>
             </div>
 
