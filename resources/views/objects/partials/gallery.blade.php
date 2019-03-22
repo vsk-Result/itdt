@@ -7,7 +7,7 @@
 
         @foreach($object->images as $image)
             <div id="caption{{ $image->id }}" style="display:none">
-                <p>{{ $image->description }}</p>
+                <p>{{ '(' . $image->created_at->format('d.m.y') . ') ' . $image->description }}</p>
             </div>
         @endforeach
 
