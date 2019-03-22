@@ -90,8 +90,12 @@
                             <div class="tab-pane fade" id="vertical-left-tab3">
                                 <h3 class="font-weight-semibold">Галерея</h3>
 
-                                <div class="row mb-3">
-                                    @each('objects.partials.edit_gallery', $object->images, 'image')
+                                <div class="fileuploader fileuploader-theme-thumbnails pr-0">
+                                    <div class="fileuploader-items">
+                                        <div class="row b-3">
+                                            @each('objects.partials.edit_gallery', $object->images, 'image')
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <input type="file" name="gallery_files[]" multiple="multiple" class="fileuplouder">
@@ -107,8 +111,9 @@
 
 @push('css')
     <link rel="stylesheet" href="{{ asset('vendors/lightGallery/dist/css/lightgallery.min.css') }}">
-    <link href="{{ asset('vendors/fileuploader/src/jquery.fileuploader.css') }}" rel="stylesheet">
-    <link href="{{ asset('vendors/fileuploader/src/css/jquery.fileuploader-theme-onebutton.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendors/fileuploader/src/jquery.fileuploader.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendors/fileuploader/src/css/jquery.fileuploader-theme-thumbnails.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/partials/fileuploader.css') }}" rel="stylesheet">
     <link href="{{ asset('vendors/summernote/summernote.css') }}" rel="stylesheet">
     <style>
         .card-img {
