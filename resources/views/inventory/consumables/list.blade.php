@@ -42,6 +42,10 @@
             </div>
         </li>
     @empty
-        <p>Данных нет</p>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                Данных нет
+            </li>
+        </ul>
     @endforelse
 </ul>
