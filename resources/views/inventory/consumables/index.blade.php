@@ -13,6 +13,7 @@
             <a href="#" class="btn btn-link btn-float text-primary" data-toggle="modal" data-target="#createConsumable"><i class="icon-plus-circle2 text-success"></i><span>Расходник</span></a>
             <a href="#" class="btn btn-link btn-float text-primary" data-toggle="modal" data-target="#createPrinter"><i class="icon-plus-circle2 text-success"></i> <span>Принтер</span></a>
             <a href="#" class="btn btn-link btn-float text-primary" data-toggle="modal" data-target="#createPrinterModel"><i class="icon-plus-circle2 text-success"></i> <span>Модель принтера</span></a>
+            <a href="#" class="btn btn-link btn-float text-primary" data-toggle="modal" data-target="#createSparepart"><i class="icon-plus-circle2 text-success"></i> <span>Запчасть принтера</span></a>
         </div>
     </div>
 @endsection
@@ -24,6 +25,8 @@
     @include('inventory.printers.modals.edit_printer')
     @include('inventory.printers.modals.create_printer_model')
     @include('inventory.printers.modals.edit_printer_model')
+    @include('inventory.spareparts.modals.create')
+    @include('inventory.spareparts.modals.edit')
 
     <div class="d-flex align-items-start flex-column flex-md-row">
 
@@ -46,7 +49,8 @@
 
                                 <tr data-id="{{ $model->id }}"
                                     data-printers-url="{{ route('inventory.printers.index') }}"
-                                    data-consumables-url="{{ route('inventory.consumables.index') }}">
+                                    data-consumables-url="{{ route('inventory.consumables.index') }}"
+                                    data-spareparts-url="{{ route('inventory.spareparts.index') }}">
 
                                     <td>{{ $model->name }}</td>
                                     <td class="text-right">
@@ -102,6 +106,20 @@
                     </ul>
                 </div>
             </div>
+
+            <div class="card">
+                <div class="card-header bg-transparent header-elements-inline">
+                    <span class="text-uppercase font-size-sm font-weight-semibold">Запчасти</span>
+                </div>
+
+                <div id="spareparts-list" class="card-body p-0">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            Выберите принтер
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
@@ -110,6 +128,7 @@
     <script src="{{ asset('vendors/select2/select2.min.js') }}"></script>
     <script src="{{ asset('js/partials/printers.js') }}"></script>
     <script src="{{ asset('js/partials/consumable.js') }}"></script>
+    <script src="{{ asset('js/partials/spareparts.js') }}"></script>
 @endpush
 
 @push('css')

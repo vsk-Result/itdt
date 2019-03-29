@@ -104,6 +104,7 @@ $('.printers-list tbody tr').on('click', function () {
     var id = row.data('id');
     var printers_url = row.data('printers-url');
     var consumables_url = row.data('consumables-url');
+    var spareparts_url = row.data('spareparts-url');
 
     $('.printers-list tbody tr').removeClass('active');
     $('.printers-list tbody tr').removeClass('font-weight-bold');
@@ -112,6 +113,7 @@ $('.printers-list tbody tr').on('click', function () {
 
     getPrinters(id, printers_url);
     getConsumables(id, consumables_url);
+    getSpareparts(id, spareparts_url);
 
     $('.printers-title').html('Список принтеров: выбран ' + '<strong>' + row.find('td:first').text() + '</strong>');
 });
@@ -135,5 +137,16 @@ function getConsumables(id, url) {
         }
     }).done(function(data) {
         $('#consumables-list').html(data.render_view);
+    });
+}
+
+function getSpareparts(id, url) {
+    $.ajax({
+        url: url,
+        data: {
+            model_id: id
+        }
+    }).done(function(data) {
+        $('#spareparts-list').html(data.render_view);
     });
 }

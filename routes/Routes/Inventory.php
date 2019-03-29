@@ -71,4 +71,15 @@ Route::group([
             Route::delete('/{replacement}', 'ReplacementController@destroy')->name('destroy');
         });
     });
+
+    Route::group([
+        'prefix' => 'spareparts',
+        'as' => 'spareparts.',
+    ], function () {
+        Route::get('/', 'SparepartController@index')->name('index');
+        Route::post('/', 'SparepartController@store')->name('store');
+        Route::get('/{sparepart}/edit', 'SparepartController@edit')->name('edit');
+        Route::put('/{sparepart}', 'SparepartController@update')->name('update');
+        Route::delete('/{sparepart}', 'SparepartController@destroy')->name('destroy');
+    });
 });
