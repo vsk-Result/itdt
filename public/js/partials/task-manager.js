@@ -220,6 +220,7 @@ var InputsFilterRadios = function () {
 // ------------------------------
 
 document.addEventListener('DOMContentLoaded', function() {
+    filter_active_enabled = false;
     filter_switch_enabled = true;
     edit_mod_enabled = false;
     was_changes = false;
@@ -254,6 +255,11 @@ $('body').on('click', '#tasks-update', function(e) {
 
 $('body').on('click', '#tasks-my-other', function(e) {
     filter_switch_enabled = !filter_switch_enabled;
+    updateTasksTable();
+});
+
+$('body').on('click', '#tasks-active', function(e) {
+    filter_active_enabled = !filter_active_enabled;
     updateTasksTable();
 });
 
@@ -582,6 +588,7 @@ function updateTasksTable() {
     var sorting = $('.sort-list-item.active').data('sort-id');
     var sort_dir = $('.sort-list-item.active').data('sort-dir');
     var is_only_me = !filter_switch_enabled;
+    var is_active = !filter_active_enabled;
     $.ajax({
         url: url,
         data: {
@@ -593,7 +600,8 @@ function updateTasksTable() {
             filter_object: filter_object,
             sorting: sorting,
             sort_dir: sort_dir,
-            is_only_me: is_only_me
+            is_only_me: is_only_me,
+            is_active: is_active
         }
     }).done(function (data) {
         container.find('.card-body').html(data.tasks_render);

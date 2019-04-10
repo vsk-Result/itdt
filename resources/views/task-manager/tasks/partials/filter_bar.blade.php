@@ -7,14 +7,24 @@
     </div>
 
     <div class="navbar-collapse collapse" id="navbar-filter">
-
-        <div class="form-check form-check-switchery form-check-switchery-double form-check-switchery mb-3 mb-lg-0">
-            <label class="form-check-label">
-                Мои
-                <input id="tasks-my-other" type="checkbox" class="form-check-filter-input-switchery" checked data-fouc>
-                Все
-            </label>
+        <div>
+            <div class="form-check form-check-switchery form-check-switchery-double form-check-switchery mb-3 mb-lg-0">
+                <label class="form-check-label">
+                    Мои
+                    <input id="tasks-my-other" type="checkbox" class="form-check-filter-input-switchery" checked data-fouc>
+                    Все
+                </label>
+            </div>
+            <br>
+            <div class="form-check form-check-switchery form-check-switchery-double form-check-switchery mb-3 mb-lg-0">
+                <label class="form-check-label">
+                    Активные
+                    <input id="tasks-active" type="checkbox" class="form-check-filter-input-switchery" data-fouc>
+                    Все
+                </label>
+            </div>
         </div>
+
 
         <ul class="navbar-nav flex-wrap ml-2">
             <li class="nav-item dropdown">

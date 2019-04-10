@@ -29,10 +29,10 @@ class TaskController extends Controller
 
     public function all(Request $request)
     {
-        if (strlen($request->search_text) > 3) {
+        if (strlen($request->search_text) > 0) {
             $query = $request->search_text;
 
-            $one_search = Task::where('name', 'LIKE', '%' . $query . '%')->orWhere('description', 'LIKE', '%' . $query . '%')->pluck('id')->toArray();
+            $one_search = Task::where('id', 'LIKE', '%' . $query . '%')->orWhere('name', 'LIKE', '%' . $query . '%')->orWhere('description', 'LIKE', '%' . $query . '%')->pluck('id')->toArray();
             $two_search = Subtask::where('name', 'LIKE', '%' . $query . '%')->pluck('task_id')->toArray();
             $three_search = SubtaskComment::where('text', 'LIKE', '%' . $query . '%')->pluck('subtask_id')->toArray();
             $three_search = Subtask::whereIn('id', $three_search)->pluck('task_id')->toArray();
@@ -63,6 +63,9 @@ class TaskController extends Controller
         }
         if ($request->is_only_me == "true") {
             $query->where('user_id', auth()->id());
+        }
+        if ($request->is_active == "true") {
+            $query->where('status_id', '!=', 3);
         }
 
         if ($request->sorting == 'all') {
