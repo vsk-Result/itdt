@@ -2,6 +2,8 @@
 
 namespace App\Models\TaskManager;
 
+use App\Models\Objects\CObject;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
@@ -125,5 +127,18 @@ class Task extends Model
     public function scopeEvolutions($query)
     {
         return $query->where('type_id', 2);
+    }
+
+    public static function getAuthorsList()
+    {
+        $userIds = self::groupBy('user_id')->pluck('user_id')->toArray();
+        return User::whereIn('id', $userIds)->orderBy('name')->get();
+    }
+
+    public static function getObjectsList()
+    {
+        $list = [];
+        $objectIds = self::groupBy('object_id')->pluck('object_id')->toArray();
+        return CObject::whereIn('id', $objectIds)->orderBy('code')->get();
     }
 }

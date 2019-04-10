@@ -257,25 +257,6 @@ $('body').on('click', '#tasks-my-other', function(e) {
     updateTasksTable();
 });
 
-$('#filter-search-btn').on('click', function() {
-    var text = $('#filter-search-input').val();
-    if (text.length >= 3) {
-        var url = $(this).data('search-url');
-        var container = $('#tasks-container');
-        setBlockUI(container);
-        $.ajax({
-            url: url,
-            data: {
-                text: text
-            }
-        }).done(function (data) {
-            container.find('.card-body').html(data.tasks_render);
-        }).always(function() {
-            TaskManagerList.init();
-        });
-    }
-});
-
 $('body').on('change', '.form-check-input-styled', function(e) {
     e.preventDefault();
     var that = $(this);
@@ -297,7 +278,7 @@ $('body').on('change', '.form-check-input-styled', function(e) {
 
 $('#filter-search-input').on('keydown', function(e) {
     if (e.keyCode === 13) {
-        $('#filter-search-btn').trigger('click');
+        updateTasksTable();
     }
 });
 
@@ -392,18 +373,34 @@ $('body').on('keydown', '#comment-body', function(e) {
 });
 
 $('body').on('click', '#filter-bar a.filter-list-item', function(e) {
-    $(this).parent().find('a.filter-list-item').removeClass('active');
-    $(this).addClass('active');
+    var list = $(this);
+    list.parent().find('a.filter-list-item').removeClass('active');
+    list.addClass('active');
 
-    var subtitle = $(this).text();
-    $(this).parents('.nav-item').find('.filter-subtitle').text('(' + subtitle + ')');
+    var subtitle = list.text();
+    var filterSubtitle = list.parents('.nav-item').find('.filter-subtitle');
+    filterSubtitle.text('(' + subtitle + ')');
 
     if (subtitle == 'Показать все') {
-        $(this).parents('.nav-item').find('.filter-subtitle').text('(Все)');
+        filterSubtitle.text('(Все)');
     }
 
-    if (subtitle == 'Сброс') {
-        $(this).parents('.nav-item').find('.filter-subtitle').text('');
+    if (subtitle == 'Стандартная') {
+        $('.sort-list-item .sort-dir').html('');
+        filterSubtitle.text('');
+    } else {
+        if (list.hasClass('sort-list-item')) {
+            $('.sort-list-item .sort-dir').html('');
+            if (list.data('sort-dir') == 'asc') {
+                list.data('sort-dir', 'desc');
+                list.find('.sort-dir').html('<i class="icon-sort-amount-desc ml-1"></i>');
+                filterSubtitle.html('(' + subtitle + '<i class="icon-sort-amount-desc ml-1"></i>' + ')');
+            } else {
+                list.data('sort-dir', 'asc');
+                list.find('.sort-dir').html('<i class="icon-sort-amount-asc ml-1"></i>');
+                filterSubtitle.html('(' + subtitle + '<i class="icon-sort-amount-asc ml-1"></i>' + ')');
+            }
+        }
     }
 
     updateTasksTable();
@@ -426,9 +423,19 @@ $('body').on('click', '.destroy-attachment', function() {
 $('body').on('click', '#filter-reset', function(e) {
     $('a.filter-list-item').removeClass('active');
     $('a.type-list-item[data-type-id="all"]').addClass('active');
+    $('a.type-list-item[data-type-id="all"]').parents('.nav-item').find('.filter-subtitle').text('(Все)');
     $('a.status-list-item[data-status-id="all"]').addClass('active');
+    $('a.status-list-item[data-status-id="all"]').parents('.nav-item').find('.filter-subtitle').text('(Все)');
+    $('a.author-list-item[data-author-id="all"]').addClass('active');
+    $('a.author-list-item[data-author-id="all"]').parents('.nav-item').find('.filter-subtitle').text('(Все)');
+    $('a.object-list-item[data-object-id="all"]').addClass('active');
+    $('a.object-list-item[data-object-id="all"]').parents('.nav-item').find('.filter-subtitle').text('(Все)');
     $('a.priority-list-item[data-priority-id="all"]').addClass('active');
+    $('a.priority-list-item[data-priority-id="all"]').parents('.nav-item').find('.filter-subtitle').text('(Все)');
     $('a.sort-list-item[data-sort-id="all"]').addClass('active');
+    $('a.sort-list-item[data-sort-id="all"]').parents('.nav-item').find('.filter-subtitle').text('');
+    $('.sort-list-item .sort-dir').html('');
+    $('#filter-search-input').val('');
     if (!filter_switch_enabled) {
         $('#tasks-my-other').trigger('click');
     }
@@ -566,18 +573,26 @@ function updateTasksTable() {
     var container = $('#tasks-container');
     setBlockUI(container);
     var url = container.data('all-url');
+    var search_text = $('#filter-search-input').val();
     var filter_type = $('.type-list-item.active').data('type-id');
     var filter_status = $('.status-list-item.active').data('status-id');
     var filter_priority = $('.priority-list-item.active').data('priority-id');
+    var filter_author = $('.author-list-item.active').data('author-id');
+    var filter_object = $('.object-list-item.active').data('object-id');
     var sorting = $('.sort-list-item.active').data('sort-id');
+    var sort_dir = $('.sort-list-item.active').data('sort-dir');
     var is_only_me = !filter_switch_enabled;
     $.ajax({
         url: url,
         data: {
+            search_text: search_text,
             filter_type: filter_type,
             filter_status: filter_status,
             filter_priority: filter_priority,
+            filter_author: filter_author,
+            filter_object: filter_object,
             sorting: sorting,
+            sort_dir: sort_dir,
             is_only_me: is_only_me
         }
     }).done(function (data) {

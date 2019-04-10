@@ -21,27 +21,29 @@ class TaskController extends Controller
         $types = Type::all();
         $statuses = Status::all();
         $priorities = Priority::all();
-        return view('task-manager.tasks.index', compact('priorities', 'statuses', 'types', 'objects'));
-    }
-
-    public function search(Request $request)
-    {
-        $query = $request->text;
-
-        $one_search = Task::where('name', 'LIKE', '%' . $query . '%')->orWhere('description', 'LIKE', '%' . $query . '%')->pluck('id')->toArray();
-        $two_search = Subtask::where('name', 'LIKE', '%' . $query . '%')->pluck('task_id')->toArray();
-        $three_search = SubtaskComment::where('text', 'LIKE', '%' . $query . '%')->pluck('subtask_id')->toArray();
-        $three_search = Subtask::whereIn('id', $three_search)->pluck('task_id')->toArray();
-
-        $task_ids = array_merge($one_search, $two_search, $three_search);
-        $tasks = Task::whereIn('id', $task_ids)->with('priority', 'status', 'user', 'type', 'subtasks', 'checkedSubtasks')->get();
-
-        $tasks_render = view('task-manager.tasks.partials.all', compact('tasks'))->render();
-        return response()->json(compact('tasks_render'));
+        $authors = Task::getAuthorsList();
+        $objects = Task::getObjectsList();
+        $sorts = ['id' => 'ID', 'name' => 'Название'];
+        return view('task-manager.tasks.index', compact('priorities', 'statuses', 'types', 'objects', 'authors', 'objects', 'sorts'));
     }
 
     public function all(Request $request)
     {
+        if (strlen($request->search_text) > 3) {
+            $query = $request->search_text;
+
+            $one_search = Task::where('name', 'LIKE', '%' . $query . '%')->orWhere('description', 'LIKE', '%' . $query . '%')->pluck('id')->toArray();
+            $two_search = Subtask::where('name', 'LIKE', '%' . $query . '%')->pluck('task_id')->toArray();
+            $three_search = SubtaskComment::where('text', 'LIKE', '%' . $query . '%')->pluck('subtask_id')->toArray();
+            $three_search = Subtask::whereIn('id', $three_search)->pluck('task_id')->toArray();
+
+            $task_ids = array_merge($one_search, $two_search, $three_search);
+            $tasks = Task::whereIn('id', $task_ids)->orderBy('status_id')->with('object', 'priority', 'status', 'user', 'type', 'subtasks', 'checkedSubtasks')->get();
+
+            $tasks_render = view('task-manager.tasks.partials.all', compact('tasks'))->render();
+            return response()->json(compact('tasks_render'));
+        }
+
         $query = Task::query();
 
         if ($request->filter_type != 'all') {
@@ -53,17 +55,23 @@ class TaskController extends Controller
         if ($request->filter_priority != 'all') {
             $query->where('priority_id', $request->filter_priority);
         }
+        if ($request->filter_author != 'all') {
+            $query->where('user_id', $request->filter_author);
+        }
+        if ($request->filter_object != 'all') {
+            $query->where('object_id', $request->filter_object);
+        }
         if ($request->is_only_me == "true") {
             $query->where('user_id', auth()->id());
         }
 
-        if ($request->sorting == 'id') {
-            $query->orderBy('status_id')->orderBy('id', 'desc');
-        } else {
+        if ($request->sorting == 'all') {
             $query->orderBy('status_id')->orderBy('priority_id')->orderBy('id', 'desc');
+        } else {
+            $query->orderBy('status_id')->orderBy($request->sorting, $request->sort_dir);
         }
 
-        $tasks = $query->with('priority', 'status', 'user', 'type', 'subtasks', 'checkedSubtasks')->get();
+        $tasks = $query->with('object', 'priority', 'status', 'user', 'type', 'subtasks', 'checkedSubtasks')->get();
         $tasks_render = view('task-manager.tasks.partials.all', compact('tasks'))->render();
         return response()->json(compact('tasks_render'));
     }

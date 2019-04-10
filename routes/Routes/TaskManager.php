@@ -6,7 +6,6 @@ Route::group(['prefix' => 'task-manager', 'namespace' => 'TaskManager'], functio
     Route::get('/', 'TaskController@index')->name('tasks.index');
     Route::get('/all', 'TaskController@all')->name('tasks.all');
     Route::get('/store', 'TaskController@store')->name('tasks.store');
-    Route::get('/search', 'TaskController@search')->name('tasks.search');
     Route::get('/{id}/info', 'TaskController@info')->name('tasks.info');
     Route::get('/{id}/show', 'TaskController@show')->name('tasks.show');
     Route::get('/{id}/edit', 'TaskController@edit')->name('tasks.edit');

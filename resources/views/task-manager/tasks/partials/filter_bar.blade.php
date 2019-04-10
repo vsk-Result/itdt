@@ -67,15 +67,52 @@
 
             <li class="nav-item dropdown">
                 <a href="javascript:void(0)" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
-                    <i class="icon-sort-amount-asc mr-2"></i>
+                    <i class="icon-sort-alpha-asc mr-2"></i>
+                    По автору
+                    <span class="filter-subtitle">(Все)</span>
+                </a>
+
+                <div class="dropdown-menu">
+                    <a href="javascript:void(0)" data-author-id="all" class="author-list-item filter-list-item dropdown-item active">Показать все</a>
+                    <div class="dropdown-divider"></div>
+                    @foreach($authors as $author)
+                        <a href="javascript:void(0)" data-author-id="{{ $author->id }}" class="author-list-item filter-list-item dropdown-item">{{ $author->name }}</a>
+                    @endforeach
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a href="javascript:void(0)" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
+                    <i class="icon-sort-numeric-asc mr-2"></i>
+                    По объекту
+                    <span class="filter-subtitle">(Все)</span>
+                </a>
+
+                <div class="dropdown-menu">
+                    <a href="javascript:void(0)" data-object-id="all" class="object-list-item filter-list-item dropdown-item active">Показать все</a>
+                    <div class="dropdown-divider"></div>
+                    @foreach($objects as $object)
+                        <a href="javascript:void(0)" data-object-id="{{ $object->id }}" class="object-list-item filter-list-item dropdown-item">{{ $object->getFullName() }}</a>
+                    @endforeach
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a href="javascript:void(0)" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
+                    <i class="icon-sort mr-2"></i>
                     Сортировка
                     <span class="filter-subtitle"></span>
                 </a>
 
                 <div class="dropdown-menu">
-                    <a href="javascript:void(0)" data-priority-id="all" class="sort-list-item filter-list-item dropdown-item active">Сброс</a>
+                    <a href="javascript:void(0)" data-sort-id="all" class="sort-list-item filter-list-item dropdown-item active">Стандартная</a>
                     <div class="dropdown-divider"></div>
-                    <a href="javascript:void(0)" data-sort-id="id" class="sort-list-item filter-list-item dropdown-item">ID</a>
+                    @foreach($sorts as $key => $value)
+                        <a href="javascript:void(0)" data-sort-id="{{ $key }}" data-sort-dir="asc" class="sort-list-item filter-list-item dropdown-item">
+                            {{ $value }}
+                            <span class="sort-dir"></span>
+                        </a>
+                    @endforeach
                 </div>
             </li>
         </ul>
@@ -85,14 +122,14 @@
         </span>
 
         <div class="navbar-collapse collapse" id="navbar-form-icons">
-            <form class="my-3 my-xl-0">
+            <div class="my-3 my-xl-0">
                 <div class="form-group-feedback form-group-feedback-left mb-3 mb-xl-0">
                     <input id="filter-search-input" type="text" class="form-control" style="width: 165px;" placeholder="Поиск...">
-                    <div id="filter-search-btn" class="form-control-feedback cursor-pointer" data-search-url="{{ route('tasks.search') }}">
+                    <div class="form-control-feedback">
                         <i class="icon-search4 text-muted font-size-base"></i>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
