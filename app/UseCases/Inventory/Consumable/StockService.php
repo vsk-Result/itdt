@@ -18,11 +18,10 @@ class StockService
                 $consumable->movements()->whereNull('deleted_at')->pluck('recipient_id')->toArray()
             )
         );
-
+        if (auth()->id() == 1) dd($object_ids);
         $consumable->stocks()->whereNotIn('object_id', $object_ids)->delete();
 
-        foreach ($object_ids as $object_id)
-        {
+        foreach ($object_ids as $object_id) {
             if (is_null($object_id)) continue;
 
             $count = $this->calculateStockCount(
