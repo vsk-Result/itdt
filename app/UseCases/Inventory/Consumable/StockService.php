@@ -14,8 +14,8 @@ class StockService
         $consumable = Consumable::findOrFail($consumable_id);
         $object_ids = array_unique(
             array_merge(
-                $consumable->movements()->pluck('sender_id')->toArray(),
-                $consumable->movements()->pluck('recipient_id')->toArray()
+                $consumable->movements()->whereNull('deleted_at')->pluck('sender_id')->toArray(),
+                $consumable->movements()->whereNull('deleted_at')->pluck('recipient_id')->toArray()
             )
         );
 
