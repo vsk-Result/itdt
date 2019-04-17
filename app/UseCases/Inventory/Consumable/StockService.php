@@ -18,7 +18,7 @@ class StockService
                 $consumable->movements()->pluck('recipient_id')->toArray()
             )
         );
-        if (auth()->id() == 1) dd($consumable->stocks()->get());
+        if (auth()->id() == 1) dd($object_ids);
         $consumable->stocks()->whereNotIn('object_id', $object_ids)->delete();
 
         foreach ($object_ids as $object_id) {
