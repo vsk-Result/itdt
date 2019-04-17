@@ -14,11 +14,11 @@ class StockService
         $consumable = Consumable::findOrFail($consumable_id);
         $object_ids = array_unique(
             array_merge(
-                $consumable->movements()->whereNull('deleted_at')->pluck('sender_id')->toArray(),
-                $consumable->movements()->whereNull('deleted_at')->pluck('recipient_id')->toArray()
+                $consumable->movements()->pluck('sender_id')->toArray(),
+                $consumable->movements()->pluck('recipient_id')->toArray()
             )
         );
-        if (auth()->id() == 1) dd($object_ids);
+        if (auth()->id() == 1) dd($consumable->stocks()->whereNotIn('object_id', $object_ids)->get());
         $consumable->stocks()->whereNotIn('object_id', $object_ids)->delete();
 
         foreach ($object_ids as $object_id) {
