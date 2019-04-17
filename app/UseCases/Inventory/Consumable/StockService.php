@@ -19,6 +19,8 @@ class StockService
             )
         );
 
+        $consumable->stocks()->whereNotIn('object_id', $object_ids)->delete();
+
         foreach ($object_ids as $object_id)
         {
             if (is_null($object_id)) continue;
