@@ -22,13 +22,16 @@
             <ul class="nav nav-sidebar" data-nav-type="accordion">
                 <!-- Main -->
                 <li class="nav-item">
-                    <a href="{{ route('home') }}" class="nav-link"><i class="icon-city"></i><span>Главная</span></a>
+                    <a href="{{ route('home') }}" class="nav-link"><i class="icon-city"></i><span>Объекты</span></a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('tasks.index') }}" class="nav-link"><i class="icon-task"></i><span>Менеджер задач</span></a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('inventory.index') }}" class="nav-link"><i class="icon-printer"></i><span>Расходные материалы</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('knowledge.index') }}" class="nav-link"><i class="icon-brain"></i><span>База знаний</span></a>
                 </li>
             </ul>
         </div>

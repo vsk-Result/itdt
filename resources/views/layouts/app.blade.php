@@ -37,9 +37,6 @@
             <!-- Page content -->
             <div class="page-content">
 
-                <!-- Main sidebar -->
-                @include('sidebars.main')
-
                 <!-- Other sidebars -->
                 @yield('other_sidebars')
 
