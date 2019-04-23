@@ -4,10 +4,23 @@
 @section('page-title', 'База знаний')
 
 @section('header-elements')
-
+    <div class="header-elements d-none">
+        <div class="d-flex justify-content-center">
+            <a href="#" class="btn btn-link btn-float text-primary" data-toggle="modal" data-target="#createArticle"><i class="icon-plus-circle2 text-success"></i><span>Статья</span></a>
+        </div>
+        <div class="d-flex justify-content-center">
+            <a href="#" class="btn btn-link btn-float text-primary" data-toggle="modal" data-target="#createCategory"><i class="icon-plus-circle2 text-success"></i><span>Категория</span></a>
+        </div>
+    </div>
 @endsection
 
 @section('content')
+
+    @include('knowledge.modals.create_article')
+    @include('knowledge.modals.show_article')
+    @include('knowledge.modals.edit_article')
+    @include('knowledge.modals.create_category')
+
     <div class="card">
         <div class="card-header header-elements-inline">
             <h6 class="card-title">Актуальные статьи</h6>
@@ -22,9 +35,17 @@
 @endsection
 
 @push('scripts')
+    <script src="{{ asset('vendors/select2/select2.min.js') }}"></script>
+    <script src="{{ asset('vendors/summernote/summernote.min.js') }}"></script>
+    <script src="{{ asset('vendors/tags/tokenfield.min.js') }}"></script>
     <script src="{{ asset('js/partials/knowledge.js') }}"></script>
 @endpush
 
 @push('css')
-
+    <link href="{{ asset('vendors/summernote/summernote.css') }}" rel="stylesheet">
+    <style>
+        .card-body .dropdown-toggle::after {
+            content: ''
+        }
+    </style>
 @endpush

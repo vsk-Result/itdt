@@ -14,6 +14,11 @@ Route::group([
         'as' => 'articles.',
     ], function () {
         Route::post('/', 'ArticleController@store')->name('store');
+        Route::get('/{article}/show', 'ArticleController@show')->name('show');
+        Route::get('/{article}', 'ArticleController@show')->name('show');
+        Route::get('/{article}/edit', 'ArticleController@edit')->name('edit');
+        Route::put('/{article}', 'ArticleController@update')->name('update');
+        Route::delete('/{article}', 'ArticleController@destroy')->name('destroy');
     });
 
     Route::group([

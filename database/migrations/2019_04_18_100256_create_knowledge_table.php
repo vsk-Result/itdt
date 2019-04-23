@@ -21,8 +21,8 @@ class CreateKnowledgeTable extends Migration
 
         Schema::create('knowledge_articles', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('user_id')->references('id')->on('users');
-            $table->string('category_id')->references('id')->on('knowledge_categories');
+            $table->integer('user_id')->references('id')->on('users');
+            $table->integer('category_id')->references('id')->on('knowledge_categories');
             $table->string('title');
             $table->text('content')->nullable();
             $table->string('icon')->nullable();

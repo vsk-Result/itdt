@@ -40,7 +40,7 @@
 
                     {{--<a href="{{ route('cabinet.profile.home') }}" class="dropdown-item"><i class="icon-profile"></i> Личный кабинет</a>--}}
 
-                    <div class="dropdown-divider"></div>
+                    {{--<div class="dropdown-divider"></div>--}}
 
                     <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="icon-switch2"></i> Выйти</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">@csrf</form>
