@@ -46,6 +46,13 @@
 @push('css')
     <link href="{{ asset('vendors/summernote/summernote.css') }}" rel="stylesheet">
     <style>
+        a.article {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            width: 100%;
+            display: block;
+        }
         .card-body .dropdown-toggle::after {
             content: ''
         }
