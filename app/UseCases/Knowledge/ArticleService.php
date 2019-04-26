@@ -77,7 +77,7 @@ class ArticleService
     {
         $dom = new \DomDocument();
         $content = mb_convert_encoding($content, 'HTML-ENTITIES', "UTF-8");
-        $dom->loadHtml($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        @$dom->loadHtml($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
         $images = $dom->getElementsByTagName('img');
         foreach($images as $key => $img) {
