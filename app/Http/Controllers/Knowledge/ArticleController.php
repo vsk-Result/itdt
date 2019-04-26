@@ -31,8 +31,9 @@ class ArticleController extends Controller
 
     public function edit(Article $article)
     {
+        $icon = $article->icon->name;
         $tags = implode(', ', $article->tags->pluck('name')->toArray());
-        return response()->json(compact('article', 'tags'));
+        return response()->json(compact('article', 'tags', 'icon'));
     }
 
     public function update(Article $article, Request $request)

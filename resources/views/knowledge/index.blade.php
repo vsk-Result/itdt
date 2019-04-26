@@ -20,6 +20,7 @@
     @include('knowledge.modals.show_article')
     @include('knowledge.modals.edit_article')
     @include('knowledge.modals.create_category')
+    @include('knowledge.partials.icon_list')
 
     <div class="card">
         <div class="card-header header-elements-inline">
@@ -49,6 +50,12 @@
         }
         .border-top-1 {
             border-top: 1px solid #ccc;
+        }
+        .no-gutters {
+            margin-left: -3px;
+        }
+        .glyphs>div>div {
+            padding: .5rem .5rem;
         }
         #showArticle .close {
             padding-top: .4125rem !important;

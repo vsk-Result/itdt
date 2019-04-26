@@ -26,7 +26,8 @@ $('body').on('click', '.edit-article', function () {
         url: edit_url
     }).done(function(data) {
         $('#article-category').val(data.article.category_id).trigger('change');
-        $('#article-icon').val(data.article.icon_id).trigger('change');
+        $('#article-icon').val(data.article.icon_id);
+        $('#editArticle .choose-icon i').attr('class', data.icon + ' mr-2');
         $('#article-title').val(data.article.title);
         $('#article-tags').tokenfield('setTokens', data.tags);
         $('#article-content').summernote('code', data.article.content);
@@ -40,6 +41,30 @@ $('body').on('click', '.edit-article', function () {
 $('body').on('click', '.destroy-article', function () {
     if (confirm('Вы действительно хотите удалить статью?')) {
         $('#destroy-article-form').submit();
+    }
+});
+
+$('body').on('click', '.icons-container i', function () {
+    var icon = $(this);
+    var parent = icon.parents('.modal-body');
+    var icons_container = parent.find('.icons-container');
+    var input_icon = parent.find('.input-icon');
+    var button_icon = parent.find('.choose-icon i');
+
+    input_icon.val(icon.data('id'));
+    button_icon.attr('class', icon.attr('class') + ' mr-2').removeClass('icon-2x');
+    icons_container.html('').hide();
+});
+
+$('body').on('click', '.choose-icon', function () {
+    var button = $(this);
+    var parent = button.parents('.modal-body');
+    var icons_container = parent.find('.icons-container');
+
+    if (icons_container.is(":visible")) {
+        icons_container.html('').hide();
+    } else {
+        icons_container.html($('#our-icon-list').html()).show();
     }
 });
 

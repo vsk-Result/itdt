@@ -19,12 +19,9 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label>Иконка</label>
-                            <select id="article-icon" name="icon_id" class="form-control select-icon">
-                                @foreach($icons as $icon)
-                                    <option id="{{ $icon->name }}" value="{{ $icon->id }}">{{ $icon->name }}</option>
-                                @endforeach
-                            </select>
+                            <label>Иконка</label><br>
+                            {{ Form::hidden('icon_id', null, ['class' => 'input-icon', 'id' => 'article-icon']) }}
+                            <button type="button" class="btn btn-light choose-icon"><i class="mr-2"></i> Выбрать иконку</button>
                         </div>
                     </div>
                     <div class="col-md-9">
@@ -34,6 +31,9 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="icons-container" style="display: none;"></div>
+
                 <div class="form-group">
                     <label>Тэги</label>
                     {{ Form::text('tags', null, ['class' => 'form-control tokenfield', 'id' => 'article-tags']) }}
