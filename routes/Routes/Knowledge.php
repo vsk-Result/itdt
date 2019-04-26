@@ -26,5 +26,7 @@ Route::group([
         'as' => 'categories.',
     ], function () {
         Route::post('/', 'CategoryController@store')->name('store');
+        Route::get('/{category}/edit', 'CategoryController@edit')->name('edit');
+        Route::put('/{category}', 'CategoryController@update')->name('update');
     });
 });

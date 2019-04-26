@@ -25,6 +25,7 @@ $('body').on('click', '.edit-article', function () {
     $.ajax({
         url: edit_url
     }).done(function(data) {
+        $('#editArticle .modal-title').text(data.article.title);
         $('#article-category').val(data.article.category_id).trigger('change');
         $('#article-icon').val(data.article.icon_id);
         $('#editArticle .choose-icon i').attr('class', data.icon + ' mr-2');
@@ -33,8 +34,9 @@ $('body').on('click', '.edit-article', function () {
         $('#article-content').summernote('code', data.article.content);
         $('#edit-article-form').attr('action', update_url);
     }).always(function() {
-        $('#showArticle').modal('hide');
-        $('#editArticle').modal('show');
+        $('#showArticle').one('hidden.bs.modal', function () {
+            $('#editArticle').modal('show');
+        }).modal('hide');
     });
 });
 
@@ -42,6 +44,22 @@ $('body').on('click', '.destroy-article', function () {
     if (confirm('Вы действительно хотите удалить статью?')) {
         $('#destroy-article-form').submit();
     }
+});
+
+$('.category').on('click', function() {
+    var edit_url = $(this).data('edit-url');
+    var update_url = $(this).data('update-url');
+    $.ajax({
+        url: edit_url
+    }).done(function(data) {
+        $('#editCategory .modal-title').text(data.category.title);
+        $('#category-icon').val(data.category.icon_id);
+        $('#editCategory .choose-icon i').attr('class', data.icon + ' mr-2');
+        $('#category-name').val(data.category.name);
+        $('#edit-category-form').attr('action', update_url);
+    }).always(function() {
+        $('#editCategory').modal('show');
+    });
 });
 
 $('body').on('click', '.icons-container i', function () {

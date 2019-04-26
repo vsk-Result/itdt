@@ -20,6 +20,7 @@
     @include('knowledge.modals.show_article')
     @include('knowledge.modals.edit_article')
     @include('knowledge.modals.create_category')
+    @include('knowledge.modals.edit_category')
     @include('knowledge.partials.icon_list')
 
     <div class="card">
