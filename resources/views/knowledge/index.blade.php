@@ -47,5 +47,16 @@
         .card-body .dropdown-toggle::after {
             content: ''
         }
+        .border-top-1 {
+            border-top: 1px solid #ccc;
+        }
+        #showArticle .close {
+            padding-top: .4125rem !important;
+        }
+        @media (max-width: 992px) {
+            #showArticle .modal-content img {
+                width: 100% !important;
+            }
+        }
     </style>
 @endpush
