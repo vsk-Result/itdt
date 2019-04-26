@@ -52,7 +52,7 @@ $('.category').on('click', function() {
     $.ajax({
         url: edit_url
     }).done(function(data) {
-        $('#editCategory .modal-title').text(data.category.title);
+        $('#editCategory .modal-title').text(data.category.name);
         $('#category-icon').val(data.category.icon_id);
         $('#editCategory .choose-icon i').attr('class', data.icon + ' mr-2');
         $('#category-name').val(data.category.name);
