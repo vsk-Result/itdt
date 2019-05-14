@@ -36,7 +36,7 @@ $('body').on('click', '.edit-article', function () {
     }).always(function() {
         $('#showArticle').one('hidden.bs.modal', function () {
             $('#editArticle').modal('show');
-            var height = $('#editArticle .card-header').height();
+            var height = $('#editArticle .note-toolbar-wrapper .card-header').outerHeight();
             console.log(height);
             console.log($('#editArticle .note-toolbar-wrapper').height());
             $('#editArticle .note-toolbar-wrapper').css('height', height);
