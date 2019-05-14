@@ -99,7 +99,26 @@ function setIcon (icon) {
 function initialize() {
     $('.summernote').summernote({
         height: 400,
-        dialogsInBody: true
+        dialogsInBody: true,
+        callbacks : {
+            onInit: function() {
+                var noteBtn = '<button id="makeCode" type="button" class="note-btn btn btn-light btn-sm" title="Identify a code note" data-event="something" tabindex="-1">code</button>';
+                var fileGroup = '<div class="note-file btn-group">' + noteBtn + '</div>';
+                $(fileGroup).appendTo($('.note-toolbar'));
+                $('#makeCode').tooltip({container: 'body', placement: 'bottom'});
+                $('body').on('click', '#makeCode', function(event) {
+                    var highlight = window.getSelection(),
+                        code = document.createElement('code'),
+                        range = highlight.getRangeAt(0);
+
+                    code.innerHTML = highlight;
+                    code.className = 'code';
+
+                    range.deleteContents();
+                    range.insertNode(code);
+                });
+            },
+        },
     });
 
     $('.select').select2();
