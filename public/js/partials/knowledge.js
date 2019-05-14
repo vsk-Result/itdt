@@ -36,6 +36,8 @@ $('body').on('click', '.edit-article', function () {
     }).always(function() {
         $('#showArticle').one('hidden.bs.modal', function () {
             $('#editArticle').modal('show');
+            var height = $('#editArticle .card-header').height();
+            $('#editArticle .note-toolbar-wrapper').css('height', height);
         }).modal('hide');
     });
 });

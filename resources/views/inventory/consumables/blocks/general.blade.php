@@ -14,10 +14,6 @@
             <td class="text-right"><span class="badge badge-mark mr-1" style="border-color: {{ $consumable->getHexColor() }}"></span>{{ $consumable->getColorName() }}</td>
         </tr>
         <tr>
-            <td><i class="icon-file-check mr-2"></i> Фото:</td>
-            <td class="text-right"></td>
-        </tr>
-        <tr>
             <td><i class="icon-file-check mr-2"></i> Кол-во замен:</td>
             <td class="text-right">{{ $consumable->replacements->count() }}</td>
         </tr>
