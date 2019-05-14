@@ -37,7 +37,10 @@ $('body').on('click', '.edit-article', function () {
         $('#showArticle').one('hidden.bs.modal', function () {
             $('#editArticle').modal('show');
             var height = $('#editArticle .card-header').height();
+            console.log(height);
+            console.log($('#editArticle .note-toolbar-wrapper').height());
             $('#editArticle .note-toolbar-wrapper').css('height', height);
+            console.log($('#editArticle .note-toolbar-wrapper').height());
         }).modal('hide');
     });
 });
