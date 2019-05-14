@@ -85,7 +85,7 @@ class ArticleService
             $filename = $article->id . '_' . str_random(2) . '_' . rus2translit($img->getAttribute('data-filename'));
             $data = $img->getAttribute('src');
             if (strpos($data, ';') > 0) {
-                list($type, $data) = explode(';', $data);m
+                list($type, $data) = explode(';', $data);
                 list(, $data) = explode(',', $data);
                 $data = base64_decode($data);
 
