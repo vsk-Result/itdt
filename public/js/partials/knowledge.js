@@ -36,14 +36,14 @@ $('body').on('click', '.edit-article', function () {
     }).always(function() {
         $('#showArticle').one('hidden.bs.modal', function () {
             $('#editArticle').modal('show');
-            var height = $('#editArticle .note-toolbar-wrapper .card-header').outerHeight();
-            console.log(height);
-            console.log($('#editArticle .note-toolbar-wrapper').height());
-            $('#editArticle .note-toolbar-wrapper').css('height', height);
-            console.log($('#editArticle .note-toolbar-wrapper').height());
         }).modal('hide');
     });
 });
+
+$('#editArticle').on('shown.bs.modal', function(){
+    $('.note-toolbar-wrapper').removeAttr('style');
+    $('.note-toolbar').removeAttr('style');
+})
 
 $('body').on('click', '.destroy-article', function () {
     if (confirm('Вы действительно хотите удалить статью?')) {
