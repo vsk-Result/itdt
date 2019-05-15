@@ -96,6 +96,20 @@ function setIcon (icon) {
     return $('<span><i class="' + icon.element.id + ' mr-2"></i>' + icon.text + '</span>');
 }
 
+// $('#editArticle .summernote').next().on('focusout', ".note-codable", function() {
+//     if ($('#editArticle .summernote').summernote('codeview.isActivated')) {
+//         $('#editArticle .summernote').summernote('codeview.deactivate');
+//     }
+// });
+
+$('body').on('click', '#article-submit', function(e) {
+    e.preventDefault();
+    $('#article-content').val(
+        $('#editArticle .summernote').summernote('code')
+    );
+    $('#editArticle form').submit();
+});
+
 function initialize() {
     $('.summernote').summernote({
         height: 400,

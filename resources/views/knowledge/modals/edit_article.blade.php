@@ -43,7 +43,7 @@
                     {!! Form::textarea('content', null, ['class' => 'summernote', 'id' => 'article-content']) !!}
                 </div>
                 <div class="text-right">
-                    <button type="submit" class="btn btn-primary">Сохранить</button>
+                    <button id="article-submit" type="submit" class="btn btn-primary">Сохранить</button>
                 </div>
                 {{ Form::close() }}
             </div>
