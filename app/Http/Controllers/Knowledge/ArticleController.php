@@ -38,7 +38,6 @@ class ArticleController extends Controller
 
     public function update(Article $article, Request $request)
     {
-        dd($request->all());
         $this->service->update($article->id, $request);
         return redirect()->back();
     }
