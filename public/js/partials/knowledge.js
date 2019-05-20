@@ -43,7 +43,12 @@ $('body').on('click', '.edit-article', function () {
 $('#editArticle').on('shown.bs.modal', function(){
     $('.note-toolbar-wrapper').removeAttr('style');
     $('.note-toolbar').removeAttr('style');
-})
+});
+
+$('#createArticle').on('shown.bs.modal', function(){
+    $('.note-toolbar-wrapper').removeAttr('style');
+    $('.note-toolbar').removeAttr('style');
+});
 
 $('body').on('click', '.destroy-article', function () {
     if (confirm('Вы действительно хотите удалить статью?')) {

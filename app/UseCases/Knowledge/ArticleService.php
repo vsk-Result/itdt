@@ -7,6 +7,7 @@ use App\Models\Knowledge\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class ArticleService
 {
@@ -20,6 +21,7 @@ class ArticleService
                 'category_id' => $request['category_id'],
                 'title' => $request['title'],
                 'content' => '',
+                'link' => $this->generateLink(),
             ]);
 
             $article->saveOrFail();
@@ -45,9 +47,14 @@ class ArticleService
 
     public function destroy($id): void
     {
-        $article = $this->getArticle($id);
-        $article->tags()->sync([]);
-        $article->delete();
+        foreach (Article::withTrashed()->get() as $article) {
+            $article->update([
+                'link' => $this->generateLink()
+            ]);
+        }
+//        $article = $this->getArticle($id);
+//        $article->tags()->sync([]);
+//        $article->delete();
     }
 
     public function getArticle($id): Article
@@ -100,5 +107,10 @@ class ArticleService
 
         $article->content = $dom->saveHTML();
         $article->update();
+    }
+
+    public function generateLink(): string
+    {
+        return Str::random(8);
     }
 }

@@ -138,6 +138,8 @@
                 zoom: true,
                 fullscreen: true
             });
+            $('.note-toolbar-wrapper').removeAttr('style');
+            $('.note-toolbar').removeAttr('style');
         });
 
         $('#edit-object').on('click', function () {
