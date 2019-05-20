@@ -47,14 +47,9 @@ class ArticleService
 
     public function destroy($id): void
     {
-        foreach (Article::withTrashed()->get() as $article) {
-            $article->update([
-                'link' => $this->generateLink()
-            ]);
-        }
-//        $article = $this->getArticle($id);
-//        $article->tags()->sync([]);
-//        $article->delete();
+        $article = $this->getArticle($id);
+        $article->tags()->sync([]);
+        $article->delete();
     }
 
     public function getArticle($id): Article
