@@ -12,3 +12,5 @@ Route::middleware('auth')->group(function () {
     }
 
 });
+
+Route::get('/knowledge/articles/link/{link}', 'Knowledge\ArticleController@link')->name('knowledge.articles.short_link');

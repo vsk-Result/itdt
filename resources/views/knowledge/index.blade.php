@@ -41,6 +41,7 @@
     <script src="{{ asset('vendors/summernote/summernote.min.js') }}"></script>
     <script src="{{ asset('vendors/tags/tokenfield.min.js') }}"></script>
     <script src="{{ asset('vendors/print/dist/jQuery.print.min.js') }}"></script>
+    <script src="{{ asset('vendors/styling/uniform.min.js') }}"></script>
     <script src="{{ asset('js/partials/knowledge.js') }}"></script>
 @endpush
 

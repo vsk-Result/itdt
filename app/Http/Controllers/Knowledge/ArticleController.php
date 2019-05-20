@@ -26,7 +26,9 @@ class ArticleController extends Controller
 
     public function show(Article $article)
     {
-        return response()->json(compact('article'));
+        $access = $article->hasLinkAccess();
+        $article_link = $article->getLink();
+        return response()->json(compact('article', 'article_link', 'access'));
     }
 
     public function edit(Article $article)
@@ -46,5 +48,11 @@ class ArticleController extends Controller
     {
         $this->service->destroy($article->id);
         return redirect()->back();
+    }
+
+    public function link($link)
+    {
+        $article = $this->service->findByLink($link);
+        return ($article && $article->hasLinkAccess()) ? view('knowledge.link', compact('article')) : abort(404);
     }
 }

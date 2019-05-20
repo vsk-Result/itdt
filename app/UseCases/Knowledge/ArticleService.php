@@ -22,6 +22,7 @@ class ArticleService
                 'title' => $request['title'],
                 'content' => '',
                 'link' => $this->generateLink(),
+                'link_access' => false
             ]);
 
             $article->saveOrFail();
@@ -35,11 +36,12 @@ class ArticleService
     public function update($id, Request $request): void
     {
         $article = $this->getArticle($id);
-        $article->update($request->only([
-            'icon_id',
-            'category_id',
-            'title',
-        ]));
+        $article->update([
+            'icon_id' => $request->icon_id,
+            'category_id' => $request->category_id,
+            'title' => $request->title,
+            'link_access' => $request->has('link_access'),
+        ]);
 
         $this->updateTags($article, $request->tags);
         $this->updateContent($article, $request->content);
@@ -107,5 +109,10 @@ class ArticleService
     public function generateLink(): string
     {
         return Str::random(8);
+    }
+
+    public function findByLink($link)
+    {
+        return Article::where('link', $link)->first();
     }
 }

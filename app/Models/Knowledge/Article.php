@@ -15,7 +15,7 @@ class Article extends Model
 
     protected $dates = ['deleted_at'];
 
-    protected $fillable = ['user_id', 'category_id', 'icon_id', 'title', 'content', 'link'];
+    protected $fillable = ['user_id', 'category_id', 'icon_id', 'title', 'content', 'link', 'link_access'];
 
     public function category()
     {
@@ -44,5 +44,10 @@ class Article extends Model
     public function hasLinkAccess()
     {
          return $this->link_access;
+    }
+
+    public function getLink()
+    {
+        return route('knowledge.articles.short_link', $this->link);
     }
 }

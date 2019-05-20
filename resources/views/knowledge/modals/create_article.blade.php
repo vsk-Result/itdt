@@ -9,6 +9,14 @@
             <div class="modal-body">
                 {{ Form::open(['url' => route('knowledge.articles.store'), 'method' => 'POST', 'files' => true]) }}
                 <div class="form-group">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="checkbox" name="link_access" class="form-check-input" value="link_access">
+                            Доступ по ссылке
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label>Категория</label>
                     <select name="category_id" class="form-control select-icon">
                         @foreach($categories as $category)
