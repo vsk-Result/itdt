@@ -51,6 +51,12 @@ $('body').on('click', '.destroy-article', function () {
     }
 });
 
+$('body').on('click', '.print-article', function () {
+    $("#showArticle .modal-content").print({
+        noPrintSelector: ".no-print",
+    });
+});
+
 $('.category').on('click', function() {
     var edit_url = $(this).data('edit-url');
     var update_url = $(this).data('update-url');
