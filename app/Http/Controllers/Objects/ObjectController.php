@@ -24,53 +24,6 @@ class ObjectController extends Controller
 
     public function index()
     {
-        if (auth()->id() == 1) {
-            $objects = CObject::orderBy('code')->get();
-            foreach ($objects as $object) {
-                if (!is_null($object->image)) {
-                    if (\Storage::disk('public')->exists('objects/' . $object->image)) {
-                        \Storage::disk('public')->copy(
-                            '/objects/' . $object->image,
-                            CObject::getDestinationPath() . $object->image
-                        );
-                        $this->uploader->makeThumb(CObject::getDestinationPath(), $object->image, null, 140, true);
-                    }
-                }
-                foreach ($object->images as $image) {
-                    if (\Storage::disk('public')->exists('objects/' . $image->filename)) {
-                        \Storage::disk('public')->copy(
-                            '/objects/' . $image->filename,
-                            Image::getDestinationPath() . $image->filename
-                        );
-                        $this->uploader->makeThumb(Image::getDestinationPath(), $image->filename, null, 140, true);
-                    }
-                }
-                foreach ($object->infoparts as $infopart) {
-                    foreach ($infopart->attachments as $attachment) {
-                        if (\Storage::disk('public')->exists('objects/' . $attachment->filename)) {
-                            \Storage::disk('public')->copy(
-                                '/objects/' . $attachment->filename,
-                                InfoPartAttachment::getDestinationPath() . $attachment->filename
-                            );
-                            if ($this->uploader->isImage(storage_path('app/public/' . InfoPartAttachment::getDestinationPath()) . $attachment->filename)) {
-                                $this->uploader->makeThumb(InfoPartAttachment::getDestinationPath(), $attachment->filename, null, 140, true);
-                            }
-                        }
-                    }
-                }
-                foreach ($object->persons as $person) {
-                    if (!is_null($person->image)) {
-                        if (\Storage::disk('public')->exists('objects/' . $person->image)) {
-                            \Storage::disk('public')->copy(
-                                '/objects/' . $person->image,
-                                Person::getDestinationPath() . $person->image
-                            );
-                            $this->uploader->makeThumb(Person::getDestinationPath(), $person->image, 48, 48);
-                        }
-                    }
-                }
-            }
-        }
         $objects = CObject::orderBy('code')->get();
         return view('objects.index', compact('objects'));
     }
