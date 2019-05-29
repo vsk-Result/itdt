@@ -12,6 +12,8 @@ class Image extends Model
     protected $table = 'object_images';
     protected $dates = ['deleted_at'];
 
+    protected $fillable = ['object_id', 'filename', 'description', 'order'];
+
     public function object()
     {
         return $this->belongsTo(CObject::class, 'object_id');
@@ -24,6 +26,20 @@ class Image extends Model
 
     public function getPath()
     {
-        return $this->object->getDestinationPath() . $this->filename;
+        return self::getDestinationPath() . $this->filename;
+    }
+
+    public static function getDestinationPath() {
+        return 'objects/gallery/';
+    }
+
+    public function getThumbUrl()
+    {
+        return \Storage::url($this->getThumbPath());
+    }
+
+    public function getThumbPath()
+    {
+        return self::getDestinationPath() . 'thumbs/' . $this->filename;
     }
 }

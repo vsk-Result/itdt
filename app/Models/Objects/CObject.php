@@ -6,9 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class CObject extends Model
 {
+    const DEFAULT_FILENAME = 'object_default.jpg';
+
     protected $table = 'objects';
 
-    const DEFAULT_FILENAME = 'object_default.jpg';
+    protected $fillable = ['code', 'name', 'address', 'image'];
 
     public function images()
     {
@@ -35,8 +37,13 @@ class CObject extends Model
         return $this->code . ' - ' . $this->name;
     }
 
-    public function getDestinationPath() {
-        return 'objects/';
+    public function getFilename()
+    {
+        return is_null($this->image) ? self::DEFAULT_FILENAME : $this->image;
+    }
+
+    public static function getDestinationPath() {
+        return 'objects/preview/';
     }
 
     public function getImageUrl()
@@ -46,8 +53,17 @@ class CObject extends Model
 
     public function getImagePath()
     {
-        $filename = is_null($this->image) ? self::DEFAULT_FILENAME : $this->image;
-        return $this->getDestinationPath() . $filename;
+        return self::getDestinationPath() . $this->getFilename();
+    }
+
+    public function getThumbUrl()
+    {
+        return \Storage::url($this->getThumbPath());
+    }
+
+    public function getThumbPath()
+    {
+        return self::getDestinationPath() . 'thumbs/' . $this->getFilename();
     }
 
     public static function getList()

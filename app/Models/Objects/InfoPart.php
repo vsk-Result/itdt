@@ -8,6 +8,8 @@ class InfoPart extends Model
 {
     protected $table = 'object_infoparts';
 
+    protected $fillable = ['object_id', 'title', 'body'];
+
     public function object()
     {
         return $this->belongsTo(CObject::class, 'object_id');

@@ -153,6 +153,7 @@ return [
 
         Collective\Html\HtmlServiceProvider::class,
         Laravelrus\LocalizedCarbon\LocalizedCarbonServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -216,6 +217,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'LocalizedCarbon' => Laravelrus\LocalizedCarbon\LocalizedCarbon::class,
         'DiffFormatter' => Laravelrus\LocalizedCarbon\DiffFactoryFacade::class,
+        'Image' => Intervention\Image\ImageManagerStatic::class,
     ],
 
 ];

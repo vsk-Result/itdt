@@ -19,7 +19,7 @@
                             <div class="fileuploader-item-inner light-item" data-src="{{ $image->getUrl() }}" data-sub-html="#caption{{ $image->id }}">
                                 <div class="thumbnail-holder">
                                     <div class="fileuploader-item-image">
-                                        <img src="{{ $image->getUrl() }}">
+                                        <img src="{{ $image->getThumbUrl() }}">
                                     </div>
                                     <span class="fileuploader-action-popup"></span>
 

@@ -1,6 +1,6 @@
 <li class="media lightgallery">
     <a href="{{ $person->getImageUrl() }}" class="mr-3 light-item cursor-pointer">
-        <img src="{{ $person->getImageUrl() }}" class="rounded-circle" width="36" height="36" alt="">
+        <img src="{{ $person->getThumbUrl() }}" class="rounded-circle" width="36" height="36" alt="">
     </a>
     <div class="media-body">
         <a href="#" class="media-title font-weight-semibold text-default cursor-default">{{ $person->fullname }}</a>

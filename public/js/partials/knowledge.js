@@ -143,6 +143,31 @@ function initialize() {
     $('.summernote').summernote({
         height: 400,
         dialogsInBody: true,
+        toolbar: [
+            ['uploadcare', ['uploadcare']],
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['fontname', ['fontname']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview']],
+        ],
+        uploadcare: {
+            // button name (default is Uploadcare)
+            buttonLabel: 'Image / file',
+            // font-awesome icon name (you need to include font awesome on the page)
+            buttonIcon: 'picture-o',
+            // text which will be shown in button tooltip
+            tooltipText: 'Upload files or video or something',
+
+            // uploadcare widget options, see https://uploadcare.com/documentation/widget/#configuration
+            publicKey: 'demopublickey', // set your API key
+            crop: 'free',
+            tabs: 'all',
+            multiple: true
+        },
         callbacks : {
             onInit: function() {
                 var noteBtn = '<button id="makeCode" type="button" class="note-btn btn btn-light btn-sm" title="Identify a code note" data-event="something" tabindex="-1">code</button>';

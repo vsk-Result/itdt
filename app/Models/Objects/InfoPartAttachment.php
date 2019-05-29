@@ -9,6 +9,8 @@ class InfoPartAttachment extends Model
 {
     protected $table = 'object_infopart_attachments';
 
+    protected $fillable = ['infopart_id', 'filename'];
+
     public function infopart()
     {
         return $this->belongsTo(InfoPart::class, 'infopart_id');
@@ -16,11 +18,25 @@ class InfoPartAttachment extends Model
 
     public function getUrl()
     {
-        return Storage::url($this->getPath());
+        return \Storage::url($this->getPath());
     }
 
     public function getPath()
     {
-        return $this->infopart->object->getDestinationPath() . $this->filename;
+        return self::getDestinationPath() . $this->filename;
+    }
+
+    public static function getDestinationPath() {
+        return 'objects/infopart/';
+    }
+
+    public function getThumbUrl()
+    {
+        return \Storage::url($this->getThumbPath());
+    }
+
+    public function getThumbPath()
+    {
+        return self::getDestinationPath() . 'thumbs/' . $this->filename;
     }
 }

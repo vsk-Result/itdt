@@ -2,7 +2,7 @@
     <div class="card">
         <div class="card-img-actions">
             <a href="{{ route('objects.show', [$object->id]) }}">
-                <img class="card-img-top img-fluid" src="{{ $object->getImageUrl() }}" alt="">
+                <img class="card-img-top img-fluid" src="{{ $object->getThumbUrl() }}" alt="">
             </a>
         </div>
 
