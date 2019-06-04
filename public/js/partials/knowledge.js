@@ -39,7 +39,7 @@ $('body').on('click', '.edit-article', function () {
         $('#editArticle .choose-icon i').attr('class', data.icon + ' mr-2');
         $('#article-title').val(data.article.title);
         $('#article-tags').tokenfield('setTokens', data.tags);
-        $('#article-content').summernote('code', data.article.content);
+        tinyMCE.get('article-content').setContent(data.article.content);
         $('#edit-article-form').attr('action', update_url);
     }).always(function() {
         $('#showArticle').one('hidden.bs.modal', function () {
@@ -125,43 +125,30 @@ function setIcon (icon) {
     return $('<span><i class="' + icon.element.id + ' mr-2"></i>' + icon.text + '</span>');
 }
 
-// $('#editArticle .summernote').next().on('focusout', ".note-codable", function() {
-//     if ($('#editArticle .summernote').summernote('codeview.isActivated')) {
-//         $('#editArticle .summernote').summernote('codeview.deactivate');
-//     }
-// });
-
 $('body').on('click', '#article-submit', function(e) {
     e.preventDefault();
     $('#article-content').val(
-        $('#editArticle .summernote').summernote('code')
+        tinyMCE.get('article-content').getContent()
     );
     $('#editArticle form').submit();
 });
 
 function initialize() {
-    $('.summernote').summernote({
+    $('.summernote').tinymce({
+        plugins: 'print preview fullpage searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern help responsivefilemanager',
+        toolbar: 'responsivefilemanager | formatselect | bold italic strikethrough forecolor backcolor | link image media | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent | removeformat',
+        image_advtab: true,
+        importcss_append: true,
         height: 400,
-        dialogsInBody: true,
-        callbacks : {
-            onInit: function() {
-                var noteBtn = '<button id="makeCode" type="button" class="note-btn btn btn-light btn-sm" title="Identify a code note" data-event="something" tabindex="-1">code</button>';
-                var fileGroup = '<div class="note-file btn-group">' + noteBtn + '</div>';
-                $(fileGroup).appendTo($('.note-toolbar'));
-                $('#makeCode').tooltip({container: 'body', placement: 'bottom'});
-                $('body').on('click', '#makeCode', function(event) {
-                    var highlight = window.getSelection(),
-                        code = document.createElement('code'),
-                        range = highlight.getRangeAt(0);
-
-                    code.innerHTML = highlight;
-                    code.className = 'code';
-
-                    range.deleteContents();
-                    range.insertNode(code);
-                });
-            },
-        },
+        language: 'ru',
+        image_caption: true,
+        spellchecker_dialog: true,
+        spellchecker_whitelist: ['Ephox', 'Moxiecode'],
+        tinycomments_mode: 'embedded',
+        content_style: '.mce-annotation { background: #fff0b7; } .tc-active-annotation {background: #ffe168; color: black; }',
+        external_filemanager_path:"/vendors/filemanager/",
+        filemanager_title: "Менеджер файлов" ,
+        external_plugins: { "filemanager" : "/vendors/filemanager/plugin.min.js"}
     });
 
     $('.select').select2();

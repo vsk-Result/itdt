@@ -38,8 +38,8 @@
 
 @push('scripts')
     <script src="{{ asset('vendors/select2/select2.min.js') }}"></script>
-    <script src="{{ asset('vendors/summernote/summernote.min.js') }}"></script>
-    <script src="{{ asset('vendors/summernote/uploadcare.js') }}"></script>
+    <script src="{{ asset('vendors/tinymce/jquery.tinymce.min.js') }}"></script>
+    <script src="{{ asset('vendors/tinymce/tinymce.min.js') }}"></script>
     <script src="{{ asset('vendors/tags/tokenfield.min.js') }}"></script>
     <script src="{{ asset('vendors/print/dist/jQuery.print.min.js') }}"></script>
     <script src="{{ asset('vendors/styling/uniform.min.js') }}"></script>
@@ -47,7 +47,6 @@
 @endpush
 
 @push('css')
-    <link href="{{ asset('vendors/summernote/summernote.css') }}" rel="stylesheet">
     <style>
         a.article {
             text-overflow: ellipsis;

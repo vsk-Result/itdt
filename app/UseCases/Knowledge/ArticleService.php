@@ -20,14 +20,13 @@ class ArticleService
                 'icon_id' => $request['icon_id'],
                 'category_id' => $request['category_id'],
                 'title' => $request['title'],
-                'content' => '',
+                'content' => $request['content'],
                 'link' => $this->generateLink(),
                 'link_access' => false
             ]);
 
             $article->saveOrFail();
             $this->updateTags($article, $request->tags);
-            $this->updateContent($article, $request->content);
 
             return $article;
         });
@@ -41,10 +40,10 @@ class ArticleService
             'category_id' => $request->category_id,
             'title' => $request->title,
             'link_access' => $request->has('link_access'),
+            'content' => $request->content,
         ]);
 
         $this->updateTags($article, $request->tags);
-        $this->updateContent($article, $request->content);
     }
 
     public function destroy($id): void
@@ -75,35 +74,6 @@ class ArticleService
             }
             $article->tags()->sync($tag_ids);
         }
-    }
-
-    private function updateContent(Article $article, $content): void
-    {
-        $dom = new \DomDocument();
-        $content = mb_convert_encoding($content, 'HTML-ENTITIES', "UTF-8");
-        @$dom->loadHtml($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-
-        $images = $dom->getElementsByTagName('img');
-        foreach($images as $key => $img) {
-
-            $filename = $article->id . '_' . str_random(2) . '_' . rus2translit($img->getAttribute('data-filename'));
-            $data = $img->getAttribute('src');
-            if (strpos($data, ';') > 0) {
-                list($type, $data) = explode(';', $data);
-                list(, $data) = explode(',', $data);
-                $data = base64_decode($data);
-
-                $path = storage_path() . "/app/public/articles/" . $filename;
-                file_put_contents($path, $data);
-
-
-                $img->removeAttribute('src');
-                $img->setAttribute('src', '/storage/articles/'. $filename);
-            }
-        }
-
-        $article->content = $dom->saveHTML();
-        $article->update();
     }
 
     public function generateLink(): string
