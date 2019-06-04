@@ -96,7 +96,7 @@ $config = array(
     | DO NOT put inside upload folder
     |
     */
-    'thumbs_base_path' => '../thumbs/',
+    'thumbs_base_path' => '../../../storage/app/public/thumbs/',
 
     /*
     |--------------------------------------------------------------------------
@@ -107,7 +107,7 @@ $config = array(
     | DO NOT put inside upload folder
     |
     */
-    'thumbs_upload_dir' => '/thumbs/',
+    'thumbs_upload_dir' => '/storage/thumbs/',
 
 
     /*
