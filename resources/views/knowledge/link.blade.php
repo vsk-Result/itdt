@@ -1,7 +1,7 @@
 @extends('layouts.external_app')
 
-@section('title', 'База знаний')
-@section('page-title', 'База знаний')
+@section('title', $article->title)
+@section('page-title', $article->title)
 
 @section('content')
     <h2>{{ $article->title }}</h2>
