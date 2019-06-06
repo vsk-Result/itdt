@@ -20,7 +20,6 @@ class ArticleController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
         $article = $this->service->create($request);
         return redirect()->back();
     }

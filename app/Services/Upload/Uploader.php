@@ -13,7 +13,6 @@ class Uploader
         if (empty($file) && is_null($file)) {
             return null;
         }
-
         $filename = str_random(self::RANDOM_NUMBER) . '_' . rus2translit($file->getClientOriginalName());
         $file->storeAs($path, $filename);
 
