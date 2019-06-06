@@ -25,6 +25,10 @@ $('.article').on('click', function() {
     });
 });
 
+$('#showArticle').on('hide.bs.modal', function (event) {
+    $('#showArticle .article-link').hide();
+});
+
 $('body').on('click', '.edit-article', function () {
     var edit_url = $(this).data('edit-url');
     var update_url = $(this).data('update-url');
