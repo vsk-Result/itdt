@@ -22,3 +22,15 @@
         }
     </style>
 @endpush
+
+@push('scripts')
+    <script>
+        $(function() {
+            $('img').each(function() {
+                var img = $(this);
+                var src = img.attr('src');
+                img.attr('src', '/' + src);
+            });
+        });
+    </script>
+@endpush
