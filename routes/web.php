@@ -11,6 +11,8 @@ Route::middleware('auth')->group(function () {
         require_once $partial->getPathname();
     }
 
+    Route::post('/upload', 'UploadController@store')->name('upload');
+
 });
 
 Route::get('/knowledge/articles/link/{link}', 'Knowledge\ArticleController@link')->name('knowledge.articles.short_link');

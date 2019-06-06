@@ -135,20 +135,43 @@ $('body').on('click', '#article-submit', function(e) {
 
 function initialize() {
     $('.summernote').tinymce({
-        plugins: 'print preview fullpage searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern help responsivefilemanager',
-        toolbar: 'responsivefilemanager | formatselect | bold italic strikethrough forecolor backcolor | link image media | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent | removeformat',
-        image_advtab: true,
-        importcss_append: true,
+        plugins: 'print preview fullpage searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern help',
+        toolbar: 'formatselect | bold italic strikethrough forecolor backcolor | link image media | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent | removeformat',
         height: 400,
         language: 'ru',
         image_caption: true,
-        spellchecker_dialog: true,
-        spellchecker_whitelist: ['Ephox', 'Moxiecode'],
-        tinycomments_mode: 'embedded',
-        content_style: '.mce-annotation { background: #fff0b7; } .tc-active-annotation {background: #ffe168; color: black; }',
-        external_filemanager_path:"/vendors/filemanager/",
-        filemanager_title: "Менеджер файлов" ,
-        external_plugins: { "filemanager" : "/vendors/filemanager/plugin.min.js"}
+        automatic_uploads: true,
+        file_picker_types: 'image file',
+        file_picker_callback: function (cb, value, meta) {
+
+            var input = document.createElement('input');
+            input.setAttribute('type', 'file');
+
+            input.onchange = function () {
+                var file = this.files[0];
+
+                var data = new FormData();
+                data.append('file', file);
+                data.append('path', 'articles');
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/upload',
+                    data: data,
+                    contentType: false,
+                    processData: false,
+                    dataType: 'json',
+                }).done(function(data) {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        cb(data.link, { title: data.filename, text: data.filename });
+                    };
+                    reader.readAsDataURL(file);
+                });
+            };
+
+            input.click();
+        }
     });
 
     $('.select').select2();
