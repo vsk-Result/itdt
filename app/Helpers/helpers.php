@@ -35,3 +35,13 @@ if (!function_exists('findLinks')) {
         }, $text);
     }
 }
+
+if (!function_exists('daysFormat')) {
+    function daysFormat($day) {
+        $a = substr($day, strlen($day) - 1, 1);
+        if ($a == 1) $str = "день";
+        if ($a == 2 || $a == 3 || $a == 4) $str = "дня";
+        if ($a == 5 || $a == 6 || $a == 7 || $a == 8 || $a == 9 || $a == 0) $str = "дней";
+        return $str;
+    }
+}

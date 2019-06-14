@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Knowledge;
 
 use App\Http\Controllers\Controller;
 use App\Models\Knowledge\Article;
-use App\Models\Knowledge\Tag;
 use App\UseCases\Knowledge\ArticleService;
-use function GuzzleHttp\Promise\task;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller

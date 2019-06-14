@@ -10,6 +10,7 @@
         <a href="{{ route('tasks.index') }}" class="navbar-toggler"><i class="icon-task mr-2"></i></a>
         <a href="{{ route('inventory.index') }}" class="navbar-toggler"><i class="icon-printer mr-2"></i></a>
         <a href="{{ route('knowledge.index') }}" class="navbar-toggler"><i class="icon-brain mr-2"></i></a>
+        <a href="{{ route('keys.index') }}" class="navbar-toggler"><i class="icon-key mr-2"></i></a>
     </div>
 
     <div class="collapse navbar-collapse" id="navbar-mobile" style="margin-left: -2.3rem;">
@@ -26,10 +27,12 @@
             <li class="nav-item">
                 <a href="{{ route('knowledge.index') }}" class="navbar-nav-link"><i class="icon-brain mr-2"></i><span>База знаний</span></a>
             </li>
+            <li class="nav-item">
+                <a href="{{ route('keys.index') }}" class="navbar-nav-link"><i class="icon-key mr-2"></i><span>Лицензии</span></a>
+            </li>
         </ul>
 
         <ul class="navbar-nav ml-auto">
-
             <li class="nav-item dropdown dropdown-user">
                 <a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
                     <img src="{{ asset('images/placeholder.jpg') }}" width="38" height="38" class="rounded-circle" alt="">
