@@ -62,4 +62,10 @@ class KeyController extends Controller
         $status = $request->status == 'open' ? 'hidden' : 'open';
         return response()->json(compact('password', 'status'));
     }
+
+    public function changeRenewalUse($id)
+    {
+        $this->service->changeRenewalUse($id);
+        return response()->json([]);
+    }
 }

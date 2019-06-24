@@ -32,12 +32,13 @@
                     <th>Продление</th>
                     <th>Добавлен</th>
                     <th>Срок действия</th>
+                    <th>Использован в продлении</th>
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
                     @foreach($keys as $key)
-                        <tr>
+                        <tr class="{{ $key->isRenewalUse() ? 'active' : '' }}">
                             <td>#{{ $key->id }}</td>
                             <td>{{ $key->key }}</td>
                             <td>{{ $key->login }}</td>
@@ -75,6 +76,15 @@
                                         </span>
                                     </div>
                                 @endif
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" name="is_renewal_use" class="form-check-input renewal-use" value="is_renewal_use" data-url="{{ route('keys.renewal', $key->id) }}" {{ $key->isRenewalUse() ? 'checked' : '' }}>
+                                        </label>
+                                    </div>
+                                </div>
                             </td>
                             <td>
                                 <div class="list-icons-item dropdown">
@@ -127,6 +137,9 @@
         }
         #keys tbody {
             font-size: .6125rem;
+        }
+        #keys tr.active {
+            background-color: #ddd;
         }
     </style>
 @endpush

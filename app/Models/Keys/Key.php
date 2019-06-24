@@ -15,7 +15,7 @@ class Key extends Model
 
     protected $dates = ['deleted_at', 'expire_date'];
 
-    protected $fillable = ['user_id', 'key', 'login', 'password', 'product', 'expire_date', 'renewal_id'];
+    protected $fillable = ['user_id', 'key', 'login', 'password', 'product', 'expire_date', 'renewal_id', 'is_renewal_use'];
 
     public function user()
     {
@@ -51,5 +51,10 @@ class Key extends Model
     public function getHiddenPassword()
     {
         return str_repeat("*", strlen($this->password));
+    }
+
+    public function isRenewalUse()
+    {
+        return $this->is_renewal_use;
     }
 }

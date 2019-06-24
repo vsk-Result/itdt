@@ -86,4 +86,12 @@ class KeyService
             $usage->saveOrFail();
         }
     }
+
+    public function changeRenewalUse($id)
+    {
+        $key = $this->getKey($id);
+        $key->update([
+           'is_renewal_use' => !$key->is_renewal_use
+        ]);
+    }
 }

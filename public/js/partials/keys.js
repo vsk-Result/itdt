@@ -54,6 +54,23 @@ $('body').on('click', '.edit-key', function () {
     });
 });
 
+$('body').on('click', '.renewal-use', function () {
+    var that = $(this);
+    var tr = that.closest('tr');
+    var active = tr.hasClass('active');
+    var url = that.data('url');
+    $.ajax({
+        url: url,
+        type: 'POST'
+    }).done(function(data) {
+        if (active) {
+            tr.removeClass('active');
+        } else {
+            tr.addClass('active');
+        }
+    });
+});
+
 $('body').on('click', '.destroy-key', function () {
     if (confirm('Вы действительно хотите удалить ключ?')) {
         var id = $(this).data('id');

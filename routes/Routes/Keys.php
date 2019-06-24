@@ -13,4 +13,5 @@ Route::group([
     Route::put('{id}/edit', 'KeyController@update')->name('update');
     Route::delete('{id}/destroy', 'KeyController@destroy')->name('destroy');
     Route::post('{id}/password', 'KeyController@getPassword')->name('password');
+    Route::post('{id}/renewal', 'KeyController@changeRenewalUse')->name('renewal');
 });
