@@ -32,7 +32,7 @@
                     <th>Продление</th>
                     <th>Добавлен</th>
                     <th>Срок действия</th>
-                    <th>Использован в продлении</th>
+                    <th>Использован</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -137,6 +137,10 @@
         }
         #keys tbody {
             font-size: .6125rem;
+        }
+        #keys tbody td {
+            padding: .5rem 0.25rem;
+            text-align: center;
         }
         #keys tr.active {
             background-color: #ddd;
