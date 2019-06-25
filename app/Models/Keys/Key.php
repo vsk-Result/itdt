@@ -34,7 +34,17 @@ class Key extends Model
 
     public function getRenewal()
     {
-        return is_null($this->renewal_id) ? 'Использован' : $this->renewal->login;
+        if (is_null($this->renewal_id)) {
+            return 'Использован';
+        }
+
+        if ($this->renewal_id == 999999) {
+            $renewal = 'Новый';
+        } else {
+            $renewal = $this->renewal->login;
+        }
+
+        return $renewal;
     }
 
     public function getExpireDays()

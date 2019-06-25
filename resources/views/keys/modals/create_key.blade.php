@@ -38,7 +38,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Продление</label>
+                                <label>Статус</label>
                                 {{ Form::select('renewal_id', $renewalList, null, ['class' => 'select form-control']) }}
                             </div>
                         </div>

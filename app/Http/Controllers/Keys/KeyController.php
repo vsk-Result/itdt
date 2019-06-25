@@ -19,7 +19,7 @@ class KeyController extends Controller
     public function index()
     {
         $keys = Key::all();
-        $renewalList = [null => 'Использован'] + Key::with('usages')->orderByDesc('expire_date')->pluck('login', 'id')->toArray();
+        $renewalList = [null => 'Использован', 999999 => 'Новый'] + Key::with('usages')->orderByDesc('expire_date')->pluck('login', 'id')->toArray();
         return view('keys.index', compact('keys', 'renewalList'));
     }
 
