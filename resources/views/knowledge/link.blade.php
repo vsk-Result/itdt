@@ -33,8 +33,10 @@
             });
             $('a').each(function() {
                 let link = $(this);
-                let href = link.attr('href');
-                link.attr('href', '/' + href);
+                let href = String(link.attr('href'));
+                if (href.indexOf('http') == -1 && href.indexOf('https') == -1) {
+                    link.attr('href', '/' + href);
+                }
             });
         });
     </script>
