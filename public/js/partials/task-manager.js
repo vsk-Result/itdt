@@ -666,6 +666,17 @@ function handleSwitchEdit() {
         setAttachmentEditMode(true);
         $('#comments').hide();
         $('#add-subtask').show();
+        setTimeout(function() {
+            tinymce.EditorManager.execCommand('mceRemoveEditor',true, 'task-description');
+            $('#task-description').tinymce({
+                plugins: 'print preview fullpage searchreplace autolink directionality visualblocks visualchars fullscreen image template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern help',
+                toolbar: 'formatselect | bold italic strikethrough forecolor backcolor | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent | removeformat',
+                height: 400,
+                language: 'ru',
+                menubar: false,
+            });
+        }, 300);
+
     } else {
         setEditMod(false);
         setTaskGeneralEditMode(false);
@@ -708,6 +719,7 @@ function setTaskGeneralEditMode(value) {
         }
     }).done(function (data) {
         $('#task-general-info').html(data.task_render);
+        // tinyMCE.get('task-description').setContent(data.description);
     });
 }
 

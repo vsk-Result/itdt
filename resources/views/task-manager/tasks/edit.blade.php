@@ -5,6 +5,6 @@
     </div>
     <div class="w-100">
         <h6 class="font-weight-semibold">Информация</h6>
-        {{ Form::textarea('description', $task->description, ['id' => 'task-description', 'class' => 'form-control', 'rows' => 5]) }}
+        {{ Form::textarea('description', $task->description, ['id' => 'task-description', 'class' => 'form-control summernote']) }}
     </div>
 </div>

@@ -29,6 +29,8 @@
 @push('scripts')
     <script src="{{ asset('vendors/tables/datatables/datatables.min.js') }}"></script>
     <script src="{{ asset('vendors/tables/datatables/extensions/natural_sort.js') }}"></script>
+    <script src="{{ asset('vendors/tinymce/jquery.tinymce.min.js') }}"></script>
+    <script src="{{ asset('vendors/tinymce/tinymce.min.js') }}"></script>
     <script src="{{ asset('vendors/styling/uniform.min.js') }}"></script>
     <script src="{{ asset('vendors/select2/select2.min.js') }}"></script>
     <script src="{{ asset('vendors/notifications/pnotify.min.js') }}"></script>

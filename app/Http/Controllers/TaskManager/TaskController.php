@@ -124,7 +124,8 @@ class TaskController extends Controller
     {
         $task = Task::findOrFail($id);
         $task_render = view('task-manager.tasks.edit', compact('task'))->render();
-        return response()->json(compact('task_render'));
+        $description = $task->description;
+        return response()->json(compact('task_render', 'description'));
     }
 
     public function update($id, Request $request)
