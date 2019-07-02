@@ -713,13 +713,13 @@ function setTaskGeneralEditMode(value) {
 
     $.ajax({
         url: url,
+        type: 'POST',
         data: {
             name: name,
             description: description
         }
     }).done(function (data) {
         $('#task-general-info').html(data.task_render);
-        // tinyMCE.get('task-description').setContent(data.description);
     });
 }
 

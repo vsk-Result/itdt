@@ -7,8 +7,8 @@ Route::group(['prefix' => 'task-manager', 'namespace' => 'TaskManager'], functio
     Route::get('/all', 'TaskController@all')->name('tasks.all');
     Route::get('/store', 'TaskController@store')->name('tasks.store');
     Route::get('/{id}/info', 'TaskController@info')->name('tasks.info');
-    Route::get('/{id}/show', 'TaskController@show')->name('tasks.show');
-    Route::get('/{id}/edit', 'TaskController@edit')->name('tasks.edit');
+    Route::post('/{id}/show', 'TaskController@show')->name('tasks.show');
+    Route::post('/{id}/edit', 'TaskController@edit')->name('tasks.edit');
     Route::post('/{id}/update', 'TaskController@update')->name('tasks.update');
     Route::post('/{id}/attach_files', 'TaskController@attachFiles')->name('tasks.attach_files');
     Route::post('/{id}/attach_files/{f_id}/destroy_file', 'TaskController@destroyFile')->name('tasks.attach_files.destroy');
