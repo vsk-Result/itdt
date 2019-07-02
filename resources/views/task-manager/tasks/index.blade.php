@@ -37,3 +37,11 @@
     <script src="{{ asset('vendors/styling/switchery.min.js') }}"></script>
     <script src="{{ asset('js/partials/task-manager.js') }}"></script>
 @endpush
+
+@push('css')
+    <style>
+        .tox .tox-toolbar__group {
+            padding: 0 3px !important;
+        }
+    </style>
+@endpush
