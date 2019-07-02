@@ -669,11 +669,12 @@ function handleSwitchEdit() {
         setTimeout(function() {
             tinymce.EditorManager.execCommand('mceRemoveEditor',true, 'task-description');
             $('#task-description').tinymce({
-                plugins: 'print preview fullpage searchreplace autolink directionality visualblocks visualchars fullscreen image template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern help',
+                plugins: 'paste print preview fullpage searchreplace autolink directionality visualblocks visualchars fullscreen image template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern help',
                 toolbar: 'formatselect | bold italic strikethrough forecolor backcolor | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent | removeformat',
                 height: 400,
                 language: 'ru',
                 menubar: false,
+                paste_as_text: true
             });
         }, 300);
 
