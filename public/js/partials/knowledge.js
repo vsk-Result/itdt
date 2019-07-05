@@ -1,8 +1,9 @@
 $(document).ready(function() {
     initialize();
+    updateArticles();
 });
 
-$('.article').on('click', function() {
+$('body').on('click', '.article', function () {
     var show_url = $(this).data('show-url');
     var edit_url = $(this).data('edit-url');
     var update_url = $(this).data('update-url');
@@ -184,7 +185,30 @@ function initialize() {
         templateSelection: setIcon
     });
 
-    $('.tokenfield').tokenfield();
     $('.form-check-input').uniform();
+    $('.tokenfield').tokenfield();
+    $('#filter-input')
+        .on('tokenfield:createdtoken', function (e) {
+            updateArticles();
+        })
+        .on('tokenfield:removedtoken', function (e) {
+            updateArticles();
+        })
+        .tokenfield();
 }
+
+function updateArticles() {
+    var url = $('#filter-input').data('url');
+    var tags = $('#filter-input').tokenfield('getTokens');
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: {
+            tags: tags
+        }
+    }).done(function(data) {
+        $('#articles-container').html(data.view_render);
+    });
+}
+
 

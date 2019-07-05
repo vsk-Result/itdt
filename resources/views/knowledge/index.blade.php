@@ -24,15 +24,22 @@
     @include('knowledge.partials.icon_list')
 
     <div class="card">
+        <div class="card-body">
+            <div class="input-group">
+                <span class="input-group-prepend">
+                    <span class="input-group-text"><i class="icon-search4 text-muted"></i></span>
+                </span>
+                {{ Form::text('filter_tags', null, ['id' => 'filter-input', 'class' => 'form-control form-control-lg alpha-grey', 'placeholder' => 'Поиск по тегам', 'data-url' => route('knowledge.filter')]) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
         <div class="card-header header-elements-inline">
             <h6 class="card-title">Актуальные статьи</h6>
         </div>
 
-        <div class="card-body">
-            <div class="row">
-                @each('knowledge.partials.category', $categories, 'category')
-            </div>
-        </div>
+        <div id="articles-container" class="card-body"></div>
     </div>
 @endsection
 
@@ -74,6 +81,9 @@
             #showArticle .modal-content img {
                 width: 100% !important;
             }
+        }
+        .tokenfield .token-input {
+             width: 100% !important;
         }
     </style>
 @endpush

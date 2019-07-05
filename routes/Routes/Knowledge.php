@@ -8,6 +8,7 @@ Route::group([
     'namespace' => 'Knowledge',
 ], function () {
     Route::get('/', 'KnowledgeController@index')->name('index');
+    Route::post('/filter', 'KnowledgeController@filter')->name('filter');
 
     Route::group([
         'prefix' => 'articles',
