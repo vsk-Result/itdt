@@ -1,3 +1,3 @@
 <div class="row">
-    @each('knowledge.partials.category', $categories, 'category')
+    @each('knowledge.partials.category', $categoryList, 'category')
 </div>

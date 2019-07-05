@@ -30,6 +30,19 @@
                     <span class="input-group-text"><i class="icon-search4 text-muted"></i></span>
                 </span>
                 {{ Form::text('filter_tags', null, ['id' => 'filter-input', 'class' => 'form-control form-control-lg alpha-grey', 'placeholder' => 'Поиск по тегам', 'data-url' => route('knowledge.filter')]) }}
+
+                <div class="input-group-append">
+                    <button id="filter-category" type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">Категория</button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a data-id="all" href="javascript:void(0)" class="dropdown-item active">Все</a>
+                        @foreach($categories as $category)
+                            <a data-id="{{ $category->id }}" href="javascript:void(0)" class="dropdown-item">
+                                <i class="{{ $category->icon->name }}"></i>
+                                {{ $category->name }}
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -63,7 +76,7 @@
             display: block;
         }
         .card-body .dropdown-toggle::after {
-            content: ''
+            /*content: ''*/
         }
         .border-top-1 {
             border-top: 1px solid #ccc;

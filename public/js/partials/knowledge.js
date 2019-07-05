@@ -200,15 +200,28 @@ function initialize() {
 function updateArticles() {
     var url = $('#filter-input').data('url');
     var tags = $('#filter-input').tokenfield('getTokens');
+    var category = $('.input-group-append a.active').data('id');
     $.ajax({
         type: 'POST',
         url: url,
         data: {
-            tags: tags
+            tags: tags,
+            category: category
         }
     }).done(function(data) {
         $('#articles-container').html(data.view_render);
     });
 }
 
-
+$('.input-group-append a').on('click', function () {
+    var link = $(this);
+    var id = $(this).data('id');
+    if (id == 'all') {
+        $('#filter-category').html('Категория');
+    } else {
+        $('#filter-category').html('Категория(' + link.html() + ')');
+    }
+    $('.input-group-append a').removeClass('active');
+    link.addClass('active');
+    updateArticles();
+});
