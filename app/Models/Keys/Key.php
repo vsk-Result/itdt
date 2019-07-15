@@ -68,4 +68,9 @@ class Key extends Model
     {
         return $this->is_renewal_use;
     }
+
+    public static function scopeActive($query)
+    {
+        return $query->whereNotNull('renewal_id');
+    }
 }
