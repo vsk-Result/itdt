@@ -8,6 +8,7 @@ Route::group([
     'namespace' => 'Keys',
 ], function () {
     Route::get('/', 'KeyController@index')->name('index');
+    Route::get('/show', 'KeyController@show')->name('show');
     Route::post('/', 'KeyController@store')->name('store');
     Route::get('{id}/edit', 'KeyController@edit')->name('edit');
     Route::put('{id}/edit', 'KeyController@update')->name('update');

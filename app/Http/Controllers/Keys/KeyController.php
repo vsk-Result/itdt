@@ -18,9 +18,15 @@ class KeyController extends Controller
 
     public function index()
     {
-        $keys = Key::active()->get();
         $renewalList = [null => 'Использован', 999999 => 'Новый'] + Key::active()->with('usages')->orderByDesc('expire_date')->pluck('login', 'id')->toArray();
         return view('keys.index', compact('keys', 'renewalList'));
+    }
+
+    public function show(Request $request)
+    {
+        $keys = $request->is_active == 'true' ? Key::active()->get() : Key::all();
+        $view_render = view('keys.partials.table', compact('keys'))->render();
+        return response()->json(compact('view_render'));
     }
 
     public function store(Request $request)

@@ -1,5 +1,14 @@
 $(function() {
     $('.select').select2();
+    var elems = Array.prototype.slice.call(document.querySelectorAll('.form-check-input-switchery'));
+    elems.forEach(function(html) {
+        var switchery = new Switchery(html);
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    filter_active_enabled = false;
+    updateKeysTable();
 });
 
 $('#store-key').on('click', function() {
@@ -77,3 +86,22 @@ $('body').on('click', '.destroy-key', function () {
         $('#destroy-key-form-' + id).submit();
     }
 });
+
+$('body').on('click', '#keys-active', function(e) {
+    filter_active_enabled = !filter_active_enabled;
+    updateKeysTable();
+});
+
+function updateKeysTable() {
+    var container = $('#keys-container');
+    var url = container.data('url');
+    var is_active = !filter_active_enabled;
+    $.ajax({
+        url: url,
+        data: {
+            is_active: is_active
+        }
+    }).done(function (data) {
+        container.html(data.view_render);
+    });
+}
