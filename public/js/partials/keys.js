@@ -77,6 +77,8 @@ $('body').on('click', '.renewal-use', function () {
         } else {
             tr.addClass('active');
         }
+    }).always(function() {
+        updateKeysTable();
     });
 });
 
