@@ -26,10 +26,10 @@
                                 {{ Form::text('expire_date', null, ['class' => 'date form-control', 'id' => 'key-expire-date']) }}
                             </div>
 
-                            <div class="form-group">
-                                <label>Дата добавления</label>
-                                {{ Form::text('created_at', null, ['class' => 'date form-control', 'id' => 'key-created-at']) }}
-                            </div>
+                            {{--<div class="form-group">--}}
+                                {{--<label>Дата добавления</label>--}}
+                                {{--{{ Form::text('created_at', null, ['class' => 'date form-control', 'id' => 'key-created-at']) }}--}}
+                            {{--</div>--}}
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">

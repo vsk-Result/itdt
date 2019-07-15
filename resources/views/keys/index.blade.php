@@ -68,7 +68,7 @@
                             <td>{{ $key->getRenewal() }}</td>
                             <td>{{ $key->created_at->format('d.m.Y') }}</td>
                             <td>
-                                {{ $key->expire_date->format('d.m.Y') }}
+                                {{ $key->expire_date }}
                                 @if ($key->expire_date > Carbon::now()->format('Y-m-d'))
                                     <div id="progressBar" style="background-image: linear-gradient(90deg, rgb(76, 175, 80) {{ $key->getExpirePercent() }}%, rgba(255, 255, 255, 0.9) {{ $key->getExpirePercent() }}%);">
                                         <span id="progressText" style="background-image: linear-gradient(90deg, rgb(255, 255, 255) {{ $key->getExpirePercent() }}%, rgba(0, 0, 0, 0.7) {{ $key->getExpirePercent() }}%);">

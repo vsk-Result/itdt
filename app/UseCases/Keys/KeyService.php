@@ -41,7 +41,7 @@ class KeyService
             'product' => $request->product,
             'expire_date' => $request->expire_date,
             'renewal_id' => $request->renewal_id,
-            'created_at' => $request->created_at,
+//            'created_at' => $request->created_at,
         ]);
 
         $this->updateUsages($key->id, $request);

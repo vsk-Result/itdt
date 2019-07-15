@@ -43,6 +43,11 @@
                         @endforeach
                     </div>
                 </div>
+                {{--<span class="input-group-append">--}}
+                    {{--<span class="input-group-text">--}}
+                        {{--<input type="checkbox" class="form-control-switchery" checked data-fouc>--}}
+                    {{--</span>--}}
+                {{--</span>--}}
             </div>
         </div>
     </div>
@@ -63,6 +68,7 @@
     <script src="{{ asset('vendors/tags/tokenfield.min.js') }}"></script>
     <script src="{{ asset('vendors/print/dist/jQuery.print.min.js') }}"></script>
     <script src="{{ asset('vendors/styling/uniform.min.js') }}"></script>
+    <script src="{{ asset('vendors/styling/switchery.min.js') }}"></script>
     <script src="{{ asset('js/partials/knowledge.js') }}"></script>
 @endpush
 

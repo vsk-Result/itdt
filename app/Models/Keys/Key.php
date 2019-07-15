@@ -13,7 +13,8 @@ class Key extends Model
 
     protected $table = 'key_collection';
 
-    protected $dates = ['deleted_at', 'expire_date'];
+//    protected $dates = ['deleted_at', 'expire_date'];
+    protected $dates = ['deleted_at'];
 
     protected $fillable = ['user_id', 'key', 'login', 'password', 'product', 'expire_date', 'renewal_id', 'is_renewal_use'];
 
