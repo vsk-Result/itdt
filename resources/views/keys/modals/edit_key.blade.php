@@ -22,7 +22,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Срок действия</label>
+                                <label>Срок действия (гггг-мм-дд)</label>
                                 {{ Form::text('expire_date', null, ['class' => 'date form-control', 'id' => 'key-expire-date']) }}
                             </div>
 
