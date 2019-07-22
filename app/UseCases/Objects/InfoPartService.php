@@ -24,7 +24,8 @@ class InfoPartService
             $infopart = InfoPart::make([
                 'object_id' => $object_id,
                 'title' => $request->title[$index],
-                'body' => isset($request->content) ? $request->content[$index] : ''
+                'body' => isset($request->content) ? $request->content[$index] : '',
+                'order' => $this->getNewOrder()
             ]);
             $infopart->saveOrFail();
 
@@ -67,8 +68,23 @@ class InfoPartService
         }
     }
 
+    public function getNewOrder()
+    {
+        return InfoPart::max('order') + 1;
+    }
+
     private function getInfoPart($id): InfoPart
     {
         return InfoPart::findOrFail($id);
+    }
+
+    public function reorder(array $order)
+    {
+        foreach ($order as $index => $id) {
+            $infopart = $this->getInfoPart($id);
+            $infopart->update([
+                'order' => $index
+            ]);
+        }
     }
 }

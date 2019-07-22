@@ -69,6 +69,16 @@ class ObjectController extends Controller
         return response()->json(compact('person_render'));
     }
 
+    public function reorder(Request $request)
+    {
+        $order = $request->order;
+        if (count($order) > 0) {
+            $this->service->reorderInfoParts($order);
+        }
+
+        return response()->json([]);
+    }
+
     public function word($id)
     {
         $object = CObject::findOrFail($id);

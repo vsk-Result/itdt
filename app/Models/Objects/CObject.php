@@ -97,4 +97,9 @@ class CObject extends Model
     {
         return $this->tasks()->solved()->count();
     }
+
+    public function getInfoParts()
+    {
+        return $this->infoparts()->orderBy('order')->get();
+    }
 }

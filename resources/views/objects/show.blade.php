@@ -24,8 +24,8 @@
     <div class="d-flex align-items-start flex-column flex-md-row">
         <div class="w-100 overflow-auto order-2 order-md-1">
             @if ($object->infoparts->count() > 0)
-                <div class="card-group-control card-group-control-right">
-                    @each('objects.partials.infopart', $object->infoparts, 'infopart')
+                <div class="card-group-control card-group-control-right row-sortable" data-url="{{ route('objects.reorder') }}">
+                    @each('objects.partials.infopart', $object->getInfoParts(), 'infopart')
                 </div>
             @else
                 <div class="card card-body">
@@ -53,7 +53,9 @@
     <link href="{{ asset('vendors/fileuploader/src/jquery.fileuploader.min.css') }}" rel="stylesheet">
     <link href="{{ asset('vendors/fileuploader/src/css/jquery.fileuploader-theme-thumbnails.css') }}" rel="stylesheet">
     <link href="{{ asset('css/partials/fileuploader.css') }}" rel="stylesheet">
-    <style> p { margin-bottom: 0; } </style>
+    <style>
+        p { margin-bottom: 0; }
+    </style>
 @endpush
 
 @push('scripts')
@@ -64,6 +66,8 @@
     <script src="{{ asset('vendors/fileuploader/src/jquery.fileuploader.min.js') }}"></script>
     <script src="//api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU" type="text/javascript"></script>
     <script src="{{ asset('js/partials/yamap.js') }}"></script>
+    <script src="{{ asset('vendors/jquery_ui/interactions.min.js') }}"></script>
+    <script src="{{ asset('vendors/jquery_ui/touch.min.js') }}"></script>
     <script>
         $(function() {
             $(".lightgallery").lightGallery({
@@ -72,6 +76,43 @@
                 zoom: true,
                 fullscreen: true
             });
+
+            $('.row-sortable').sortable({
+                connectWith: '.row-sortable',
+                items: '.card',
+                helper: 'original',
+                cursor: 'move',
+                handle: '[data-action=move]',
+                revert: 100,
+                containment: '.content-wrapper',
+                forceHelperSize: true,
+                placeholder: 'sortable-placeholder',
+                forcePlaceholderSize: true,
+                tolerance: 'pointer',
+                start: function(e, ui){
+                    ui.placeholder.height(ui.item.outerHeight());
+                },
+                stop: function (e, ui) {
+                    reorderBlocks();
+                }
+            });
         });
+        
+        function reorderBlocks() {
+            var order = [];
+            $('.row-sortable .card').each(function(index) {
+                order.push($(this).data('id'));
+            });
+            var url = $('.row-sortable').data('url');
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: {
+                    order: order,
+                }
+            }).done(function() {
+
+            });
+        }
     </script>
 @endpush

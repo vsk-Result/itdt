@@ -8,7 +8,7 @@ class InfoPart extends Model
 {
     protected $table = 'object_infoparts';
 
-    protected $fillable = ['object_id', 'title', 'body'];
+    protected $fillable = ['object_id', 'title', 'body', 'order'];
 
     public function object()
     {

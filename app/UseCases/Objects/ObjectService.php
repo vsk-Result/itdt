@@ -149,4 +149,16 @@ class ObjectService
 
         return $object;
     }
+
+    public function reorderInfoParts(array $order)
+    {
+        foreach (CObject::all() as $object) {
+            foreach ($object->infoparts as $index => $infopart) {
+                $infopart->update([
+                    'order' => $index
+                ]);
+            }
+        }
+        $this->infoPartService->reorder($order);
+    }
 }

@@ -57,6 +57,7 @@ class CreateObjectsTable extends Migration
             $table->integer('object_id')->unsigned();
             $table->string('title');
             $table->text('body');
+            $table->integer('order')->unsigned();
             $table->timestamps();
 
             $table->foreign('object_id')->references('id')->on('objects')

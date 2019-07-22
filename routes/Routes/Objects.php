@@ -12,4 +12,5 @@ Route::group(['prefix' => 'objects', 'namespace' => 'Objects'], function () {
     Route::get('/{id}/word', 'ObjectController@word')->name('objects.word');
     Route::get('/create_infopart', 'ObjectController@createInfopart')->name('objects.create_infopart');
     Route::get('/create_person', 'ObjectController@createPerson')->name('objects.create_person');
+    Route::post('/reorder', 'ObjectController@reorder')->name('objects.reorder');
 });
