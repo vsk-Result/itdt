@@ -65,7 +65,7 @@
                                         <h3 class="font-weight-semibold">Блоки информации</h3>
 
                                         <div class="infoparts">
-                                            @each('objects.partials.edit_infopart', $object->infoparts, 'infopart')
+                                            @each('objects.partials.edit_infopart', $object->getInfoParts(), 'infopart')
                                         </div>
 
                                         <div class="create-zone mt-3">
