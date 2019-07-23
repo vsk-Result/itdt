@@ -23,6 +23,7 @@ class InfoPartService
 
             $infopart = InfoPart::make([
                 'object_id' => $object_id,
+                'icon_id' => $request->icon_id[$index],
                 'title' => $request->title[$index],
                 'body' => isset($request->content) ? $request->content[$index] : '',
                 'order' => $this->getNewOrder()
@@ -42,6 +43,7 @@ class InfoPartService
             $infopart = $this->getInfoPart($request->ip_id[$index]);
             $infopart->update([
                 'object_id' => $object_id,
+                'icon_id' => $request->icon_id[$index],
                 'title' => $request->title[$index],
                 'body' => isset($request->content) ? $request->content[$index] : ''
             ]);

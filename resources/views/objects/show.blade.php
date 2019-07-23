@@ -96,6 +96,11 @@
                     reorderBlocks();
                 }
             });
+
+            $('.select-icon').select2({
+                templateResult: setIcon,
+                templateSelection: setIcon
+            });
         });
         
         function reorderBlocks() {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Objects;
 
+use App\Models\Icon;
 use App\Models\Objects\CObject;
 use App\Models\Objects\Image;
 use App\Models\Objects\InfoPartAttachment;
@@ -30,7 +31,8 @@ class ObjectController extends Controller
 
     public function create()
     {
-        return view('objects.create');
+        $icons = Icon::all();
+        return view('objects.create', compact('icons'));
     }
 
     public function store(Request $request)
@@ -41,8 +43,9 @@ class ObjectController extends Controller
 
     public function edit($id)
     {
+        $icons = Icon::all();
         $object = CObject::findOrFail($id);
-        return view('objects.edit', compact('object'));
+        return view('objects.edit', compact('object', 'icons'));
     }
 
     public function update($id, Request $request)

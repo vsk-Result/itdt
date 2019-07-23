@@ -2,6 +2,23 @@
     <div class="form-group">
         {{ Form::hidden('ip_id[]', 'none', []) }}
     </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                {{ Form::hidden('icon_id[]', null, ['class' => 'input-icon']) }}
+                <button type="button" class="btn btn-light choose-icon"><i class="mr-2"></i> Выбрать иконку</button>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="form-group">
+                {{ Form::text('title[]', null, ['class' => 'form-control', 'placeholder' => 'Заголовок блока']) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="icons-container" style="display: none;"></div>
+
     <div class="form-group">
         {{ Form::text('title[]', null, ['class' => 'form-control', 'placeholder' => 'Заголовок блока']) }}
     </div>

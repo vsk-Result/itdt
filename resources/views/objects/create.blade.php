@@ -14,6 +14,9 @@
 @endsection
 
 @section('content')
+
+    @include('knowledge.partials.icon_list')
+
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -178,5 +181,29 @@
                 $(this).attr('name', 'avatar_' + files_index++);
             });
         }
+
+        $('body').on('click', '.icons-container i', function () {
+            var icon = $(this);
+            var parent = icon.closest('.card-body');
+            var icons_container = parent.find('.icons-container');
+            var input_icon = parent.find('.input-icon');
+            var button_icon = parent.find('.choose-icon i');
+
+            input_icon.val(icon.data('id'));
+            button_icon.attr('class', icon.attr('class') + ' mr-2').removeClass('icon-2x');
+            icons_container.html('').hide();
+        });
+
+        $('body').on('click', '.choose-icon', function () {
+            var button = $(this);
+            var parent = button.closest('.card-body');
+            var icons_container = parent.find('.icons-container');
+
+            if (icons_container.is(":visible")) {
+                icons_container.html('').hide();
+            } else {
+                icons_container.html($('#our-icon-list').html()).show();
+            }
+        });
     </script>
 @endpush

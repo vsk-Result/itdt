@@ -1,7 +1,7 @@
 <div class="card mb-2" data-id="{{ $infopart->id }}">
     <div class="card-header header-elements-inline">
         <h6 class="card-title">
-            <i class="icon-help mr-2 text-slate"></i> {{ $infopart->title }}
+            <i class="{{ $infopart->icon->name ?? 'icon-help' }} mr-2 text-slate"></i> {{ $infopart->title }}
         </h6>
         <div class="header-elements">
             <div class="list-icons">
