@@ -11,6 +11,7 @@
         <a href="{{ route('inventory.index') }}" class="navbar-toggler"><i class="icon-printer mr-2"></i></a>
         <a href="{{ route('knowledge.index') }}" class="navbar-toggler"><i class="icon-brain mr-2"></i></a>
         <a href="{{ route('keys.index') }}" class="navbar-toggler"><i class="icon-key mr-2"></i></a>
+        <a href="#" class="navbar-toggler"><i class="icon-quill4 mr-2"></i></a>
     </div>
 
     <div class="collapse navbar-collapse" id="navbar-mobile" style="margin-left: -2.3rem;">
@@ -29,6 +30,9 @@
             </li>
             <li class="nav-item">
                 <a href="{{ route('keys.index') }}" class="navbar-nav-link"><i class="icon-key mr-2"></i><span>Лицензии</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="navbar-nav-link" data-toggle="modal" data-target="#createSign"><i class="icon-quill4 mr-2"></i><span>Подписи</span></a>
             </li>
         </ul>
 

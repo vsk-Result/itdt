@@ -28,6 +28,8 @@
     </head>
     <body class="layout-boxed-bg sidebar-xs">
 
+        @include('navbars.modals.sign')
+
         <!-- Boxed layout wrapper -->
         <div class="d-flex flex-column flex-1 layout-boxed">
 
@@ -68,6 +70,7 @@
 
         <!-- Vendors -->
         <script src="{{ asset('vendors/loaders/blockui.min.js') }}"></script>
+        <script src="{{ asset('vendors/styling/uniform.min.js') }}"></script>
 
         <!-- Custom -->
         <script src="{{ asset('js/custom.js') }}"></script>
