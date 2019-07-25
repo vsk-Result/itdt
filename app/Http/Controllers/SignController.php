@@ -46,6 +46,9 @@ class SignController extends Controller
 
         $document->setValue('fullname', $request->name);
         $document->setValue('post_name', $request->postname);
+        if (!empty($request->department) || !is_null($request->department)) {
+            $templateName = 'sign_' . $company . '_template_wd.docx';
+        }
         $document->setValue('department', $request->department);
         $document->setValue('email', $request->email);
         $document->setValue('work_phone', $request->work_phone);
