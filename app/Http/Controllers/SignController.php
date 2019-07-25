@@ -34,7 +34,7 @@ class SignController extends Controller
         $domain = $this->companies[$company];
         $templateName = 'sign_' . $company . '_template.docx';
 
-        if (empty($request->department) || is_null($request->department) && $domain == 'sti') {
+        if (empty($request->department) || is_null($request->department) && $company == 'sti') {
             $templateName = 'sign_' . $company . '_template_wd.docx';
         }
 
