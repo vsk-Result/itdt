@@ -1,7 +1,7 @@
 {{ Form::open(['url' => route('sign.store'), 'method' => 'POST']) }}
 
     <div class="form-group">
-        <label>Фамилия Имя</label>
+        <label>Имя Фамилия</label>
         {{ Form::text('name', null, ['class' => 'form-control']) }}
     </div>
 
@@ -21,7 +21,7 @@
     </div>
 
     <div class="form-group">
-        <label>Рабочий телефон</label>
+        <label>Добавочный рабочий</label>
         {{ Form::text('work_phone', null, ['class' => 'form-control']) }}
     </div>
 
