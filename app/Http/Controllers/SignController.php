@@ -34,6 +34,10 @@ class SignController extends Controller
         $domain = $this->companies[$company];
         $templateName = 'sign_' . $company . '_template.docx';
 
+        if (empty($request->department) || is_null($request->department)) {
+            $templateName = 'sign_' . $company . '_template_wd.docx';
+        }
+
         $outputName = 'Подпись_' . str_replace(' ', '_', $request->name) . '_' . $this->companyNames[$company] . '.docx';
         $outputPath = $this->outputDir . $outputName;
 
@@ -42,6 +46,7 @@ class SignController extends Controller
 
         $document->setValue('fullname', $request->name);
         $document->setValue('post_name', $request->postname);
+        $document->setValue('department', $request->department);
         $document->setValue('email', $request->email);
         $document->setValue('work_phone', $request->work_phone);
         $document->setValue('phone', $request->phone);

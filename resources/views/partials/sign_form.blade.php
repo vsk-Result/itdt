@@ -11,6 +11,11 @@
     </div>
 
     <div class="form-group">
+        <label>Отдел (при необходимости)</label>
+        {{ Form::text('department', null, ['class' => 'form-control']) }}
+    </div>
+
+    <div class="form-group">
         <label>Email</label>
         {{ Form::text('email', null, ['class' => 'form-control']) }}
     </div>
