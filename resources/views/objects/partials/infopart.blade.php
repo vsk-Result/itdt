@@ -5,7 +5,7 @@
         </h6>
         <div class="header-elements">
             <div class="list-icons">
-                <a class="list-icons-item" data-action="collapse"></a>
+                <a class="list-icons-item collap" data-action="collapse"></a>
                 <a class="list-icons-item" data-action="move"></a>
             </div>
         </div>
