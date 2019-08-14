@@ -102,6 +102,13 @@
                 templateSelection: setIcon
             });
         });
+
+        $('.card-header').on('click', function (event) {
+            $target = $(event.target);
+            if (!$target.hasClass('list-icons-item')) {
+                $(this).find('.collap').click();
+            }
+        });
         
         function reorderBlocks() {
             var order = [];
