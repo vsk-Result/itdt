@@ -91,7 +91,7 @@ class Task extends Model
 
     public function getDescription()
     {
-        return findLinks($this->description);
+        return $this->description;
     }
 
     public function scopeActive($query)
