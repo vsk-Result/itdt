@@ -13,7 +13,7 @@
 
     <div id="infopart{{ $infopart->id }}" class="collapse">
         <div class="card-body">
-            {!! findLinks($infopart->body) !!}
+            {!! $infopart->body !!}
             @if ($infopart->attachments->count() > 0)
                 <div class="row">
                     <div class="col-lg-12">
