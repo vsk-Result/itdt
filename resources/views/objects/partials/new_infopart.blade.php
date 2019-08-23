@@ -20,9 +20,6 @@
     <div class="icons-container" style="display: none;"></div>
 
     <div class="form-group">
-        {{ Form::text('title[]', null, ['class' => 'form-control', 'placeholder' => 'Заголовок блока']) }}
-    </div>
-    <div class="form-group">
         {!! Form::textarea('content[]', null, ['class' => 'summernote', 'placeholder' => 'Контент']) !!}
     </div>
     <div class="form-group">
