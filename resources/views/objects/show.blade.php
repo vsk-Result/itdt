@@ -23,6 +23,9 @@
 
     <div class="d-flex align-items-start flex-column flex-md-row">
         <div class="w-100 overflow-auto order-2 order-md-1">
+
+            @include('objects.partials.gallery')
+
             @if ($object->infoparts->count() > 0)
                 <div class="card-group-control card-group-control-right row-sortable" data-url="{{ route('objects.reorder') }}">
                     @each('objects.partials.infopart', $object->getInfoParts(), 'infopart')
@@ -38,7 +41,6 @@
         <div class="sidebar sidebar-light bg-transparent sidebar-component sidebar-component-right border-0 shadow-0 wmin-sm-300 order-1 order-md-2 sidebar-expand-lg d-block">
             <div class="sidebar-content">
                 @include('objects.partials.persons')
-                @include('objects.partials.gallery')
 
                 @if (!empty($object->address))
                     @include('objects.partials.map')
@@ -55,6 +57,13 @@
     <link href="{{ asset('css/partials/fileuploader.css') }}" rel="stylesheet">
     <style>
         p { margin-bottom: 0; }
+        .fileuploader-theme-thumbnails .fileuploader-items-list .fileuploader-item {
+            padding-top: 19%;
+        }
+        .fileuploader {
+            margin: 0;
+        }
+
     </style>
 @endpush
 
