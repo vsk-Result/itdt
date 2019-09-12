@@ -9,7 +9,7 @@
             </div>
         </div>
     </div>
-    
+
     <div id="infopartgallery" class="collapse">
         <div class="card-body">
             @foreach($object->images as $image)

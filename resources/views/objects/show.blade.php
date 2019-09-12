@@ -14,6 +14,8 @@
 @endsection
 
 @section('content')
+    @include('objects.modals.map')
+
     <div class="text-center mb-3 py-2">
         <a href="{{ route('objects.word', $object->id) }}">
             <h4 class="font-weight-semibold mb-1">{{ $object->getFullName() }}</h4>
