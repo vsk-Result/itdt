@@ -21,10 +21,14 @@ function init(){
 
             smallMap = new ymaps.Map('mini', {
                 center: coord,
-                zoom: 7,
-                behaviors: ['default', 'scrollZoom'],
-                controls: ['mapTools']
+                zoom: 7
             });
+
+            smallMap.controls
+                .add('typeSelector')
+                .add('smallZoomControl', { right: 5, top: 75 }) ;
+            smallMap.behaviors.disable('drag');
+
             bigMap = new ymaps.Map('map', {
                 center: coord,
                 zoom: 7,
