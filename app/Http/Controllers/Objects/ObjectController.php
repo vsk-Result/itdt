@@ -25,7 +25,7 @@ class ObjectController extends Controller
 
     public function index()
     {
-        $objects = CObject::orderBy('code')->get();
+        $objects = CObject::orderBy('is_active', 'DESC')->orderBy('code')->get();
         return view('objects.index', compact('objects'));
     }
 
