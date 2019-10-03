@@ -3,6 +3,7 @@
         <span class="card-title font-weight-bold">Адрес на карте</span>
     </div>
     <div class="card-body p-0">
-        <div id="mini" style="width: 100%; height: 250px"></div>
+        <div><div id="mini" style="width: 100%; height: 250px"></div></div>
+
     </div>
 </div>

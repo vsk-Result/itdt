@@ -152,3 +152,18 @@ body {
 .select2-selection--single {
     min-height: 36px !important;
 }
+.blockOverlay {
+    z-index: 0;
+    border: none;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: rgb(255, 255, 255);
+    opacity: 0.6;
+    cursor: default;
+    box-shadow: rgb(221, 221, 221) 0px 0px 0px 1px;
+    position: absolute;
+}

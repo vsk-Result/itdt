@@ -6,7 +6,7 @@
 @section('header-elements')
     <div class="header-elements d-none">
         <div class="d-flex justify-content-center">
-            <a id="edit-object" href="#" title="Добавить объект" class="btn btn-sm bg-primary-400 btn-icon rounded-round">
+            <a id="edit-object" href="#" title="Сохранить" class="btn btn-sm bg-primary-400 btn-icon rounded-round">
                 <i class="icon-checkmark2"></i>
             </a>
         </div>
@@ -37,6 +37,13 @@
                                     <div class="col-md-12">
 
                                         <h3 class="font-weight-semibold">Основная информация</h3>
+
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input name="is_active" type="checkbox" class="form-check-input" {{ $object->isActive() ? 'checked' : '' }}>
+                                                Активен
+                                            </label>
+                                        </div>
 
                                         <div class="form-group">
                                             <label>Код</label>

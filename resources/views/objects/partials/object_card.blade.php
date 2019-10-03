@@ -7,9 +7,13 @@
         </div>
 
         <div class="card-body">
-            <h5 class="card-title"><a href="{{ route('objects.show', [$object->id]) }}">{{ $object->getFullName() }}</a></h5>
+            <h5 class="card-title" style="z-index: 1;"><a href="{{ route('objects.show', [$object->id]) }}">{{ $object->getFullName() }}</a></h5>
             <p class="card-text">{{ $object->address }}</p>
         </div>
+
+        @if (!$object->isActive())
+            <div class="blockUI blockOverlay"></div>
+        @endif
 
         <div class="card-footer" style="min-height: 50px;">
             <div>

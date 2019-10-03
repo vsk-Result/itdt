@@ -10,7 +10,7 @@ class CObject extends Model
 
     protected $table = 'objects';
 
-    protected $fillable = ['code', 'name', 'address', 'image'];
+    protected $fillable = ['code', 'name', 'address', 'image', 'is_active'];
 
     public function images()
     {
@@ -101,5 +101,10 @@ class CObject extends Model
     public function getInfoParts()
     {
         return $this->infoparts()->orderBy('order')->get();
+    }
+
+    public function isActive()
+    {
+        return $this->is_active;
     }
 }

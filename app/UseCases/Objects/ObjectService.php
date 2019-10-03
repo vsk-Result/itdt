@@ -49,6 +49,7 @@ class ObjectService
             'code' => $request->code,
             'name' => $request->name,
             'address' => $request->address,
+            'is_active' => isset($request->is_active),
         ]);
 
         $this->updateImage($object->id, $request->file('image'));
