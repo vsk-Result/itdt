@@ -15,27 +15,33 @@
             <div class="blockUI blockOverlay"></div>
         @endif
 
-        <div class="card-footer" style="min-height: 50px;">
-            <div>
-                @if ($object->tasks()->active()->count() > 0)
-                    <div style="background: #fff;padding: 1px 25px 1px 1px;border: 1px solid #bebfbf;border-radius: 45px;position: relative;">
-                        <div class="progress rounded-round">
-                            <div class="progress-bar bg-primary-400" style="width: {{ $object->getTasksPercentage() }}%">
-                                <span title="Задачи">{{ $object->getTasksPercentage() }}%</span>
-                            </div>
+        <div class="card-footer" style="min-height: 50px; z-index: 1">
+            @if (!$object->isActive())
+                <div class="text-center text-danger font-weight-bold">
+                    <p>ОБЪЕКТ ЗАКРЫТ!</p>
+                </div>
+            @else
+                <div>
+                    @if ($object->tasks()->active()->count() > 0)
+                        <div style="background: #fff;padding: 1px 25px 1px 1px;border: 1px solid #bebfbf;border-radius: 45px;position: relative;">
+                            <div class="progress rounded-round">
+                                <div class="progress-bar bg-primary-400" style="width: {{ $object->getTasksPercentage() }}%">
+                                    <span title="Задачи">{{ $object->getTasksPercentage() }}%</span>
+                                </div>
 
-                            <div class="progress-bar bg-warning" style="width: {{ $object->getPurchasesPercentage() }}%">
-                                <span title="Закупка">{{ $object->getPurchasesPercentage() }}%</span>
-                            </div>
+                                <div class="progress-bar bg-warning" style="width: {{ $object->getPurchasesPercentage() }}%">
+                                    <span title="Закупка">{{ $object->getPurchasesPercentage() }}%</span>
+                                </div>
 
-                            <div class="progress-bar bg-success" style="width: {{ $object->getEvolutionsPercentage() }}%">
-                                <span title="Развитие">{{ $object->getEvolutionsPercentage() }}%</span>
+                                <div class="progress-bar bg-success" style="width: {{ $object->getEvolutionsPercentage() }}%">
+                                    <span title="Развитие">{{ $object->getEvolutionsPercentage() }}%</span>
+                                </div>
                             </div>
+                            <div title="Завершенные" style="position: absolute; top: 2px; right: 8px; font-size: .7rem;">{{ $object->getSolvedTasksCount() }}</div>
                         </div>
-                        <div title="Завершенные" style="position: absolute; top: 2px; right: 8px; font-size: .7rem;">{{ $object->getSolvedTasksCount() }}</div>
-                    </div>
-                @endif
-            </div>
+                    @endif
+                </div>
+            @endif
         </div>
     </div>
 </div>
