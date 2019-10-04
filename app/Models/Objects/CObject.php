@@ -69,7 +69,7 @@ class CObject extends Model
     public static function getList()
     {
         $lists = [null => ''];
-        foreach (self::orderBy('code')->get() as $object) {
+        foreach (self::active()->orderBy('code')->get() as $object) {
             $lists[$object->id] = $object->getFullName();
         }
         return $lists;
@@ -106,5 +106,10 @@ class CObject extends Model
     public function isActive()
     {
         return $this->is_active;
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
     }
 }
