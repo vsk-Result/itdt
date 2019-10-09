@@ -721,6 +721,7 @@ function setTaskGeneralEditMode(value) {
         }
     }).done(function (data) {
         $('#task-general-info').html(data.task_render);
+        $('#task-general-info a').attr('target', '_blank');
     });
 }
 

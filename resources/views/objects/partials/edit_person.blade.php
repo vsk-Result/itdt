@@ -2,6 +2,14 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
+                <div class="form-check">
+                    <label class="form-check-label text-danger-800">
+                        <input type="checkbox" class="form-check-input" value="{{ $person->id }}" name="person_delete[]">
+                        Удалить
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
                 {{ Form::text('fullname[]', $person->fullname, ['class' => 'form-control', 'placeholder' => 'ФИО']) }}
             </div>
             <div class="form-group">

@@ -60,16 +60,11 @@
                                             {{ Form::text('address', $object->address, ['class' => 'form-control']) }}
                                         </div>
 
-                                        @if ($object->image)
+                                        <div class="form-group">
                                             <label>Изменить главное изображение</label>
-                                            <p><a href=""><img class="card-img img-fluid" src="{{ $object->getImageUrl() }}" alt=""></a></p>
-                                            <a href="#" class="btn btn-sm bg-danger-400">Удалить</a>
-                                        @else
-                                            <div class="form-group">
-                                                <label>Изменить главное изображение</label>
-                                                <input type="file" name="image" class="form-control fileuplouder-single">
-                                            </div>
-                                        @endif
+                                            <p><a target="_blank" href="{{ $object->getImageUrl() }}"><img class="card-img img-fluid" src="{{ $object->getImageUrl() }}" alt=""></a></p>
+                                            <input type="file" name="image" class="form-control fileuplouder-single">
+                                        </div>
 
                                         <hr>
                                         <h3 class="font-weight-semibold">Блоки информации</h3>
@@ -128,6 +123,12 @@
     <style>
         .card-img {
             width: 140px;
+        }
+        .fileuploader-items .fileuploader-item .fileuploader-action.fileuploader-action-remove i {
+            font-family: icomoon !important;
+        }
+        .fileuploader-items .fileuploader-item .fileuploader-action.fileuploader-action-remove i:before {
+            content: "\ed6b";
         }
     </style>
 @endpush

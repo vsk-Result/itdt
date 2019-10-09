@@ -108,10 +108,7 @@
                 }
             });
 
-            $('.select-icon').select2({
-                templateResult: setIcon,
-                templateSelection: setIcon
-            });
+            $('.collapse .card-body a').attr('target', '_blank');
         });
 
         $('.card-header').on('click', function (event) {

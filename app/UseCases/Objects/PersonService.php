@@ -74,6 +74,11 @@ class PersonService
         return $person;
     }
 
+    public function destroy($ids)
+    {
+        Person::whereIn('id', $ids)->delete();
+    }
+
     public function getPerson($id): Person
     {
         return Person::findOrFail($id);

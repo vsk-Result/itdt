@@ -148,6 +148,10 @@ class ObjectService
             }
         }
 
+        if (isset($request->person_delete)) {
+            $this->personService->destroy($request->person_delete);
+        }
+
         return $object;
     }
 

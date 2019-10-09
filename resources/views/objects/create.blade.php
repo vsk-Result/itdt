@@ -95,6 +95,14 @@
     <link href="{{ asset('vendors/fileuploader/src/jquery.fileuploader.css') }}" rel="stylesheet">
     <link href="{{ asset('vendors/fileuploader/src/css/jquery.fileuploader-theme-onebutton.css') }}" rel="stylesheet">
     <link href="{{ asset('vendors/summernote/summernote.css') }}" rel="stylesheet">
+    <style>
+        .fileuploader-items .fileuploader-item .fileuploader-action.fileuploader-action-remove i {
+            font-family: icomoon !important;
+        }
+        .fileuploader-items .fileuploader-item .fileuploader-action.fileuploader-action-remove i:before {
+            content: "\ed6b";
+        }
+    </style>
 @endpush
 
 @push('scripts')
