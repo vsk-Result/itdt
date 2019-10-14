@@ -30,9 +30,10 @@ class ConsumableController extends Controller
 
         $colors = Color::pluck('name', 'id');
         $objects = CObject::getList();
+        $objectsFull = CObject::getList(true);
         $printer_models_list = PModel::pluck('name', 'id');
         $printer_models = PModel::with('consumables', 'consumables.color', 'consumables.stocks', 'consumables.stocks.object')->orderBy('name')->get();
-        return view('inventory.consumables.index', compact('printer_models', 'printer_models_list', 'colors', 'objects'));
+        return view('inventory.consumables.index', compact('printer_models', 'printer_models_list', 'colors', 'objects', 'objectsFull'));
     }
 
     public function store(Request $request)

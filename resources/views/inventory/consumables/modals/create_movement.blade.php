@@ -10,7 +10,7 @@
                 {{ Form::open(['url' => route('inventory.consumables.movements.store', $consumable), 'method' => 'POST']) }}
                     <div class="form-group sender-select">
                         <label>Пункт отправки</label>
-                        {{ Form::select('sender_id', $objects, null, ['class' => 'form-control select']) }}
+                        {{ Form::select('sender_id', $objectsFull, null, ['class' => 'form-control select']) }}
                     </div>
                     <div class="form-group">
                         <div class="form-check">

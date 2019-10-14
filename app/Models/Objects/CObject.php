@@ -66,10 +66,12 @@ class CObject extends Model
         return self::getDestinationPath() . 'thumbs/' . $this->getFilename();
     }
 
-    public static function getList()
+    public static function getList($withActive = false)
     {
         $lists = [null => ''];
-        foreach (self::active()->orderBy('code')->get() as $object) {
+        $objectQuery = $withActive ? self::query() : self::query()->active();
+
+        foreach ($objectQuery->orderBy('code')->get() as $object) {
             $lists[$object->id] = $object->getFullName();
         }
         return $lists;
