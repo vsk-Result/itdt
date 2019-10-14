@@ -25,7 +25,7 @@ class Replacement extends Model
 
     public function printer()
     {
-        return $this->belongsTo(Printer::class, 'printer_id', 'id');
+        return $this->belongsTo(Printer::class, 'printer_id', 'id')->withTrashed();
     }
 
     public function object()
