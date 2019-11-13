@@ -6,34 +6,62 @@
     {{--</div>--}}
 
     <div class="d-md-none p-2">
-        <a href="{{ route('home') }}" class="navbar-toggler"><i class="icon-city mr-2"></i></a>
-        <a href="{{ route('tasks.index') }}" class="navbar-toggler"><i class="icon-task mr-2"></i></a>
-        <a href="{{ route('inventory.index') }}" class="navbar-toggler"><i class="icon-printer mr-2"></i></a>
-        <a href="{{ route('knowledge.index') }}" class="navbar-toggler"><i class="icon-brain mr-2"></i></a>
-        <a href="{{ route('keys.index') }}" class="navbar-toggler"><i class="icon-key mr-2"></i></a>
-        <a href="#" class="navbar-toggler"><i class="icon-quill4 mr-2"></i></a>
+        @if (Auth::user()->hasPermission('objects'))
+            <a href="{{ route('objects.index') }}" class="navbar-toggler"><i class="icon-city mr-2"></i></a>
+        @endif
+        @if (Auth::user()->hasPermission('task_manager'))
+            <a href="{{ route('tasks.index') }}" class="navbar-toggler"><i class="icon-task mr-2"></i></a>
+        @endif
+        @if (Auth::user()->hasPermission('consumables'))
+            <a href="{{ route('inventory.index') }}" class="navbar-toggler"><i class="icon-printer mr-2"></i></a>
+        @endif
+        @if (Auth::user()->hasPermission('knowledge'))
+            <a href="{{ route('knowledge.index') }}" class="navbar-toggler"><i class="icon-brain mr-2"></i></a>
+        @endif
+        @if (Auth::user()->hasPermission('keys'))
+            <a href="{{ route('keys.index') }}" class="navbar-toggler"><i class="icon-key mr-2"></i></a>
+        @endif
+        <a href="#" class="navbar-toggler" data-toggle="modal" data-target="#createSign"><i class="icon-quill4 mr-2"></i></a>
+        @if (Auth::user()->hasPermission('users'))
+            <a href="{{ route('users.index') }}" class="navbar-toggler"><i class="icon-users mr-2"></i></a>
+        @endif
     </div>
 
     <div class="collapse navbar-collapse" id="navbar-mobile" style="margin-left: -2.3rem;">
         <ul class="navbar-nav">
-            <li class="nav-item">
-                <a href="{{ route('home') }}" class="navbar-nav-link"><i class="icon-city mr-2"></i><span>Объекты</span></a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('tasks.index') }}" class="navbar-nav-link"><i class="icon-task mr-2"></i><span>Менеджер задач</span></a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('inventory.index') }}" class="navbar-nav-link"><i class="icon-printer mr-2"></i><span>Расходные материалы</span></a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('knowledge.index') }}" class="navbar-nav-link"><i class="icon-brain mr-2"></i><span>База знаний</span></a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('keys.index') }}" class="navbar-nav-link"><i class="icon-key mr-2"></i><span>Лицензии</span></a>
-            </li>
+            @if (Auth::user()->hasPermission('objects'))
+                <li class="nav-item">
+                    <a href="{{ route('objects.index') }}" class="navbar-nav-link"><i class="icon-city mr-2"></i><span>Объекты</span></a>
+                </li>
+            @endif
+            @if (Auth::user()->hasPermission('task_manager'))
+                <li class="nav-item">
+                    <a href="{{ route('tasks.index') }}" class="navbar-nav-link"><i class="icon-task mr-2"></i><span>Менеджер задач</span></a>
+                </li>
+            @endif
+            @if (Auth::user()->hasPermission('consumables'))
+                <li class="nav-item">
+                    <a href="{{ route('inventory.index') }}" class="navbar-nav-link"><i class="icon-printer mr-2"></i><span>Расходные материалы</span></a>
+                </li>
+            @endif
+            @if (Auth::user()->hasPermission('knowledge'))
+                <li class="nav-item">
+                    <a href="{{ route('knowledge.index') }}" class="navbar-nav-link"><i class="icon-brain mr-2"></i><span>База знаний</span></a>
+                </li>
+            @endif
+            @if (Auth::user()->hasPermission('keys'))
+                <li class="nav-item">
+                    <a href="{{ route('keys.index') }}" class="navbar-nav-link"><i class="icon-key mr-2"></i><span>Лицензии</span></a>
+                </li>
+            @endif
             <li class="nav-item">
                 <a href="#" class="navbar-nav-link" data-toggle="modal" data-target="#createSign"><i class="icon-quill4 mr-2"></i><span>Подписи</span></a>
             </li>
+            @if (Auth::user()->hasPermission('users'))
+                <li class="nav-item">
+                    <a href="{{ route('users.index') }}" class="navbar-nav-link"><i class="icon-users mr-2"></i><span>Пользователи</span></a>
+                </li>
+            @endif
         </ul>
 
         <ul class="navbar-nav ml-auto">

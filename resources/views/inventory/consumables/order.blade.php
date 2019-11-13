@@ -21,6 +21,21 @@
                 </button>
 
                 <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Объект</label>
+                            {{ Form::select('object_id', $objects, null, ['class' => 'form-control']) }}
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Ответственное лицо</label>
+                            {{ Form::text('responsible', null, ['class' => 'form-control']) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
 
                     @foreach($printer_models as $model)
 

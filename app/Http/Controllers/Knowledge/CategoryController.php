@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:knowledge');
+    }
+
     public function store(Request $request)
     {
         $category = new Category();

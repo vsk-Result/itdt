@@ -16,6 +16,11 @@ use Carbon\Carbon;
 
 class TaskController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:task_manager');
+    }
+
     public function index()
     {
         $types = Type::all();

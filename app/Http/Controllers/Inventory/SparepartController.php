@@ -13,6 +13,7 @@ class SparepartController extends Controller
 
     public function __construct(SparepartService $service)
     {
+        $this->middleware('permission:consumables');
         $this->service = $service;
     }
 

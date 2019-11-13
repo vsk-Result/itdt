@@ -17,6 +17,7 @@ class ConsumableController extends Controller
 
     public function __construct(ConsumableService $service)
     {
+        $this->middleware('permission:consumables');
         $this->service = $service;
     }
 

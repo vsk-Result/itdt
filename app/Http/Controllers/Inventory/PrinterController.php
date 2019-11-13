@@ -13,6 +13,7 @@ class PrinterController extends Controller
 
     public function __construct(PrinterService $service)
     {
+        $this->middleware('permission:consumables');
         $this->service = $service;
     }
 

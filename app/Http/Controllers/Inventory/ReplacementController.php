@@ -19,6 +19,7 @@ class ReplacementController extends Controller
 
     public function __construct(ReplacementService $service, StockService $stockService)
     {
+        $this->middleware('permission:consumables');
         $this->service = $service;
         $this->stockService = $stockService;
     }

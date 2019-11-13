@@ -3,7 +3,7 @@
 Route::group(['prefix' => 'objects', 'namespace' => 'Objects'], function () {
 
     // Объекты
-    Route::get('/', 'ObjectController@index')->name('home');
+    Route::get('/', 'ObjectController@index')->name('objects.index');
     Route::get('/create', 'ObjectController@create')->name('objects.create');
     Route::post('/create', 'ObjectController@store')->name('objects.store');
     Route::get('/{id}/edit', 'ObjectController@edit')->name('objects.edit');

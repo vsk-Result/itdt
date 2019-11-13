@@ -1,5 +1,5 @@
 .layout-boxed-bg {
-    background: url(http://demo.interface.club/limitless/demo/bs4/Template/global_assets/images/backgrounds/boxed_bg.png) repeat;
+    background: url(http://demo.interface.club/limitless/demo/Template/global_assets/images/backgrounds/boxed_bg.png) repeat;
 }
 .table-lg td, .table-lg th {
     padding: .5rem 1.25rem;
@@ -166,4 +166,11 @@ body {
     cursor: default;
     box-shadow: rgb(221, 221, 221) 0px 0px 0px 1px;
     position: absolute;
+}
+
+.navbar-nav-link {
+    padding: .875rem .8rem;
+}
+.navbar-toggler+.navbar-toggler {
+    margin-left: 1rem;
 }

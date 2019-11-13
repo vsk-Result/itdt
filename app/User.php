@@ -10,21 +10,26 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'name', 'email', 'password',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class, 'user_permission', 'user_id', 'permission_id');
+    }
+
+    public function hasPermission($permissionSlug)
+    {
+        foreach ($this->permissions as $permission) {
+            if ($permissionSlug == $permission->slug) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -66,9 +66,9 @@ class CObject extends Model
         return self::getDestinationPath() . 'thumbs/' . $this->getFilename();
     }
 
-    public static function getList($withActive = false)
+    public static function getList($withActive = false, $withoutFirstItem = false)
     {
-        $lists = [null => ''];
+        $lists = $withoutFirstItem ? [] : [null => ''];
         $objectQuery = $withActive ? self::query() : self::query()->active();
 
         foreach ($objectQuery->orderBy('code')->get() as $object) {

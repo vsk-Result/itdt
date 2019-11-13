@@ -8,6 +8,7 @@ class InventoryController extends Controller
 {
     public function index()
     {
+        $this->middleware('permission:consumables');
         return redirect()->route('inventory.consumables.index');
     }
 }

@@ -17,6 +17,7 @@ class MovementController extends Controller
 
     public function __construct(MovementService $service, StockService $stockService)
     {
+        $this->middleware('permission:consumables');
         $this->service = $service;
         $this->stockService = $stockService;
     }

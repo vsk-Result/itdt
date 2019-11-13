@@ -13,6 +13,7 @@ class ArticleController extends Controller
 
     public function __construct(ArticleService $service)
     {
+        $this->middleware('permission:knowledge');
         $this->service = $service;
     }
 

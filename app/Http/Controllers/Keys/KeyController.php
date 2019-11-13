@@ -13,6 +13,7 @@ class KeyController extends Controller
 
     public function __construct(KeyService $service)
     {
+        $this->middleware('permission:keys');
         $this->service = $service;
     }
 

@@ -12,6 +12,11 @@ use Carbon\Carbon;
 
 class SubTaskController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:task_manager');
+    }
+
     public function store($id)
     {
         $subtask = new Subtask();

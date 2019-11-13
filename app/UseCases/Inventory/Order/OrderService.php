@@ -17,6 +17,8 @@ class OrderService
         return DB::transaction(function () use ($request, $user) {
 
             $order = new Order();
+            $order->object_id = $request->object_id;
+            $order->responsible = $request->responsible;
             $order->user()->associate($user);
             $order->saveOrFail();
 

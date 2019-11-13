@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 
 class KnowledgeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:knowledge');
+    }
+
     public function index(Request $request)
     {
         $icons = Icon::all();
