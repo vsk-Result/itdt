@@ -4,7 +4,9 @@
 @section('page-title', 'Заказ расходных материалов')
 
 @section('second_navbar')
-    @include('inventory.partials._nav')
+    @auth
+        @include('inventory.partials._nav')
+    @endauth
 @endsection
 
 @section('content')
