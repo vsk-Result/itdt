@@ -31,6 +31,7 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
+
         try {
             $order = $this->service->create(
                 Auth::id(),

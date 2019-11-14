@@ -15,7 +15,7 @@ class CreateConsumableOrdersTable extends Migration
     {
         Schema::create('consumable_orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->references('id')->on('users');
+            $table->integer('user_id')->nullable()->references('id')->on('users');
             $table->timestamps();
         });
 

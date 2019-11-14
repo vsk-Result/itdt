@@ -12,14 +12,16 @@ class OrderService
 {
     public function create($userId, Request $request): Order
     {
-        $user = User::findOrFail($userId);
+        $user = User::find($userId);
 
         return DB::transaction(function () use ($request, $user) {
 
             $order = new Order();
             $order->object_id = $request->object_id;
             $order->responsible = $request->responsible;
-            $order->user()->associate($user);
+            if (!is_null($user)) {
+                $order->user()->associate($user);
+            }
             $order->saveOrFail();
 
             foreach ($request['counts'] as $index => $count) {

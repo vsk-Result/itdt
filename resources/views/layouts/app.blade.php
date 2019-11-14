@@ -34,7 +34,9 @@
         <div class="d-flex flex-column flex-1 layout-boxed">
 
             <!-- Main navbar -->
-            @include('navbars.main')
+            @auth
+                @include('navbars.main')
+            @endauth
 
             <!-- Page content -->
             <div class="page-content">

@@ -16,6 +16,9 @@ class Permission
      */
     public function handle($request, Closure $next, $permissionSlug)
     {
+        if (app('auth')->guest()) {
+            return $next($request);
+        }
         if (! app('auth')->user()->hasPermission($permissionSlug)) {
             abort(403);
         }

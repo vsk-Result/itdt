@@ -52,7 +52,7 @@ class ExportService
                 $sheet->setCellValue('B' . ($row + 3), 'Дата заказа');
                 $sheet->setCellValue('B' . ($row + 4), 'Объект');
                 $sheet->setCellValue('B' . ($row + 5), 'Ответственное лицо');
-                $sheet->setCellValue('C' . ($row + 2), $order->user->name);
+                $sheet->setCellValue('C' . ($row + 2), $order->user ? $order->user->name : '-');
                 $sheet->setCellValue('C' . ($row + 3), $order->created_at->format('d.m.y H:i'));
                 $sheet->setCellValue('C' . ($row + 4), $order->object->getFullName());
                 $sheet->setCellValue('C' . ($row + 5), $order->responsible);
