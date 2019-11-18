@@ -19,6 +19,7 @@ class ConsumableController extends Controller
     {
         $this->middleware('permission:consumables');
         $this->service = $service;
+        
     }
 
     public function index(Request $request)
