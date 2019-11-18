@@ -9,4 +9,6 @@ Breadcrumbs::for('home', function ($trail) {
 Breadcrumbs::for('tasks', function ($trail) {
     $trail->push('Главная', route('home'));
     $trail->push('Менеджер задач');
+
+    
 });
