@@ -15,6 +15,7 @@ class EditConsumableMovementsTable extends Migration
     {
         Schema::table('consumable_movements', function (Blueprint $table) {
             $table->boolean('is_arrival')->default(false);
+            $table->boolean('is_write_off')->default(false);
         });
     }
 
@@ -27,6 +28,7 @@ class EditConsumableMovementsTable extends Migration
     {
         Schema::table('consumable_movements', function (Blueprint $table) {
             $table->dropColumn('is_arrival');
+            $table->dropColumn('is_write_off');
         });
     }
 }
