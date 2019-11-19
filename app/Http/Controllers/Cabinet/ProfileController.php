@@ -10,6 +10,7 @@ class ProfileController extends Controller
     public function index()
     {
         $user = Auth::user();
+        
         return view('cabinet.profile.home', compact('user'));
     }
 }
