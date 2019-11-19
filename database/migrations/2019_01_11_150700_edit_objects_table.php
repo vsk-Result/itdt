@@ -20,6 +20,7 @@ class EditObjectsTable extends Migration
         Schema::table('objects', function (Blueprint $table) {
             $table->dropColumn('image_id');
             $table->string('image')->nullable();
+            $table->boolean('is_active')->default(true);
         });
     }
 
@@ -32,6 +33,7 @@ class EditObjectsTable extends Migration
     {
         Schema::table('objects', function (Blueprint $table) {
             $table->dropColumn('image');
+            $table->dropColumn('is_active');
             $table->integer('image_id')->unsigned()->nullable();
         });
 
