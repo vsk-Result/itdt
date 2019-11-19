@@ -20,7 +20,6 @@ class ObjectController extends Controller
     public function __construct(ObjectService $service, Uploader $uploader)
     {
         $this->middleware('permission:objects');
-        
         $this->service = $service;
         $this->uploader = $uploader;
     }
