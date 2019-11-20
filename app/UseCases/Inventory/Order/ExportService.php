@@ -24,6 +24,8 @@ class ExportService
                     ]);
                 });
 
+
+
                 $sheet->setCellValue('A1', '#');
                 $sheet->setCellValue('B1', 'Модель расходника');
                 $sheet->setCellValue('C1', 'Цвет');
