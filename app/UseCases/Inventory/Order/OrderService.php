@@ -24,7 +24,7 @@ class OrderService
             }
             $order->saveOrFail();
 
-            foreach ($request['counts'] as $index => $count) {
+            //foreach ($request['counts'] as $index => $count) {
                 if (is_null($count)) continue;
 
                 $item = Item::make([
