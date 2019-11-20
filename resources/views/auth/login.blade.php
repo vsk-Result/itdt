@@ -6,8 +6,6 @@
     <!-- Login form -->
     <form class="login-form" method="POST" action="{{ route('login') }}">
         @csrf
-
-
         <div class="card mb-0">
             <div class="card-body">
                 <div class="text-center mb-3">
