@@ -73,4 +73,15 @@ class Key extends Model
     {
         return $query->where('is_renewal_use', false);
     }
+
+    public static function getActiveList()
+    {
+        $list = [];
+        $keys = self::active()->with('usages')->get();
+        foreach ($keys as $key) {
+            $list[$key->id] = '#' . $key->id . ' ' . $key->login;
+        }
+
+        return $list;
+    }
 }

@@ -19,13 +19,13 @@ class KeyController extends Controller
 
     public function index()
     {
-        $renewalList = [null => 'Использован', 999999 => 'Новый'] + Key::active()->with('usages')->orderByDesc('expire_date')->pluck('login', 'id')->toArray();
+        $renewalList = [null => 'Использован', 999999 => 'Новый'] + Key::getActiveList();
         return view('keys.index', compact('keys', 'renewalList'));
     }
 
     public function show(Request $request)
     {
-        $keys = $request->is_active == 'true' ? Key::active()->get() : Key::all();
+        $keys = $request->is_active == 'true' ? Key::active()->with('usages', 'renewal')->get() : Key::with('usages', 'renewal')->get();
         $view_render = view('keys.partials.table', compact('keys'))->render();
         return response()->json(compact('view_render'));
     }
