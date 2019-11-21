@@ -43,6 +43,7 @@ class CreateKeyCollectionTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('key_collection_usage');
         Schema::dropIfExists('key_collection');
     }
 }
