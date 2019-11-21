@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\Objects\CObject;
+
 class ObjectSeeder extends Seeder
 {
     /**
@@ -17,6 +18,5 @@ class ObjectSeeder extends Seeder
                 $object->persons()->save(factory(App\Models\Objects\Person::class)->make());
             }
         });
-
     }
 }
