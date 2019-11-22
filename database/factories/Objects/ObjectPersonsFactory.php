@@ -1,8 +1,9 @@
 <?php
 
 use Faker\Generator as Faker;
+use App\Models\Objects\Person;
 
-$factory->define(App\Models\Objects\Person::class, function (Faker $faker) {
+$factory->define(Person::class, function (Faker $faker) {
     return [
         'fullname' => $faker->numberBetween($min = 27, $max = 330),
         'appointment' => $faker->name,
