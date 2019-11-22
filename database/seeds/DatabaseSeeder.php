@@ -13,6 +13,8 @@ class DatabaseSeeder extends Seeder
     {
          $this->call(PermissionSeeder::class);
          $this->call(UserCreateSeeder::class);
+         $this->call(IconSeeder::class);
          $this->call(ObjectSeeder::class);
+         $this->call(TaskManagerSeeder::class);
     }
 }

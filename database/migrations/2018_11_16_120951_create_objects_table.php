@@ -55,6 +55,7 @@ class CreateObjectsTable extends Migration
         Schema::create('object_infoparts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('object_id')->unsigned();
+            $table->integer('icon_id')->unsigned()->nullable();
             $table->string('title');
             $table->text('body');
             $table->integer('order')->unsigned();
