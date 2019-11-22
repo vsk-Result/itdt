@@ -23,7 +23,11 @@ class TaskManagerSeeder extends Seeder
             ['name'=>'Решена'],
         ];
 
-        Status::insert($statuses);
+        $typies = [
+            ['name' => 'Закупка', 'color' => 'text-warning', 'icon' => 'icon-cart'],
+            ['name' => 'Развитие', 'color' => 'text-success', 'icon' => 'icon-stats-growth'],
+            ['name' => 'Задача', 'color' => '', 'icon' => ''],
+        ];
 
         $priorities = [
             ['name'=>'Высокий', 'class'=>'danger'],
@@ -31,14 +35,8 @@ class TaskManagerSeeder extends Seeder
             ['name'=>'Низкий', 'class'=>'success'],
         ];
 
+        Status::insert($statuses);
         Priority::insert($priorities);
-
-        $typies = [
-            ['name' => 'Закупка', 'color' => 'text-warning', 'icon' => 'icon-cart'],
-            ['name' => 'Развитие', 'color' => 'text-success', 'icon' => 'icon-stats-growth'],
-            ['name' => 'Задача', 'color' => '', 'icon' => ''],
-        ];
-
         Type::insert($typies);
 
         factory(Task::class, 5)->create()->each(function(Task $task) {
