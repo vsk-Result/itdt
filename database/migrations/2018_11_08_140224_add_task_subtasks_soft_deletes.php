@@ -14,7 +14,6 @@ class AddTaskSubtasksSoftDeletes extends Migration
     public function up()
     {
         Schema::table('task_subtasks', function (Blueprint $table) {
-            $table->dropColumn('is_deleted');
             $table->softDeletes();
         });
     }
