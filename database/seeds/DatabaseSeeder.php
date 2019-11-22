@@ -16,5 +16,7 @@ class DatabaseSeeder extends Seeder
          $this->call(IconSeeder::class);
          $this->call(ObjectSeeder::class);
          $this->call(TaskManagerSeeder::class);
+         $this->call(ColorSeeder::class);
+         $this->call(PrinterSeeder::class);
     }
 }
