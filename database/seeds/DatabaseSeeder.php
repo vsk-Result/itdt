@@ -18,5 +18,8 @@ class DatabaseSeeder extends Seeder
          $this->call(TaskManagerSeeder::class);
          $this->call(ColorSeeder::class);
          $this->call(PrinterSeeder::class);
+         $this->call(TagSeeder::class);
+         $this->call(CategorySeeder::class);
+         $this->call(KnowledgeSeeder::class);
     }
 }
