@@ -19,5 +19,6 @@ class DatabaseSeeder extends Seeder
          $this->call(ColorSeeder::class);
          $this->call(PrinterSeeder::class);
          $this->call(KnowledgeSeeder::class);
+         $this->call(KeySeeder::class);
     }
 }
