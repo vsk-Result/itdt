@@ -13,14 +13,6 @@ class CreateIconsTable extends Migration
      */
     public function up()
     {
-        Schema::table('knowledge_categories', function (Blueprint $table) {
-            $table->dropColumn('icon');
-        });
-
-        Schema::table('knowledge_articles', function (Blueprint $table) {
-            $table->dropColumn('icon');
-        });
-
         Schema::create('icons', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
