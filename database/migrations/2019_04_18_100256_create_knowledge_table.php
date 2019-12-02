@@ -16,7 +16,7 @@ class CreateKnowledgeTable extends Migration
         Schema::create('knowledge_categories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('icon')->nullable();
+            $table->string('icon_id')->nullable();
         });
 
         Schema::create('knowledge_articles', function (Blueprint $table) {
@@ -25,9 +25,11 @@ class CreateKnowledgeTable extends Migration
             $table->integer('category_id')->references('id')->on('knowledge_categories');
             $table->string('title');
             $table->text('content')->nullable();
-            $table->string('icon')->nullable();
+            $table->string('icon_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
+            $table->string('link')->nullable();
+            $table->boolean('link_access')->default(false);
         });
 
         Schema::create('knowledge_article_tag', function (Blueprint $table) {
