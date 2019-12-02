@@ -20,7 +20,7 @@ class KeyController extends Controller
     public function index()
     {
         $renewalList = [null => 'Использован', 999999 => 'Новый'] + Key::getActiveList();
-        return view('keys.index', compact('keys', 'renewalList'));
+        return view('keys.index', compact('renewalList'));
     }
 
     public function show(Request $request)
