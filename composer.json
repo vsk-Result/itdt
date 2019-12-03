@@ -13,8 +13,8 @@
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.4.0",
         "laravelrus/localized-carbon": "dev-master",
-        "maatwebsite/excel": "^3.1",
-        "phpoffice/phpword": "^0.16.0"
+        "phpoffice/phpword": "^0.16.0",
+        "maatwebsite/excel": "~2.1.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
