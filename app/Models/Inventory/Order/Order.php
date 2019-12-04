@@ -2,12 +2,17 @@
 
 namespace App\Models\Inventory\Order;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Objects\CObject;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
+
     protected $table = 'consumable_orders';
 
     protected $fillable = ['user_id', 'object_id', 'responsible'];

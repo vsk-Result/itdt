@@ -39,4 +39,10 @@ class OrderService
             return $order;
         });
     }
+
+    public function getPaginate($count)
+    {
+        return Order::paginate($count);
+    }
+
 }
