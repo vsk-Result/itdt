@@ -32,4 +32,13 @@ Route::group([
         Route::get('/', 'OrderController@index')->name('index');
         Route::post('/', 'OrderController@store')->name('store');
     });
+
+    Route::group([
+        'prefix' => 'orderhistory',
+        'as' => 'orderhistory.',
+    ], function() {
+    Route::get('/', 'OrderHistoryController@index')->name('index');
+    Route::get('/{order}', 'OrderHistoryController@destroy')->name('destroy');
+    Route::get('/export/{order}', 'OrderHistoryController@excel')->name('excel');
+    });
 });
