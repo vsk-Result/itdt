@@ -10,6 +10,15 @@ Route::group([
     Route::get('/', 'InventoryController@index')->name('index');
 
     Route::group([
+        'prefix' => 'orderhistory',
+        'as' => 'orderhistory.',
+    ], function() {
+    Route::get('/', 'OrderHistoryController@index')->name('index');
+    Route::get('/{order}', 'OrderHistoryController@destroy')->name('destroy');
+    Route::get('/export/{order}', 'OrderHistoryController@store')->name('store');
+    });
+
+    Route::group([
         'prefix' => 'printer_models',
         'as' => 'printer_models.',
     ], function () {
