@@ -5,16 +5,19 @@ namespace App\Http\Controllers\TaskManager;
 use App\Models\TaskManager\Priority;
 use App\Models\TaskManager\Status;
 use App\Models\TaskManager\Subtask;
-use App\Models\TaskManager\SubtaskComment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\UseCases\TaskManager\CommentService;
 use Carbon\Carbon;
 
 class SubTaskController extends Controller
 {
-    public function __construct()
+    private $commentservice;
+    
+    public function __construct(CommentService $commentservice)
     {
         $this->middleware('permission:task_manager');
+        $this->commentservice = $commentservice;
     }
 
     public function store($id)
@@ -51,39 +54,9 @@ class SubTaskController extends Controller
         return response()->json(['status' => 'success']);
     }
 
-    public function comments($id) {
-        $subtask = Subtask::findOrFail($id);
-        $comments_render = view('task-manager.subtasks.comments', compact('subtask'))->render();
-
-        return response()->json(compact('comments_render'));
-    }
-
-    public function destroyComment($id) {
-        $comment = SubtaskComment::findOrFail($id);
-        $subtask = $comment->subtask;
-        $comment->delete();
-        $comments_count = $subtask->comments->count();
-
-        return response()->json(compact('comments_count'));
-    }
-
-    public function sendMessage($id, Request $request) {
-        $subtask = Subtask::findOrFail($id);
-        $comment = $this->storeComment($id, $request->text);
-        $subtask->update();
-
-        $comments_count = $subtask->comments->count();
-        $comments_render = view('task-manager.subtasks.comments', compact('subtask'))->render();
-        return response()->json(compact('comments_render', 'comments_count'));
-    }
-
-    private function storeComment($subtask_id, $text)
+    public function storeComment($subtask_id, $text)
     {
-        $comment = new SubtaskComment();
-        $comment->subtask_id = $subtask_id;
-        $comment->user_id = auth()->id();
-        $comment->text = $text;
-        $comment->save();
+        $comment = $this->commentservice->storeComment($subtask_id, $text);
 
         return $comment;
     }

@@ -13,12 +13,16 @@ use App\Models\TaskManager\Type;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
+use App\UseCases\TaskManager\TaskService;
 
 class TaskController extends Controller
 {
-    public function __construct()
+    private $service;
+
+    public function __construct(TaskService $service)
     {
         $this->middleware('permission:task_manager');
+        $this->service = $service;
     }
 
     public function index()
@@ -86,7 +90,7 @@ class TaskController extends Controller
 
     public function show($id, Request $request)
     {
-        $task = Task::findOrFail($id);
+        $task = $this->service->find($id);
 
         if (!empty($request->name)) {
             $task->name = $request->name;
@@ -100,7 +104,7 @@ class TaskController extends Controller
 
     public function info($id)
     {
-        $task = Task::findOrFail($id);
+        $task = $this->service->find($id);
         $priorities = Priority::all();
         $statuses = Status::pluck('name', 'id');
         $objects = CObject::getList();
@@ -111,15 +115,7 @@ class TaskController extends Controller
 
     public function store()
     {
-        $task = new Task();
-        $task->user_id = auth()->id();
-        $task->priority_id = Priority::DEFAULT_ID;
-        $task->status_id = Status::DEFAULT_ID;
-        $task->type_id = Type::DEFAULT_ID;
-        $task->object_id = null;
-        $task->name = Task::getDefaultName();
-        $task->save();
-
+        $task = $this->service->store($id);
         $info_url = route('tasks.info', $task->id);
 
         return response()->json(compact('info_url'));
@@ -127,7 +123,7 @@ class TaskController extends Controller
 
     public function edit($id)
     {
-        $task = Task::findOrFail($id);
+        $task = $this->service->find($id);
         $task_render = view('task-manager.tasks.edit', compact('task'))->render();
         $description = $task->description;
         return response()->json(compact('task_render', 'description'));
@@ -135,7 +131,7 @@ class TaskController extends Controller
 
     public function update($id, Request $request)
     {
-        $task = Task::findOrFail($id);
+        $task = $this->service->find($id);
 
         if (isset($request->priority_id) || isset($request->status_id) || isset($request->type_id) || (isset($request->is_object))) {
             $task->priority_id = isset($request->priority_id) ? $request->priority_id : $task->priority_id;
@@ -172,7 +168,7 @@ class TaskController extends Controller
 
     public function attachFiles($id, Request $request)
     {
-        $task = Task::findOrFail($id);
+        $task = $this->service->find($id);
         $task_attachments = $request->file('task_attachments');
 
         if (is_array($task_attachments) && count($task_attachments) > 0 && $task_attachments[0] != null) {
@@ -204,7 +200,7 @@ class TaskController extends Controller
 
     public function getEdit($id)
     {
-        $task = Task::findOrFail($id);
+        $task = $this->service->find($id);
         $subtasks_render = view('task-manager.subtasks.edit', compact('task'))->render();
         return response()->json(compact('subtasks_render'));
     }
@@ -221,7 +217,7 @@ class TaskController extends Controller
             }
         }
 
-        $task = Task::findOrFail($id);
+        $task = $this->service->find($id);
         $subtasks_render = view('task-manager.subtasks.stock', compact('task'))->render();
         return response()->json(compact('subtasks_render'));
     }

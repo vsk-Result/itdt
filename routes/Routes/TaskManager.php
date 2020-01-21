@@ -19,8 +19,10 @@ Route::group(['prefix' => 'task-manager', 'namespace' => 'TaskManager'], functio
     Route::post('/{id}/subtasks', 'SubTaskController@store')->name('tasks.subtasks.store');
     Route::post('/subtasks/{id}/update', 'SubTaskController@update')->name('tasks.subtasks.update');
     Route::get('/subtasks/{id}/destroy', 'SubTaskController@destroy')->name('tasks.subtasks.destroy');
-    Route::get('/subtasks/{id}/comments', 'SubTaskController@comments')->name('tasks.subtasks.comments.index');
-    Route::post('/comments/{id}/destroy', 'SubTaskController@destroyComment')->name('tasks.subtasks.comments.destroy');
-    Route::get('/subtasks/{id}/send_message', 'SubTaskController@sendMessage')->name('tasks.subtasks.comments.send_message');
 
+    //Комментарии
+
+    Route::get('/subtasks/{id}/comments', 'CommentController@comments')->name('tasks.subtasks.comments.index');
+    Route::post('/comments/{id}/destroy', 'CommentController@destroyComment')->name('tasks.subtasks.comments.destroy');
+    Route::get('/subtasks/{id}/send_message', 'CommentController@sendMessage')->name('tasks.subtasks.comments.send_message');
 });
