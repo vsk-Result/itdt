@@ -13,6 +13,7 @@ class LoginController extends Controller
 {
     use AuthenticatesUsers;
 
+<<<<<<< refs/remotes/origin/master
     protected $redirectTo = '/';
 
     private const MATCH_NAMES = [
@@ -54,6 +55,20 @@ class LoginController extends Controller
         'Юля' => 'Юлия',
     ];
 
+=======
+    /**
+     * Where to redirect users after login.
+     *
+     * @var string
+     */
+    protected $redirectTo = '/';
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+>>>>>>> Привел роуты в порядок. Оформил правильно через сервис провайдер (#29)
     public function __construct()
     {
         $this->middleware('guest')->except('logout');

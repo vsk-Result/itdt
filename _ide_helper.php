@@ -3,7 +3,11 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
+<<<<<<< refs/remotes/origin/master
  * Generated for Laravel 5.7.28 on 2020-02-03 16:45:36.
+=======
+ * Generated for Laravel 5.7.28 on 2020-01-24 12:14:09.
+>>>>>>> Привел роуты в порядок. Оформил правильно через сервис провайдер (#29)
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -3332,32 +3336,8 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function flush()
         {
-                        /** @var \Illuminate\Cache\FileStore $instance */
+                        /** @var \Illuminate\Cache\ArrayStore $instance */
                         return $instance->flush();
-        }
-        
-        /**
-         * Get the Filesystem instance.
-         *
-         * @return \Illuminate\Filesystem\Filesystem 
-         * @static 
-         */ 
-        public static function getFilesystem()
-        {
-                        /** @var \Illuminate\Cache\FileStore $instance */
-                        return $instance->getFilesystem();
-        }
-        
-        /**
-         * Get the working directory of the cache.
-         *
-         * @return string 
-         * @static 
-         */ 
-        public static function getDirectory()
-        {
-                        /** @var \Illuminate\Cache\FileStore $instance */
-                        return $instance->getDirectory();
         }
         
         /**
@@ -3368,7 +3348,7 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function getPrefix()
         {
-                        /** @var \Illuminate\Cache\FileStore $instance */
+                        /** @var \Illuminate\Cache\ArrayStore $instance */
                         return $instance->getPrefix();
         }
          
