@@ -46,7 +46,11 @@
                 <!-- Other sidebars -->
                 @yield('other_sidebars')
 
+<<<<<<< refs/remotes/origin/master
                 @include('sidebars.search')
+=======
+                @include('sidebars.user')
+>>>>>>> писос
 
                 <!-- Main content -->
                 <div class="content-wrapper">

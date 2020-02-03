@@ -7,6 +7,10 @@ class EmployeeSeeder extends Seeder
 {
     public function run()
     {
+<<<<<<< refs/remotes/origin/master
         factory(Employee::class, 1)->create();
+=======
+        factory(Employee::class, 5)->create();
+>>>>>>> писос
     }
 }

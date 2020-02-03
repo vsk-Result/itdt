@@ -13,6 +13,7 @@ class Employee extends Model
 
     use SoftDeletes;
 
+<<<<<<< refs/remotes/origin/master
     const DEFAULT_FILENAME = 'employee_default.png';
 
     public function user()
@@ -20,11 +21,14 @@ class Employee extends Model
         return $this->hasOne(User::class, 'employee_id');
     }
 
+=======
+>>>>>>> писос
     public function post()
     {
         return $this->belongsTo(Post::class, 'post_id');
     }
 
+<<<<<<< refs/remotes/origin/master
     public function leader()
     {
         return $this->belongsTo(self::class, 'leader_id');
@@ -96,4 +100,11 @@ class Employee extends Model
     {
         return $this->user ? $this->user->isOnline() : false;
     }
+=======
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+>>>>>>> писос
 }
