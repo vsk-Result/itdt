@@ -14,7 +14,7 @@ class KeySeeder extends Seeder
     public function run()
     {
         factory(Key::class, 5)->create()->each(function ($key) {
-   $key->usages()->save(factory(Usage::class)->make());
+            $key->usages()->save(factory(Usage::class)->make());
         });
     }
 }
