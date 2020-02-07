@@ -1,8 +1,13 @@
 <?php
 
-Auth::routes();
+Auth::routes([
+    'reset' => false,
+    'verify' => false,
+    'register' => false,
+]);
 
 Route::middleware('auth')->group(function () {
     Route::get('/', 'HomeController@index')->name('/');
+    Route::redirect('/home', '/')->name('home');
     Route::post('/upload', 'UploadController@store')->name('upload');
 });

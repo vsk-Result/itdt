@@ -2,8 +2,7 @@
 
 @section('title', 'Главная')
 @section('page-title', 'Главная')
-@section('breadcrumbs', Breadcrumbs::render('home'))
 
 @section('content')
-
+    <p>Добро пожаловать на портал!</p>
 @endsection

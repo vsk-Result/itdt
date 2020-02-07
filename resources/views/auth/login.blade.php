@@ -15,12 +15,12 @@
                 </div>
 
                 <div class="form-group form-group-feedback form-group-feedback-left">
-                    <input type="email" class="form-control{{ $errors->has('email') ? ' border-danger' : '' }}" name="email" value="{{ old('email') }}" placeholder="Email" required autofocus>
+                    <input type="text" class="form-control{{ $errors->has('username') ? ' border-danger' : '' }}" name="username" value="{{ old('username') }}" placeholder="Имя пользователя" required autofocus>
                     <div class="form-control-feedback">
                         <i class="icon-mention text-muted"></i>
                     </div>
-                    @if ($errors->has('email'))
-                        <label class="validation-invalid-label" for="email">{{ $errors->first('email') }}</label>
+                    @if ($errors->has('username'))
+                        <label class="validation-invalid-label" for="username">{{ $errors->first('username') }}</label>
                     @endif
                 </div>
 
@@ -35,9 +35,9 @@
                     <button type="submit" class="btn btn-primary btn-block">Войти <i class="icon-circle-right2 ml-2"></i></button>
                 </div>
 
-                <div class="text-center">
-                    <a href="{{ route('password.request') }}">Забыли пароль?</a>
-                </div>
+                {{--<div class="text-center">--}}
+                    {{--<a href="{{ route('password.request') }}">Забыли пароль?</a>--}}
+                {{--</div>--}}
             </div>
         </div>
     </form>

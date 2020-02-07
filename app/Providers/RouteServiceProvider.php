@@ -45,6 +45,7 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapUsersRoutes();
         $this->mapCabinetRoutes();
         $this->mapExternalRoutes();
+        $this->mapEmployeesRoutes();
     }
 
     protected function mapWebRoutes()
@@ -131,4 +132,14 @@ class RouteServiceProvider extends ServiceProvider
             ->namespace($this->namespace)
             ->group(base_path('routes/Routes/External.php'));
     }
+
+    protected function mapEmployeesRoutes()
+    {
+        Route::prefix('employees')
+            ->name('employees.')
+            ->middleware(['web', 'auth'])
+            ->namespace($this->namespace . '\Employees')
+            ->group(base_path('routes/Routes/Employees.php'));
+    }
+
 }

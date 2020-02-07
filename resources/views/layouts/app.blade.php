@@ -46,7 +46,7 @@
                 <!-- Other sidebars -->
                 @yield('other_sidebars')
 
-                @include('sidebars.user')
+                @include('sidebars.search')
 
                 <!-- Main content -->
                 <div class="content-wrapper">
