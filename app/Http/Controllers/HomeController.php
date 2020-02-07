@@ -12,7 +12,7 @@ class HomeController extends Controller
         if ($permission) {
             return redirect()->route($permission->route . '.index');
         }
-        
-        return abort(403);
+
+        return view('home');
     }
 }

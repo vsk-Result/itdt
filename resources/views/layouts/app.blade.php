@@ -26,7 +26,8 @@
         @stack('css')
 
     </head>
-    <body class="layout-boxed-bg sidebar-xs">
+    <body class="layout-boxed-bg sidebar-xs sidebar-secondary-hidden">
+
 
         @include('navbars.modals.sign')
 
@@ -38,11 +39,14 @@
                 @include('navbars.main')
             @endauth
 
+
             <!-- Page content -->
             <div class="page-content">
 
                 <!-- Other sidebars -->
                 @yield('other_sidebars')
+
+                @include('sidebars.search')
 
                 <!-- Main content -->
                 <div class="content-wrapper">
@@ -76,6 +80,7 @@
 
         <!-- Custom -->
         <script src="{{ asset('js/custom.js') }}"></script>
+        <script src="{{ asset('js/partials/employee.js') }}"></script>
 
         @stack('scripts')
     </body>

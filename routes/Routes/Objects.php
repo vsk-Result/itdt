@@ -1,16 +1,12 @@
 <?php
 
-Route::group(['prefix' => 'objects', 'namespace' => 'Objects'], function () {
-
-    // Объекты
-    Route::get('/', 'ObjectController@index')->name('objects.index');
-    Route::get('/create', 'ObjectController@create')->name('objects.create');
-    Route::post('/create', 'ObjectController@store')->name('objects.store');
-    Route::get('/{id}/edit', 'ObjectController@edit')->name('objects.edit');
-    Route::post('/{id}/edit', 'ObjectController@update')->name('objects.update');
-    Route::get('/{id}/info', 'ObjectController@show')->name('objects.show');
-    Route::get('/{id}/word', 'ObjectController@word')->name('objects.word');
-    Route::get('/create_infopart', 'ObjectController@createInfopart')->name('objects.create_infopart');
-    Route::get('/create_person', 'ObjectController@createPerson')->name('objects.create_person');
-    Route::post('/reorder', 'ObjectController@reorder')->name('objects.reorder');
-});
+Route::get('/', 'ObjectController@index')->name('index');
+Route::get('/create', 'ObjectController@create')->name('create');
+Route::post('/create', 'ObjectController@store')->name('store');
+Route::get('/{id}/edit', 'ObjectController@edit')->name('edit');
+Route::post('/{id}/edit', 'ObjectController@update')->name('update');
+Route::get('/{id}/info', 'ObjectController@show')->name('show');
+Route::get('/{id}/word', 'ObjectController@word')->name('word');
+Route::get('/create_infopart', 'ObjectController@createInfopart')->name('create_infopart');
+Route::get('/create_person', 'ObjectController@createPerson')->name('create_person');
+Route::post('/reorder', 'ObjectController@reorder')->name('reorder');

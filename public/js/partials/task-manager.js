@@ -268,7 +268,7 @@ $('body').on('change', '.form-check-input-styled', function(e) {
     var that = $(this);
     var checked = that.prop('checked');
     if (!checked) {
-        if (confirm('Вы действительно хотите отменить подазадчу?')) {
+        if (confirm('Вы действительно хотите отменить подзадачу?')) {
             var span = that.parents('li.media').find('span.subtask-name');
             span.toggleClass('text-line-through', checked);
             sendCheckInfo(that);

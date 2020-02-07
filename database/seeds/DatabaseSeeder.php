@@ -12,6 +12,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
          $this->call(PermissionSeeder::class);
+         $this->call(PostSeeder::class);
+         $this->call(EmployeeSeeder::class);
          $this->call(UserCreateSeeder::class);
          $this->call(IconSeeder::class);
          $this->call(ObjectSeeder::class);
@@ -20,5 +22,6 @@ class DatabaseSeeder extends Seeder
          $this->call(PrinterSeeder::class);
          $this->call(KnowledgeSeeder::class);
          $this->call(KeySeeder::class);
+
     }
 }

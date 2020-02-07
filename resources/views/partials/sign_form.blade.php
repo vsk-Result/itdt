@@ -2,7 +2,7 @@
 
     <div class="form-group">
         <label>Имя Фамилия</label>
-        {{ Form::text('name', null, ['class' => 'form-control']) }}
+        {{ Form::text('fullname', null, ['class' => 'form-control']) }}
     </div>
 
     <div class="form-group">
@@ -22,7 +22,7 @@
 
     <div class="form-group">
         <label>Мобильный телефон</label>
-        {{ Form::text('phone', null, ['class' => 'form-control']) }}
+        {{ Form::text('phone_number', null, ['class' => 'form-control']) }}
     </div>
 
     <div class="form-group">
