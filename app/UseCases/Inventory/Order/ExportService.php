@@ -12,6 +12,7 @@ class ExportService
 
     public function download(Order $order)
     {
+        putenv('TMPDIR=' . public_path('/templates'));
         return Excel::create($this->filename, function($excel) use ($order) {
 
             $excel->sheet('Список для заказа', function($sheet) use ($order) {

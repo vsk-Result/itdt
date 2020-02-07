@@ -92,6 +92,8 @@ class ObjectController extends Controller
         $output_name = str_replace(' ', '_', $object->getFullName()) . '.docx';
         $output_path = $output_dir . $output_name;
 
+        putenv('TMPDIR=' . public_path('/templates'));
+
         $PHPWord = new \PhpOffice\PhpWord\PhpWord();
         $document = $PHPWord->loadTemplate(public_path('/templates/' . $template_name));
 

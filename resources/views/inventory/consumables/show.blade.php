@@ -54,7 +54,6 @@
                 @include('inventory.consumables.blocks.general')
                 @include('inventory.consumables.blocks.stock')
                 @include('inventory.consumables.blocks.compatibility')
-
             </div>
         </div>
     </div>

@@ -174,3 +174,44 @@ body {
 .navbar-toggler+.navbar-toggler {
     margin-left: 1rem;
 }
+.sidebar-expand-lg {
+    width: 19.875rem;
+}
+
+.card-img-profile {
+    width: 100%;
+    border-top-left-radius: .125rem;
+    border-top-right-radius: .125rem;
+}
+
+.nav-tabs-bottom .nav-link.active:before {
+    background-color: #324148;
+}
+
+/* signature */
+.signature {
+    font-family: "Verdana";
+    font-size: 16px !important;
+}
+.signature p {
+    margin-bottom: 0px;
+}
+.signature .info {
+    font-family: "Helvetica";
+}
+.signature .sign-link {
+    text-decoration: underline;
+}
+.signature.sign-dt {
+    color: rgb(110, 110, 110);
+}
+.signature.sign-sti {
+    color: rgb(140, 140, 140);
+}
+.signature.sign-dt .sign-link {
+    color: rgb(0, 176, 80);
+}
+.signature.sign-sti .sign-link {
+    color: rgb(218, 86, 13);
+}
+
