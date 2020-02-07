@@ -46,9 +46,13 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapCabinetRoutes();
         $this->mapExternalRoutes();
 <<<<<<< refs/remotes/origin/master
+<<<<<<< refs/remotes/origin/master
         $this->mapEmployeesRoutes();
 =======
 >>>>>>> Привел роуты в порядок. Оформил правильно через сервис провайдер (#29)
+=======
+        $this->mapEmployeesRoutes();
+>>>>>>> Онлайн пользователей, поиск по сотрудникам, карточка сотрудника, доступ на изменение, сотрудники (#31)
     }
 
     protected function mapWebRoutes()
@@ -136,6 +140,9 @@ class RouteServiceProvider extends ServiceProvider
             ->group(base_path('routes/Routes/External.php'));
     }
 <<<<<<< refs/remotes/origin/master
+<<<<<<< refs/remotes/origin/master
+=======
+>>>>>>> Онлайн пользователей, поиск по сотрудникам, карточка сотрудника, доступ на изменение, сотрудники (#31)
 
     protected function mapEmployeesRoutes()
     {
@@ -146,6 +153,9 @@ class RouteServiceProvider extends ServiceProvider
             ->group(base_path('routes/Routes/Employees.php'));
     }
 
+<<<<<<< refs/remotes/origin/master
 =======
 >>>>>>> Привел роуты в порядок. Оформил правильно через сервис провайдер (#29)
+=======
+>>>>>>> Онлайн пользователей, поиск по сотрудникам, карточка сотрудника, доступ на изменение, сотрудники (#31)
 }

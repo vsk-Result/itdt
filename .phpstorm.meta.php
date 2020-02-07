@@ -6,10 +6,14 @@ namespace PHPSTORM_META {
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
 <<<<<<< refs/remotes/origin/master
+<<<<<<< refs/remotes/origin/master
     * Generated on 2020-02-03 16:45:37.
 =======
     * Generated on 2020-01-24 12:14:17.
 >>>>>>> Привел роуты в порядок. Оформил правильно через сервис провайдер (#29)
+=======
+    * Generated on 2020-02-03 16:45:37.
+>>>>>>> Онлайн пользователей, поиск по сотрудникам, карточка сотрудника, доступ на изменение, сотрудники (#31)
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper

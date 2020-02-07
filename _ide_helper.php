@@ -4,10 +4,14 @@
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
 <<<<<<< refs/remotes/origin/master
+<<<<<<< refs/remotes/origin/master
  * Generated for Laravel 5.7.28 on 2020-02-03 16:45:36.
 =======
  * Generated for Laravel 5.7.28 on 2020-01-24 12:14:09.
 >>>>>>> Привел роуты в порядок. Оформил правильно через сервис провайдер (#29)
+=======
+ * Generated for Laravel 5.7.28 on 2020-02-03 16:45:36.
+>>>>>>> Онлайн пользователей, поиск по сотрудникам, карточка сотрудника, доступ на изменение, сотрудники (#31)
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *

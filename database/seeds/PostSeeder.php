@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 class PostSeeder extends Seeder
 {
 <<<<<<< refs/remotes/origin/master
+<<<<<<< refs/remotes/origin/master
 =======
     /**
      * Run the database seeds.
@@ -13,6 +14,8 @@ class PostSeeder extends Seeder
      * @return void
      */
 >>>>>>> писос
+=======
+>>>>>>> Онлайн пользователей, поиск по сотрудникам, карточка сотрудника, доступ на изменение, сотрудники (#31)
     public function run()
     {
         factory(Post::class, 5)->create();

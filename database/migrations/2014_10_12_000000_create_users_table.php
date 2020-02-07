@@ -17,11 +17,14 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
 <<<<<<< refs/remotes/origin/master
+<<<<<<< refs/remotes/origin/master
 =======
             $table->integer('empl_id');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
 >>>>>>> писос
+=======
+>>>>>>> Онлайн пользователей, поиск по сотрудникам, карточка сотрудника, доступ на изменение, сотрудники (#31)
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

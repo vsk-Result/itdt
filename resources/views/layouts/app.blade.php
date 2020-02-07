@@ -47,10 +47,14 @@
                 @yield('other_sidebars')
 
 <<<<<<< refs/remotes/origin/master
+<<<<<<< refs/remotes/origin/master
                 @include('sidebars.search')
 =======
                 @include('sidebars.user')
 >>>>>>> писос
+=======
+                @include('sidebars.search')
+>>>>>>> Онлайн пользователей, поиск по сотрудникам, карточка сотрудника, доступ на изменение, сотрудники (#31)
 
                 <!-- Main content -->
                 <div class="content-wrapper">
