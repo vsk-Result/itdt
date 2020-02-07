@@ -30,10 +30,23 @@
 
     <div class="collapse navbar-collapse" id="navbar-mobile" style="margin-left: -2.3rem;">
         <ul class="navbar-nav">
+<<<<<<< refs/remotes/origin/master
+<<<<<<< refs/remotes/origin/master
+=======
+>>>>>>> Онлайн пользователей, поиск по сотрудникам, карточка сотрудника, доступ на изменение, сотрудники (#31)
             <li class="navbar-nav" id="toster">
                 <a href="#" class="navbar-nav-link sidebar-control sidebar-secondary-toggle d-none d-md-block">
                     <i class="icon-search4"></i></a>
             </li>
+<<<<<<< refs/remotes/origin/master
+=======
+                <li class="navbar-nav" id="toster">
+                    <a href="#" class="navbar-nav-link sidebar-control sidebar-secondary-toggle d-none d-md-block">
+                        <i class="icon-people"></i></a>
+                </li>
+>>>>>>> писос
+=======
+>>>>>>> Онлайн пользователей, поиск по сотрудникам, карточка сотрудника, доступ на изменение, сотрудники (#31)
             @if (Auth::user()->hasPermission('objects'))
                 <li class="nav-item">
                     <a href="{{ route('objects.index') }}" class="navbar-nav-link"><i class="icon-city mr-2"></i><span>Объекты</span></a>
