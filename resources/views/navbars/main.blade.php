@@ -16,9 +16,7 @@
         @if (Auth::user()->hasPermission('consumables'))
             <a href="{{ route('inventory.index') }}" class="navbar-toggler"><i class="icon-printer mr-2"></i></a>
         @endif
-        @if (Auth::user()->hasPermission('knowledge'))
-            <a href="{{ route('knowledge.index') }}" class="navbar-toggler"><i class="icon-brain mr-2"></i></a>
-        @endif
+        <a href="{{ route('knowledge.index') }}" class="navbar-toggler"><i class="icon-brain mr-2"></i></a>
         @if (Auth::user()->hasPermission('keys'))
             <a href="{{ route('keys.index') }}" class="navbar-toggler"><i class="icon-key mr-2"></i></a>
         @endif
@@ -30,23 +28,10 @@
 
     <div class="collapse navbar-collapse" id="navbar-mobile" style="margin-left: -2.3rem;">
         <ul class="navbar-nav">
-<<<<<<< refs/remotes/origin/master
-<<<<<<< refs/remotes/origin/master
-=======
->>>>>>> Онлайн пользователей, поиск по сотрудникам, карточка сотрудника, доступ на изменение, сотрудники (#31)
             <li class="navbar-nav" id="toster">
                 <a href="#" class="navbar-nav-link sidebar-control sidebar-secondary-toggle d-none d-md-block">
                     <i class="icon-search4"></i></a>
             </li>
-<<<<<<< refs/remotes/origin/master
-=======
-                <li class="navbar-nav" id="toster">
-                    <a href="#" class="navbar-nav-link sidebar-control sidebar-secondary-toggle d-none d-md-block">
-                        <i class="icon-people"></i></a>
-                </li>
->>>>>>> писос
-=======
->>>>>>> Онлайн пользователей, поиск по сотрудникам, карточка сотрудника, доступ на изменение, сотрудники (#31)
             @if (Auth::user()->hasPermission('objects'))
                 <li class="nav-item">
                     <a href="{{ route('objects.index') }}" class="navbar-nav-link"><i class="icon-city mr-2"></i><span>Объекты</span></a>
@@ -62,11 +47,9 @@
                     <a href="{{ route('inventory.index') }}" class="navbar-nav-link"><i class="icon-printer mr-2"></i><span>Расходные материалы</span></a>
                 </li>
             @endif
-            @if (Auth::user()->hasPermission('knowledge'))
-                <li class="nav-item">
-                    <a href="{{ route('knowledge.index') }}" class="navbar-nav-link"><i class="icon-brain mr-2"></i><span>База знаний</span></a>
-                </li>
-            @endif
+            <li class="nav-item">
+                <a href="{{ route('knowledge.index') }}" class="navbar-nav-link"><i class="icon-brain mr-2"></i><span>База знаний</span></a>
+            </li>
             @if (Auth::user()->hasPermission('keys'))
                 <li class="nav-item">
                     <a href="{{ route('keys.index') }}" class="navbar-nav-link"><i class="icon-key mr-2"></i><span>Лицензии</span></a>

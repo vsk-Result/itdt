@@ -12,7 +12,7 @@ class KnowledgeController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:knowledge');
+//        $this->middleware('permission:knowledge');
     }
 
     public function index(Request $request)

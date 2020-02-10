@@ -1,5 +1,3 @@
-<<<<<<< refs/remotes/origin/master
-<<<<<<< refs/remotes/origin/master
 $('#userFilter').on('input', function(e) {
     let text = $(this).val();
     let url = $(this).data('filter-url');
@@ -41,12 +39,8 @@ function getUsersOnline() {
 function updateSearchInfo(text) {
     $("#search-result-info").text(text);
 }
-=======
 
-$('#test').on('input', function(e) {
-=======
 $('#userFilter').on('input', function(e) {
->>>>>>> Онлайн пользователей, поиск по сотрудникам, карточка сотрудника, доступ на изменение, сотрудники (#31)
     let text = $(this).val();
     let url = $(this).data('filter-url');
 
@@ -72,9 +66,6 @@ $('#toster').on('click', function() {
         getUsersOnline();
     }, 300);
 });
-<<<<<<< refs/remotes/origin/master
->>>>>>> писос
-=======
 
 function getUsersOnline() {
     let url = $('#userFilter').data('online-url');
@@ -90,4 +81,3 @@ function getUsersOnline() {
 function updateSearchInfo(text) {
     $("#search-result-info").text(text);
 }
->>>>>>> Онлайн пользователей, поиск по сотрудникам, карточка сотрудника, доступ на изменение, сотрудники (#31)
