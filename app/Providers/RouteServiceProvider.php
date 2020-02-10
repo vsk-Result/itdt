@@ -128,7 +128,7 @@ class RouteServiceProvider extends ServiceProvider
 
     protected function mapExternalRoutes()
     {
-        Route::middleware(['web', 'auth'])
+        Route::middleware(['web'])
             ->namespace($this->namespace)
             ->group(base_path('routes/Routes/External.php'));
     }
@@ -141,5 +141,4 @@ class RouteServiceProvider extends ServiceProvider
             ->namespace($this->namespace . '\Employees')
             ->group(base_path('routes/Routes/Employees.php'));
     }
-
 }
