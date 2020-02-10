@@ -17,17 +17,8 @@ use Faker\Generator as Faker;
 $factory->define(App\User::class, function (Faker $faker) {
     return [
         'name' => 'Tester',
-<<<<<<< refs/remotes/origin/master
-<<<<<<< refs/remotes/origin/master
         'employee_id' => Employee::all()->random()->id,
         'username' => 'tester',
-=======
-        'empl_id' => Employee::all()->random()->id,
->>>>>>> писос
-=======
-        'employee_id' => Employee::all()->random()->id,
-        'username' => 'tester',
->>>>>>> Онлайн пользователей, поиск по сотрудникам, карточка сотрудника, доступ на изменение, сотрудники (#31)
         'email' => 'Tester@gmail.com',
         'password' => Hash::make('dfead68a'),
     ];
