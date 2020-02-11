@@ -6,7 +6,8 @@
     {{--</div>--}}
 
     <div class="d-md-none p-2">
-        <a href="#" class="navbar-toggler sidebar-control sidebar-secondary-toggle d-md-block"><i class="icon-search4 mr-2"></i></a>
+        <a href="#" class="search-btn navbar-toggler sidebar-control sidebar-mobile-right-toggle d-md-block"><i class="icon-search4 mr-2"></i></a>
+        <a href="{{ route('employees.index') }}" class="navbar-toggler"><i class="icon-users mr-2"></i></a>
         @if (Auth::user()->hasPermission('objects'))
             <a href="{{ route('objects.index') }}" class="navbar-toggler"><i class="icon-city mr-2"></i></a>
         @endif
@@ -20,17 +21,16 @@
         @if (Auth::user()->hasPermission('keys'))
             <a href="{{ route('keys.index') }}" class="navbar-toggler"><i class="icon-key mr-2"></i></a>
         @endif
-        <a href="#" class="navbar-toggler" data-toggle="modal" data-target="#createSign"><i class="icon-quill4 mr-2"></i></a>
-        @if (Auth::user()->hasPermission('users'))
-            <a href="{{ route('users.index') }}" class="navbar-toggler"><i class="icon-users mr-2"></i></a>
-        @endif
+        {{--<a href="#" class="navbar-toggler" data-toggle="modal" data-target="#createSign"><i class="icon-quill4 mr-2"></i></a>--}}
+        {{--@if (Auth::user()->hasPermission('users'))--}}
+            {{--<a href="{{ route('users.index') }}" class="navbar-toggler"><i class="icon-users mr-2"></i></a>--}}
+        {{--@endif--}}
     </div>
 
-    <div class="collapse navbar-collapse" id="navbar-mobile" style="margin-left: -2.3rem;">
+    <div class="collapse navbar-collapse px-0" id="navbar-mobile">
         <ul class="navbar-nav">
-            <li class="navbar-nav" id="toster">
-                <a href="#" class="navbar-nav-link sidebar-control sidebar-secondary-toggle d-none d-md-block">
-                    <i class="icon-search4"></i></a>
+            <li class="nav-item">
+                <a href="{{ route('employees.index') }}" class="navbar-nav-link"><i class="icon-users mr-2"></i><span>Сотрудники</span></a>
             </li>
             @if (Auth::user()->hasPermission('objects'))
                 <li class="nav-item">
@@ -58,11 +58,6 @@
             <li class="nav-item">
                 <a href="#" class="navbar-nav-link" data-toggle="modal" data-target="#createSign"><i class="icon-quill4 mr-2"></i><span>Подписи</span></a>
             </li>
-            @if (Auth::user()->hasPermission('users'))
-                <li class="nav-item">
-                    <a href="{{ route('users.index') }}" class="navbar-nav-link"><i class="icon-users mr-2"></i><span>Пользователи</span></a>
-                </li>
-            @endif
         </ul>
 
         <ul class="navbar-nav ml-auto">
@@ -75,12 +70,20 @@
                 <div class="dropdown-menu dropdown-menu-right">
 
                     <a href="{{ route('employees.show', auth()->user()->employee) }}" class="dropdown-item"><i class="icon-profile"></i> Профиль</a>
+                    @if (Auth::user()->hasPermission('users'))
+                        <a href="{{ route('users.index') }}" class="dropdown-item"><i class="icon-users mr-2"></i>Пользователи</a>
+                    @endif
 
                     <div class="dropdown-divider"></div>
 
                     <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="icon-switch2"></i> Выйти</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">@csrf</form>
                 </div>
+            </li>
+            <li class="navbar-nav search-btn">
+                <a href="#" class="navbar-nav-link sidebar-control sidebar-right-toggle d-none d-md-block">
+                    <i class="icon-search4"></i>
+                </a>
             </li>
         </ul>
     </div>

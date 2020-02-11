@@ -13,6 +13,6 @@ class HomeController extends Controller
             return redirect()->route($permission->route . '.index');
         }
 
-        return view('home');
+        return redirect('/employees');
     }
 }
