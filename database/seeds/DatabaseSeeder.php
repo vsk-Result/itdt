@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
          $this->call(PrinterSeeder::class);
          $this->call(KnowledgeSeeder::class);
          $this->call(KeySeeder::class);
+         $this->call(EventSeeder::class);
+         $this->call(HolidaySeeder::class);
 
     }
 }

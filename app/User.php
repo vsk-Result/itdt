@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Employees\Employee;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -32,6 +33,9 @@ class User extends Authenticatable
         }
         return false;
     }
-}
 
-    
+    public function employee()
+        {
+            return $this->belongsTo(Employee::class);
+        }
+}

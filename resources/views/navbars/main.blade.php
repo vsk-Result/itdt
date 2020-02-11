@@ -29,6 +29,11 @@
 
     <div class="collapse navbar-collapse" id="navbar-mobile" style="margin-left: -2.3rem;">
         <ul class="navbar-nav">
+
+                <li class="nav-item">
+                    <a href="{{ route('events') }}" class="navbar-nav-link"><i class="icon-people"></i></a>
+                </li>
+
                 <li class="navbar-nav" id="toster">
                     <a href="#" class="navbar-nav-link sidebar-control sidebar-secondary-toggle d-none d-md-block">
                         <i class="icon-people"></i></a>

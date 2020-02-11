@@ -47,6 +47,7 @@
                 @yield('other_sidebars')
 
                 @include('sidebars.user')
+                
 
                 <!-- Main content -->
                 <div class="content-wrapper">

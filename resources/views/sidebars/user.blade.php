@@ -9,7 +9,7 @@
             <div class="card-body">
                 <div class="form-group">
                     <label for="search">Поиск</label>
-                    <input id="test" type="search" class="form-control" autocomplete="off" placeholder="Имя сотрудника" data-filter-url="{{ route('test') }}">
+                    <input id="test" type="search" class="form-control" autocomplete="off" placeholder="Имя сотрудника" data-filter-url="">
                 </div>
 
                 <div id="search-result-container"></div>

@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.7.28 on 2020-01-24 12:14:09.
+ * Generated for Laravel 5.7.28 on 2020-02-04 12:19:36.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -3332,8 +3332,32 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function flush()
         {
-                        /** @var \Illuminate\Cache\ArrayStore $instance */
+                        /** @var \Illuminate\Cache\FileStore $instance */
                         return $instance->flush();
+        }
+        
+        /**
+         * Get the Filesystem instance.
+         *
+         * @return \Illuminate\Filesystem\Filesystem 
+         * @static 
+         */ 
+        public static function getFilesystem()
+        {
+                        /** @var \Illuminate\Cache\FileStore $instance */
+                        return $instance->getFilesystem();
+        }
+        
+        /**
+         * Get the working directory of the cache.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getDirectory()
+        {
+                        /** @var \Illuminate\Cache\FileStore $instance */
+                        return $instance->getDirectory();
         }
         
         /**
@@ -3344,7 +3368,7 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function getPrefix()
         {
-                        /** @var \Illuminate\Cache\ArrayStore $instance */
+                        /** @var \Illuminate\Cache\FileStore $instance */
                         return $instance->getPrefix();
         }
          
@@ -16720,6 +16744,175 @@ namespace DaveJamesMiller\Breadcrumbs\Facades {
  
 }
 
+namespace MaddHatter\LaravelFullcalendar\Facades { 
+
+    /**
+     * 
+     *
+     */ 
+    class Calendar {
+        
+        /**
+         * Create an event DTO to add to a calendar
+         *
+         * @param string $title
+         * @param string $isAllDay
+         * @param string|\DateTime $start If string, must be valid datetime format: http://bit.ly/1z7QWbg
+         * @param string|\DateTime $end If string, must be valid datetime format: http://bit.ly/1z7QWbg
+         * @param string $id event Id
+         * @param array $options
+         * @return \MaddHatter\LaravelFullcalendar\SimpleEvent 
+         * @static 
+         */ 
+        public static function event($title, $isAllDay, $start, $end, $id = null, $options = [])
+        {
+                        return \MaddHatter\LaravelFullcalendar\Calendar::event($title, $isAllDay, $start, $end, $id, $options);
+        }
+        
+        /**
+         * Create the <div> the calendar will be rendered into
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function calendar()
+        {
+                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
+                        return $instance->calendar();
+        }
+        
+        /**
+         * Get the <script> block to render the calendar (as a View)
+         *
+         * @return \Illuminate\View\View 
+         * @static 
+         */ 
+        public static function script()
+        {
+                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
+                        return $instance->script();
+        }
+        
+        /**
+         * Customize the ID of the generated <div>
+         *
+         * @param string $id
+         * @return \MaddHatter\LaravelFullcalendar\Calendar 
+         * @static 
+         */ 
+        public static function setId($id)
+        {
+                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
+                        return $instance->setId($id);
+        }
+        
+        /**
+         * Get the ID of the generated <div>
+         * This value is randomized unless a custom value was set via setId
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getId()
+        {
+                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
+                        return $instance->getId();
+        }
+        
+        /**
+         * Add an event
+         *
+         * @param \Event $event
+         * @param array $customAttributes
+         * @return \MaddHatter\LaravelFullcalendar\Calendar 
+         * @static 
+         */ 
+        public static function addEvent($event, $customAttributes = [])
+        {
+                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
+                        return $instance->addEvent($event, $customAttributes);
+        }
+        
+        /**
+         * Add multiple events
+         *
+         * @param array|\MaddHatter\LaravelFullcalendar\ArrayAccess $events
+         * @param array $customAttributes
+         * @return \MaddHatter\LaravelFullcalendar\Calendar 
+         * @static 
+         */ 
+        public static function addEvents($events, $customAttributes = [])
+        {
+                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
+                        return $instance->addEvents($events, $customAttributes);
+        }
+        
+        /**
+         * Set fullcalendar options
+         *
+         * @param array $options
+         * @return \MaddHatter\LaravelFullcalendar\Calendar 
+         * @static 
+         */ 
+        public static function setOptions($options)
+        {
+                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
+                        return $instance->setOptions($options);
+        }
+        
+        /**
+         * Get the fullcalendar options (not including the events list)
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getOptions()
+        {
+                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
+                        return $instance->getOptions();
+        }
+        
+        /**
+         * Set fullcalendar callback options
+         *
+         * @param array $callbacks
+         * @return \MaddHatter\LaravelFullcalendar\Calendar 
+         * @static 
+         */ 
+        public static function setCallbacks($callbacks)
+        {
+                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
+                        return $instance->setCallbacks($callbacks);
+        }
+        
+        /**
+         * Get the callbacks currently defined
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getCallbacks()
+        {
+                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
+                        return $instance->getCallbacks();
+        }
+        
+        /**
+         * Get options+events JSON
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getOptionsJson()
+        {
+                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
+                        return $instance->getOptionsJson();
+        }
+         
+    }
+ 
+}
+
 
 namespace  { 
 
@@ -19345,6 +19538,8 @@ namespace  {
     class Debugbar extends \Barryvdh\Debugbar\Facade {}
 
     class Breadcrumbs extends \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs {}
+
+    class Calendar extends \MaddHatter\LaravelFullcalendar\Facades\Calendar {}
  
 }
 
