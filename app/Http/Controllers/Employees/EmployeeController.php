@@ -20,6 +20,12 @@ class EmployeeController extends Controller
         $this->uploader = $uploader;
     }
 
+    public function index()
+    {
+        $employees = Employee::orderBy('fullname')->with('post', 'leader')->get();
+        return view('employees.index', compact('employees'));
+    }
+
     public function show(Employee $employee)
     {
         $posts = [null => 'Отсутствует'] + Post::orderBy('name')->pluck('name', 'id')->toArray();

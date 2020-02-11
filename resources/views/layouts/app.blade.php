@@ -28,44 +28,34 @@
     </head>
     <body class="layout-boxed-bg sidebar-xs sidebar-secondary-hidden">
 
-
         @include('navbars.modals.sign')
 
-        <!-- Boxed layout wrapper -->
         <div class="d-flex flex-column flex-1 layout-boxed">
 
-            <!-- Main navbar -->
             @auth
                 @include('navbars.main')
             @endauth
 
-
-            <!-- Page content -->
             <div class="page-content">
 
-                <!-- Other sidebars -->
                 @yield('other_sidebars')
 
-                @include('sidebars.search')
-
-                <!-- Main content -->
                 <div class="content-wrapper">
 
-                    <!-- Page header -->
                     @include('partials.page-header')
 
                     @yield('second_navbar')
 
-                    <!-- Content area -->
                     <div class="content">
                         {{-- @include('flash::message') --}}
                         @yield('content')
                     </div>
 
-                    <!-- Main footer -->
                     @include('footers.main')
 
                 </div>
+
+                @include('sidebars.search')
             </div>
         </div>
 

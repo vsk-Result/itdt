@@ -1,4 +1,4 @@
-<div class="sidebar sidebar-light sidebar-secondary sidebar-expand-lg">
+<div class="sidebar sidebar-light sidebar-right sidebar-expand-lg">
     <div class="sidebar-content">
         <div class="card">
             <div class="card-body">
