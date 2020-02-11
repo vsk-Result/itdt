@@ -115,7 +115,15 @@ class TaskController extends Controller
 
     public function store()
     {
-        $task = $this->service->store($id);
+        $task = new Task();
+        $task->user_id = auth()->id();
+        $task->priority_id = Priority::DEFAULT_ID;
+        $task->status_id = Status::DEFAULT_ID;
+        $task->type_id = Type::DEFAULT_ID;
+        $task->object_id = null;
+        $task->name = Task::getDefaultName();
+        $task->save();
+
         $info_url = route('tasks.info', $task->id);
 
         return response()->json(compact('info_url'));
