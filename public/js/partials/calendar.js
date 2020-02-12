@@ -33,9 +33,10 @@ $(document).ready(function() {
               url: '/events/event_create',
             })
             .done(function(data) {
+              $('#modalDefault').find('.modal-content').html(data);
               $('.new-event-start-date').val(isoDate);
               $('.new-event-end-date').val(isoDate);
-              $('#vlad').modal('show');
+              $('#modalDefault').modal('show');
             })
             .fail(function(data) {
               error_report('error event_create modal');
@@ -61,7 +62,7 @@ $(document).ready(function() {
 
           eventDrop: function (event) {
             $.ajax({
-              url: '/events/show',
+              url: '/events/update',
               dataType: 'json',
               data:
               {
@@ -81,6 +82,16 @@ $(document).ready(function() {
         }
       });
 
+      $('body').on('click', '#vlad', function() {
+          var id = $(this).data('event-id');
+              $.ajax({
+                url: '/events/edit/' + id,
+              })
+              .done(function(data) {
+                $('#modalDefault').find('.modal-content').html(data);
+                $('#modalDefault').modal('show');
+              })
+      });
       // Confirm/Define event
       $('body').on('click', '.event-confirm', function(){
         var id = $(this).data('id');
@@ -101,7 +112,7 @@ $(document).ready(function() {
           if (status_id == -1) {
               if (confirm('Вы действительно хотите удалить бронь?')) {
                   $.ajax({
-                      url: '/events/mr/status',
+                      url: '/events/status',
                       dataType: 'json',
                       data:
                           {
@@ -117,7 +128,7 @@ $(document).ready(function() {
               }
           } else {
               $.ajax({
-                  url: '/events/mr/status',
+                  url: '/events/status',
                   dataType: 'json',
                   data:
                       {
@@ -220,10 +231,8 @@ $(document).ready(function() {
         url: '/events/modal/' + id,
       })
       .done(function(data) {
-        var modal = $('#dima');
-        modal.find('.modal-content').html(data);
-        autosize(modal.find('.auto-size'));
-        modal.modal('show');
+        $('#modalDefault').find('.modal-content').html(data);
+        $('#modalDefault').modal('show');
       })
       .fail(function(data) {
         error_report('error event_mr_modal');

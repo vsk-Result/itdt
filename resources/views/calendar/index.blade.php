@@ -5,8 +5,7 @@
 
 @section('content')
 
-@include('calendar.event_create')
-@include('calendar.event_show')
+@include('calendar.defaultModal')
 
 <div id="calendar" class="panel panel-primary">
 </div>

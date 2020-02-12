@@ -114,4 +114,20 @@ class EventService
       return $event;
     }
   }
+
+  public function status($request)
+  {
+      if ($request->status_id == -1) {
+          $event = Event::find($request->id);
+          $event->delete();
+          return response()->json(['id' => $request->id]);
+      }
+
+    if ($event = Event::find($request->id)) {
+      $event->confirmed = $request->status_id;
+      $event->update();
+      return $event;
+    }
+  }
+
 }

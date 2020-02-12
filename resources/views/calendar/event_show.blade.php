@@ -1,9 +1,3 @@
-@php
-use Carbon\Carbon;
-@endphp
-<div id="dima" class="modal fade">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
 <div class="modal-header">
   <h4 class="modal-title">
     <a href="#">{{$event->employee->fullname}}</a>
@@ -26,14 +20,14 @@ use Carbon\Carbon;
     <div class="col-md-6">
       Начало:
       <p>
-        <b>{{Carbon::parse($event->start_date)->format('d.m.Y')}} {{Carbon::parse($event->start_date)->format('H:i')}}</b>
+        <b>{{Carbon\Carbon::parse($event->start_date)->format('d.m.Y')}} {{Carbon\Carbon::parse($event->start_date)->format('H:i')}}</b>
       </p>
     </div>
 
     <div class="col-md-6">
       Окончание:
       <p>
-        <b>{{Carbon::parse($event->end_date)->format('d.m.Y')}} {{Carbon::parse($event->end_date)->format('H:i')}}</b>
+        <b>{{Carbon\Carbon::parse($event->end_date)->format('d.m.Y')}} {{Carbon\Carbon::parse($event->end_date)->format('H:i')}}</b>
       </p>
     </div>
     @if ($event->description)
@@ -46,8 +40,9 @@ use Carbon\Carbon;
 </div>
 
 <div class="modal-footer">
-  <button class="btn btn-link hidden-xs" data-dismiss="modal">Закрыть</button>
-</div>
-</div>
-</div>
+<button class="btn btn-primary event-destroy" data-id="{{$event->id}}">
+    <span class="hidden-xs hidden-sm">Удалить</span>
+</button>
+  <button data-event-id="{{$event->id}}" id ="vlad" class="btn btn-primary">Редактировать</button>
+  <button class="btn btn-primary" data-dismiss="modal">Закрыть</button>
 </div>

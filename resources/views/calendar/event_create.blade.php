@@ -1,7 +1,3 @@
-<div id="vlad" class="modal fade">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-
             <div class="modal-header">
           <h4 class="modal-title">Новая встреча в зале совещаний</h4>
         </div>
@@ -70,9 +66,6 @@
 
         <div class="modal-footer">
           <button class="btn btn-primary" type="submit">Создать</button>
-          <button class="btn btn-link hidden-xs" data-dismiss="modal">Закрыть</button>
+          <button class="btn btn-primary" data-dismiss="modal">Закрыть</button>
         </div>
         {{Form::close()}}
-        </div>
-    </div>
-</div>

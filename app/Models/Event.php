@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\User;
-use App\Models\Employee;
+use App\Models\Employees\Employee;
 
 class Event extends Model
 {

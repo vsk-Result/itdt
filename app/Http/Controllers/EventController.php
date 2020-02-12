@@ -49,8 +49,21 @@ class EventController extends Controller
     public function modal($id)
 	{
 		$event = $this->events->read_one($id);
-		return view('calendar.event_show', compact('event'));
+		return view('calendar.event_show', compact('event'))->render();
 
 	}
+
+    public function edit($id)
+    {
+        $event = $this->events->read_one($id);
+		return view('calendar.event_update', compact('event'))->render();
+    }
+
+    public function status(Request $request)
+    	{
+    		if ($event = $this->events->status($request)) {
+    			return Response::json(compact('event'));
+    		}
+    	}
 
 }
