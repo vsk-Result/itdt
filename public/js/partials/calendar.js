@@ -4,18 +4,18 @@ $(document).ready(function() {
     var y = date.getFullYear();
     $('#calendar').fullCalendar({
         header: {
-            left:   'prev,next,today',
+            left: '',
             center: 'title',
-            right:  'month,agendaWeek,agendaDay'
+            right:  'today,prev,next',
         },
         editable: true,
         fixedWeekCount: false,
         theme: false,
-        selectable: true,
+        selectable: false,
         selectHelper: true,
         eventOrder: ['order_id', 'title'],
         events: {
-            url: '/events/pidr',
+            url: '/events/all',
             success:function(data){
                 var events = [];
 
@@ -138,7 +138,7 @@ $(document).ready(function() {
               })
                   .done(function(data) {
                       var current_event = $('#calendar').fullCalendar('clientEvents', data.event.id );
-                      var color = ['bgm-deeporange', 'bgm-green'];
+                      var color = ['bg-danger', 'bg-success'];
                       current_event[0].className = color[data.event.confirmed];
                       $('#calendar').fullCalendar('updateEvent', current_event[0]);
                   })
@@ -146,76 +146,11 @@ $(document).ready(function() {
                       error_report('error event_mr change status');
                   });
           }
-
-
       }
-
-      //Update/Delete an Event
-      $('body').on('click', '[data-calendar]', function(){
-        var calendarAction = $(this).data('calendar');
-        var currentId = $('.edit-event-id').val();
-        var currentTitle = $('.edit-event-title').val();
-        var currentDesc = $('.edit-event-description').val();
-        var currentClass = $('.event-tag-edit input:checked').val();
-        var currentEvent = $('#calendar').fullCalendar( 'clientEvents', currentId );
-
-        //Update
-        if(calendarAction === 'update') {
-          if (currentTitle != '') {
-            currentEvent[0].title = currentTitle;
-            currentEvent[0].description = currentDesc;
-            currentEvent[0].className = currentClass;
-
-            $('#calendar').fullCalendar('updateEvent', currentEvent[0]);
-            $('#modal-edit-event').modal('hide');
-          }
-          else {
-            $('.edit-event-title').closest('.form-group').addClass('has-error');
-            $('.edit-event-title').focus();
-          }
-        }
-
-        //Delete
-        if(calendarAction === 'delete') {
-          $('#modal-edit-event').modal('hide');
-
-          setTimeout(function () {
-            swal({
-              title: 'Are you sure?',
-              text: "You won't be able to revert this!",
-              type: 'warning',
-              showCancelButton: true,
-              confirmButtonColor: '#3085d6',
-              cancelButtonColor: '#d33',
-              confirmButtonText: 'Yes, delete it!'
-            }).then(function() {
-              target.fullCalendar('removeEvents', currentId);
-              swal(
-                'Deleted!',
-                'Your list has been deleted.',
-                'success'
-              );
-            });
-          }, 200);
-        }
-      });
-
-
-      //Calendar views switch
-      $('body').on('click', '[data-calendar-view]', function(e){
-        e.preventDefault();
-
-        $('[data-calendar-view]').removeClass('active');
-        $(this).addClass('active');
-        var calendarView = $(this).attr('data-calendar-view');
-        target.fullCalendar('changeView', calendarView);
-      });
-
-
       //Calendar Next
       $('body').on('click', '.calendar-next', function (e) {
         e.preventDefault();
-        target.fullCalendar('next');
+        $('#calendar').fullCalendar('next');
       });
 
 

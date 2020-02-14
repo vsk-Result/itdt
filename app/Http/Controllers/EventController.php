@@ -65,5 +65,4 @@ class EventController extends Controller
     			return Response::json(compact('event'));
     		}
     	}
-
 }

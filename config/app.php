@@ -155,7 +155,6 @@ return [
         Laravelrus\LocalizedCarbon\LocalizedCarbonServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
-        MaddHatter\LaravelFullcalendar\ServiceProvider::class,
 
         /*
          * Application Service Providers...

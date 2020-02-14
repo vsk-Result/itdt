@@ -31,7 +31,7 @@
         <ul class="navbar-nav">
 
                 <li class="nav-item">
-                    <a href="{{ route('events') }}" class="navbar-nav-link"><i class="icon-people"></i></a>
+                    <a href="{{ route('events') }}" class="navbar-nav-link"><i class="icon-calendar3"></i></a>
                 </li>
 
                 <li class="navbar-nav" id="toster">

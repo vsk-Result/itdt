@@ -8,7 +8,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('events', 'EventController@index')->name('events');
-Route::get('events/pidr', 'EventController@all')->name('all');
+Route::get('events/all', 'EventController@all')->name('all');
 Route::get('events/create', 'EventController@create')->name('event_create');
 Route::get('events/update', 'EventController@update')->name('event_update');
 Route::get('events/modal/{id}', 'EventController@modal')->name('event_modal');

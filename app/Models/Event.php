@@ -23,11 +23,13 @@ class Event extends Model
         return $this->belongsTo(Employee::class);
     }
 
-    public function start_date($value="H:i d.m.Y") {
+    public function start_date($value="H:i d.m.Y")
+    {
       return Carbon::parse($this->start_date)->format($value);
     }
 
-    public function end_date($value="H:i d.m.Y") {
+    public function end_date($value="H:i d.m.Y")
+    {
       return Carbon::parse($this->end_date)->format($value);
     }
   }

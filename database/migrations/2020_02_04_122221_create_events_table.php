@@ -21,7 +21,7 @@ class CreateEventsTable extends Migration
             $table->string('description')->nullable();
             $table->dateTime('start_date');
             $table->dateTime('end_date');
-            $table->boolean('confirmed')->default(0);
+            $table->integer('confirmed')->default(-1);
             $table->softDeletes();
             $table->timestamps();
         });

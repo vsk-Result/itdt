@@ -29,12 +29,11 @@ class EventService
           [
             'title' => $holiday->name,
             'start' => $bar,
-            'className' => "bgm-red",
+            'className' => "bg-info border-info",
             'allDay' => true,
             'editable' => false,
             'order_id' => 1,
           ];
-
           $array[] = $foo;
         }
       }
@@ -42,18 +41,17 @@ class EventService
       $events = Event::whereNull('deleted_at')->whereBetween('start_date', [$request->start, $request->end])->get();
       foreach ($events as $key => $event) {
 
+          $color = 'bg-primary border-primary';
       if ($event->confirmed !== null) {
         switch ($event->confirmed) {
           case 0:
-            $color = 'bgm-orange';
+            $color = 'bg-danger border-danger';
             break;
 
           case 1:
-            $color = 'bgm-green';
+            $color = 'bg-success border-success';
             break;
         }
-      } else {
-        $color = 'bgm-blue';
       }
 
         $foo =
