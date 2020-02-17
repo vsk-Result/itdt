@@ -28,41 +28,46 @@ class EventController extends Controller
         return Response::json(compact('events'));
     }
 
-    public function create(Request $request)
+    public function create()
     {
-        if ($this->events->create($request)) {
-			return redirect()->back();
-		}
+        return view('calendar.events.create')->render();
+    }
+
+    public function store(Request $request)
+    {
+        $this->events->store($request);
+        return redirect()->back();
     }
 
     public function update(Request $request)
 	{
-		if ($event = $this->events->update($request)) {
-			// kostil
-			if (isset($request->title)) {
-				return redirect()->back();
-			}
-			return Response::json(compact('event'));
-		}
+        $event = $this->events->update($request);
+	    if ($request->ajax()) {
+            return Response::json(compact('event'));
+        }
+        return redirect()->back();
 	}
 
-    public function modal($id)
+    public function show(Request $request)
 	{
-		$event = $this->events->read_one($id);
-		return view('calendar.event_show', compact('event'))->render();
-
+		$event = $this->events->find($request->id);
+		return view('calendar.events.show', compact('event'))->render();
 	}
 
-    public function edit($id)
+    public function edit(Request $request)
     {
-        $event = $this->events->read_one($id);
-		return view('calendar.event_update', compact('event'))->render();
+        $event = $this->events->find($request->id);
+		return view('calendar.events.edit', compact('event'))->render();
     }
 
     public function status(Request $request)
-    	{
-    		if ($event = $this->events->status($request)) {
-    			return Response::json(compact('event'));
-    		}
-    	}
+    {
+        $event = $this->events->status($request);
+        return Response::json(compact('event'));
+    }
+
+    public function destroy(Request $request)
+    {
+        $this->events->destroy($request->id);
+    }
 }

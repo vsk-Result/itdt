@@ -2,7 +2,7 @@
     <h4 class="modal-title">Новая встреча в зале совещаний</h4>
 </div>
 
-{{Form::open(['url' => route('event_create'), 'method' => 'GET'])}}
+{{Form::open(['url' => route('events.store'), 'method' => 'POST'])}}
 <div class="modal-body">
     <p>
         <b>Заголовок*</b>

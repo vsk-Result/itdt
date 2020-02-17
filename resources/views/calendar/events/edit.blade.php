@@ -4,7 +4,7 @@
     </h4>
 </div>
 
-{{Form::open(['url' => route('event_update'), 'method' => 'GET'])}}
+{{ Form::open(['url' => route('events.update'), 'method' => 'POST']) }}
 <input type="hidden" name="id" value="{{$event->id}}">
 <div class="modal-body">
     <p>

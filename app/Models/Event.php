@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\User;
@@ -10,8 +11,10 @@ use App\Models\Employees\Employee;
 class Event extends Model
 {
     use SoftDeletes;
-    public $timestamps = false;
+
     protected $table = 'events';
+
+    public $timestamps = false;
 
     public function user()
     {
@@ -22,14 +25,4 @@ class Event extends Model
     {
         return $this->belongsTo(Employee::class);
     }
-
-    public function start_date($value="H:i d.m.Y")
-    {
-      return Carbon::parse($this->start_date)->format($value);
-    }
-
-    public function end_date($value="H:i d.m.Y")
-    {
-      return Carbon::parse($this->end_date)->format($value);
-    }
-  }
+}

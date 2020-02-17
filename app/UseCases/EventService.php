@@ -11,121 +11,109 @@ class EventService
 {
     public function all($request)
     {
-      $start = Carbon::parse($request->start);
-      $end = Carbon::parse($request->end);
-      $array = [];
+        $start = Carbon::parse($request->start);
+        $end = Carbon::parse($request->end);
+        $array = [];
 
-      $holidays = Holiday::get();
-      foreach ($holidays as $key => $holiday) {
-        if (Carbon::parse($request->start)->year === Carbon::parse($request->end)->year) {
-          $date = Carbon::parse(substr($request->start, 0, 4) . substr($holiday->date, 4));
-          $bar = substr($request->start, 0, 4) . substr($holiday->date, 4);
-        } else {
-          $date = Carbon::parse(substr($request->end, 0, 4) . substr($holiday->date, 4));
-          $bar = substr($request->end, 0, 4) . substr($holiday->date, 4);
+        $holidays = Holiday::get();
+        foreach ($holidays as $holiday) {
+            if (Carbon::parse($request->start)->year === Carbon::parse($request->end)->year) {
+                $bar = substr($request->start, 0, 4) . substr($holiday->date, 4);
+            } else {
+                $bar = substr($request->end, 0, 4) . substr($holiday->date, 4);
+            }
+            $date = Carbon::parse($bar);
+            if ($date->between($start, $end)) {
+                $foo = [
+                    'title' => $holiday->name,
+                    'start' => $bar,
+                    'className' => "bg-info border-info",
+                    'allDay' => true,
+                    'editable' => false,
+                    'order_id' => 1,
+                ];
+                $array[] = $foo;
+            }
         }
-        if ($date->between($start, $end)) {
-          $foo =
-          [
-            'title' => $holiday->name,
-            'start' => $bar,
-            'className' => "bg-info border-info",
-            'allDay' => true,
-            'editable' => false,
-            'order_id' => 1,
-          ];
-          $array[] = $foo;
+
+        $events = Event::whereBetween('start_date', [$request->start, $request->end])->get();
+        foreach ($events as $event) {
+
+            switch ($event->confirmed) {
+                case 0:
+                    $color = 'bg-warning border-warning';
+                    break;
+                case 1:
+                    $color = 'bg-success border-success';
+                    break;
+                default:
+                    $color = 'bg-primary border-primary';
+                    break;
+            }
+
+            $foo = [
+                    'id' => $event->id,
+                    'title' => $event->title,
+                    'start' => $event->start_date,
+                    'end' => $event->end_date,
+                    'className' => $color,
+                    'order_id' => 2,
+                ];
+
+            $array[] = $foo;
         }
-      }
 
-      $events = Event::whereNull('deleted_at')->whereBetween('start_date', [$request->start, $request->end])->get();
-      foreach ($events as $key => $event) {
-
-          $color = 'bg-primary border-primary';
-      if ($event->confirmed !== null) {
-        switch ($event->confirmed) {
-          case 0:
-            $color = 'bg-warning border-warning';
-            break;
-
-          case 1:
-            $color = 'bg-success border-success';
-            break;
-        }
-      }
-
-        $foo =
-        [
-          'id' => $event->id,
-          'title' => $event->title,
-          'start' => $event->start_date,
-          'end' => $event->end_date,
-          'className' => $color,
-          'order_id' => 2,
-        ];
-
-        $array[] = $foo;
-      }
-      return $array;
+        return $array;
     }
 
-    public function create($request)
+    public function store($request)
     {
         $event = new Event();
-        $event->employee_id = Auth()->User()->empl_id;
+        $event->employee_id = auth()->User()->employee_id;
         $event->user_id = auth()->id();
 
         $event->title = $request->title;
         $event->description = $request->description;
 
-        $start_date = Carbon::parse($request->start_date)->format('Y-m-d'). ' ' .Carbon::parse($request->start_time)->format('H:i:s');
-        $end_date = Carbon::parse($request->end_date)->format('Y-m-d'). ' ' .Carbon::parse($request->end_time)->format('H:i:s');
-        $event->start_date = $start_date;
-        $event->end_date = $end_date;
+        $event->start_date = $this->formatDateTime($request->start_date, $request->start_time);
+        $event->end_date = $this->formatDateTime($request->end_date, $request->end_time);
         $event->save();
         return $event;
     }
 
     public function update($request)
-  {
-    if ($event = Event::find($request->id)) {
-      if (!empty($request->title)) {
+    {
+        $event = $this->find($request->id);
         $event->title = $request->title;
-      }
-
-      if (isset($request->description)) {
         $event->description = $request->description;
-      }
-
-      $start_date = Carbon::parse($request->start_date)->format('Y-m-d'). ' ' .Carbon::parse($request->start_time)->format('H:i:s');
-      $end_date = Carbon::parse($request->end_date)->format('Y-m-d'). ' ' .Carbon::parse($request->end_time)->format('H:i:s');
-      $event->start_date = $start_date;
-      $event->end_date = $end_date;
-      $event->update();
-      return $event;
+        $event->start_date = $this->formatDateTime($request->start_date, $request->start_time);
+        $event->end_date = $this->formatDateTime($request->end_date, $request->end_time);
+        $event->update();
+        return $event;
     }
-  }
 
-  public function read_one($id)
-  {
-    if ($event = Event::find($id)) {
-      return $event;
+    public function find($id)
+    {
+        return Event::findOrFail($id);
     }
-  }
 
-  public function status($request)
-  {
-      if ($request->status_id == -1) {
-          $event = Event::find($request->id);
-          $event->delete();
-          return response()->json(['id' => $request->id]);
-      }
+    public function status($request)
+    {
+        $event = $this->find($request->id);
+        $event->confirmed = $request->status_id;
+        $event->update();
 
-    if ($event = Event::find($request->id)) {
-      $event->confirmed = $request->status_id;
-      $event->update();
-      return $event;
+        return $event;
     }
-  }
 
+    private function formatDateTime($date, $time)
+    {
+        return Carbon::parse($date)->format('Y-m-d'). ' ' .Carbon::parse($time)->format('H:i:s');
+    }
+
+    public function destroy($id)
+    {
+        $event = $this->find($id);
+        $event->delete();
+    }
 }

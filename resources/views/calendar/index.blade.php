@@ -7,7 +7,15 @@
 
 @include('calendar.defaultModal')
 
-<div id="calendar" class="panel panel-primary">
+<div id="calendar"
+     class="panel panel-primary"
+     data-all-url="{{ route('events.all') }}"
+     data-create-url="{{ route('events.create') }}"
+     data-update-url="{{ route('events.update') }}"
+     data-edit-url="{{ route('events.edit') }}"
+     data-destroy-url="{{ route('events.destroy') }}"
+     data-status-url="{{ route('events.status') }}"
+     data-show-url="{{ route('events.show') }}">
 </div>
 
 @endsection

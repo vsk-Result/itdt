@@ -19,7 +19,6 @@ $factory->define(App\User::class, function (Faker $faker) {
         'name' => 'Tester',
         'employee_id' => Employee::all()->random()->id,
         'username' => 'tester',
-        'email' => 'Tester@gmail.com',
         'password' => Hash::make('dfead68a'),
     ];
 });

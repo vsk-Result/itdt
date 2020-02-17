@@ -32,9 +32,6 @@
             <li class="nav-item">
                 <a href="{{ route('employees.index') }}" class="navbar-nav-link"><i class="icon-users mr-2"></i><span>Сотрудники</span></a>
             </li>
-                <li class="nav-item">
-                    <a href="{{ route('events') }}" class="navbar-nav-link"><i class="icon-calendar3"></i></a>
-                </li>
             @if (Auth::user()->hasPermission('objects'))
                 <li class="nav-item">
                     <a href="{{ route('objects.index') }}" class="navbar-nav-link"><i class="icon-city mr-2"></i><span>Объекты</span></a>
@@ -82,6 +79,11 @@
                     <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="icon-switch2"></i> Выйти</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">@csrf</form>
                 </div>
+            </li>
+            <li class="navbar-nav search-btn">
+                <a href="{{ route('events.index') }}" class="navbar-nav-link d-none d-md-block">
+                    <i class="icon-calendar3"></i>
+                </a>
             </li>
             <li class="navbar-nav search-btn">
                 <a href="#" class="navbar-nav-link sidebar-control sidebar-right-toggle d-none d-md-block">
