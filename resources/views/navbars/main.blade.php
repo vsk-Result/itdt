@@ -32,6 +32,9 @@
             <li class="nav-item">
                 <a href="{{ route('employees.index') }}" class="navbar-nav-link"><i class="icon-users mr-2"></i><span>Сотрудники</span></a>
             </li>
+                <li class="nav-item">
+                    <a href="{{ route('events') }}" class="navbar-nav-link"><i class="icon-calendar3"></i></a>
+                </li>
             @if (Auth::user()->hasPermission('objects'))
                 <li class="nav-item">
                     <a href="{{ route('objects.index') }}" class="navbar-nav-link"><i class="icon-city mr-2"></i><span>Объекты</span></a>

@@ -219,3 +219,34 @@ body {
 .sidebar:not(.sidebar-component) .sidebar-content {
     top: 0;
 }
+
+
+.fc-icon-left-single-arrow:after, .fc-icon-right-single-arrow:after {
+    font-size: 150% !important;
+    top: -60% !important;
+}
+
+.fc-day-grid-event {
+    margin: .5rem !important;
+    margin-top: .0rem !important;
+    padding: .25rem .5rem !important;
+    border: none !important;
+}
+
+.fc-time {
+    float: left !important;
+    padding-left: 0 !important;
+}
+
+.fc-title {
+    margin-left: .600rem !important;
+}
+
+.fc-right {
+    float: right;
+    width: 15% !important;
+}
+
+.fc-center {
+    margin-right: -167px;
+}
