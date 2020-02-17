@@ -34,6 +34,9 @@ class HolidaySeeder extends Seeder
             ['name' => 'День народного единства', 'date' => '11-04'],
             ['name' => 'Короткий день', 'date' => '11-03'],
             ['name' => 'Короткий день', 'date' => '12-31'],
+            ['name' => 'Выходной', 'date' => '02-24'],
+            ['name' => 'Выходной', 'date' => '05-04'],
+            ['name' => 'Выходной', 'date' => '05-05'],
         ];
 
         Holiday::insert($holidays);

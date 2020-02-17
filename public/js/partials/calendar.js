@@ -138,7 +138,7 @@ $(document).ready(function() {
               })
                   .done(function(data) {
                       var current_event = $('#calendar').fullCalendar('clientEvents', data.event.id );
-                      var color = ['bg-danger', 'bg-success'];
+                      var color = ['bg-warning', 'bg-success'];
                       current_event[0].className = color[data.event.confirmed];
                       $('#calendar').fullCalendar('updateEvent', current_event[0]);
                   })

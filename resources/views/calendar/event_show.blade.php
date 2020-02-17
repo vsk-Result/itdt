@@ -40,6 +40,7 @@
 </div>
 <div class="modal-footer">
 
+@if (Auth::user()->hasPermission('secretary'))
     @if ($event->confirmed !== 1)
         <button class="btn btn-success event-confirm" data-id="{{$event->id}}" data-dismiss="modal">
             <span class="hidden-xs hidden-sm">Подтвердить</span>
@@ -53,9 +54,11 @@
             <i class="zmdi zmdi-close hidden-md hidden-bg hidden-lg"></i>
         </button>
     @endif
-
+@endif
+    @if ((Auth::user()->hasPermission('creator')) || (Auth::user()->hasPermission('secretary')))
     <button data-event-id="{{$event->id}}" id="vlad" class="btn btn-success">Редактировать</button>
     <button class="btn btn-danger event-destroy" data-id="{{$event->id}}">
         <span class="hidden-xs hidden-sm">Удалить</span>
+    @endif
     </button>
 </div>

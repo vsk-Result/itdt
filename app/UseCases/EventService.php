@@ -45,7 +45,7 @@ class EventService
       if ($event->confirmed !== null) {
         switch ($event->confirmed) {
           case 0:
-            $color = 'bg-danger border-danger';
+            $color = 'bg-warning border-warning';
             break;
 
           case 1:
