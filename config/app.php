@@ -220,6 +220,7 @@ return [
         'DiffFormatter' => Laravelrus\LocalizedCarbon\DiffFactoryFacade::class,
         'Image' => Intervention\Image\ImageManagerStatic::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Calendar' => MaddHatter\LaravelFullcalendar\Facades\Calendar::class,
     ],
 
 ];
