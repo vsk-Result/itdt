@@ -14,6 +14,8 @@ class PermissionSeeder extends Seeder
             ['slug'=>'knowledge', 'name'=> 'База знаний', 'route'=>'knowledge'],
             ['slug'=>'keys', 'name'=> 'Лицензии', 'route'=>'keys'],
             ['slug'=>'users', 'name'=> 'Пользователи', 'route'=>'users'],
+            ['slug'=>'employees', 'name'=> 'Сотрудники', 'route'=>'employees'],
+            ['slug'=>'calendar', 'name'=> 'Календарь', 'route'=>'events'],
         ];
 
         Permission::insert($filling);

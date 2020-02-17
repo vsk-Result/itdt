@@ -81,6 +81,11 @@
                 </div>
             </li>
             <li class="navbar-nav search-btn">
+                <a href="{{ route('events.index') }}" class="navbar-nav-link d-none d-md-block">
+                    <i class="icon-calendar3"></i>
+                </a>
+            </li>
+            <li class="navbar-nav search-btn">
                 <a href="#" class="navbar-nav-link sidebar-control sidebar-right-toggle d-none d-md-block">
                     <i class="icon-search4"></i>
                 </a>

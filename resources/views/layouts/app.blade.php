@@ -28,6 +28,7 @@
     </head>
     <body class="layout-boxed-bg sidebar-xs sidebar-secondary-hidden">
 
+
         @include('navbars.modals.sign')
 
         <div class="d-flex flex-column flex-1 layout-boxed">

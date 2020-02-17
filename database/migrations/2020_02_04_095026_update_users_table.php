@@ -9,6 +9,7 @@ class UpdateUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('empl_id');
             $table->dropColumn('email');
             $table->dropColumn('email_verified_at');
             $table->string('objectguid')->nullable()->after('id');
@@ -22,6 +23,7 @@ class UpdateUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
+            $table->string('empl_id')->unique()->nullable();
             $table->string('email')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->dropColumn('objectguid');
