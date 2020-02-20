@@ -25,7 +25,7 @@
     <script src="{{ asset('vendors/fullcalendar/lib/moment.min.js') }}"></script>
     <script src="{{ asset('vendors/fullcalendar/fullcalendar.min.js') }}"></script>
     <script src="{{ asset('vendors/fullcalendar/locale/ru.js') }}"></script>
-    <script src="{{ asset('vendors/partials/calendar.js') }}"></script>
+    <script src="{{ asset('js/partials/calendar.js') }}"></script>
     @endpush
 
 @push('css')
