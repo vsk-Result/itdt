@@ -56,8 +56,9 @@
 
                 </div>
 
-                @include('sidebars.search')
             </div>
+
+            @include('sidebars.search')
         </div>
 
         <!-- Scripts -->

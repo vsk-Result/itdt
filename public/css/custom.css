@@ -250,3 +250,20 @@ body {
 .fc-center {
     margin-right: -167px;
 }
+
+@media (min-width: 992px) {
+    .search-sidebar {
+        position: fixed !important;
+        right: 0;
+    }
+    .search-sidebar .card-header {
+        height: 54px;
+    }
+}
+
+@media (max-width: 992px) {
+    .sidebar-right, .sidebar-right .sidebar-content {
+        right: -20.5625rem;
+    }
+}
+
