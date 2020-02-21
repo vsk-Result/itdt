@@ -63,7 +63,7 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown dropdown-user">
                 <a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
-                    <img src="{{ asset('images/placeholder.jpg') }}" width="38" height="38" class="rounded-circle" alt="">
+                    <img src="{{ auth()->user()->employee->getAvatarUrl() }}" width="38" height="38" class="rounded-circle" alt="">
                     <span class="ml-2">{{ Auth::user()->name }}</span>
                 </a>
 
