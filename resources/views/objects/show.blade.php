@@ -54,19 +54,6 @@
 
 @push('css')
     <link rel="stylesheet" href="{{ asset('vendors/lightGallery/dist/css/lightgallery.min.css') }}">
-    <link href="{{ asset('vendors/fileuploader/src/jquery.fileuploader.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('vendors/fileuploader/src/css/jquery.fileuploader-theme-thumbnails.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/partials/fileuploader.css') }}" rel="stylesheet">
-    <style>
-        p { margin-bottom: 0; }
-        .fileuploader-theme-thumbnails .fileuploader-items-list .fileuploader-item {
-            padding-top: 19%;
-        }
-        .fileuploader {
-            margin: 0;
-        }
-
-    </style>
 @endpush
 
 @push('scripts')
@@ -74,7 +61,6 @@
     <script src="{{ asset('vendors/lightGallery/modules/lg-fullscreen.min.js') }}"></script>
     <script src="{{ asset('vendors/lightGallery/modules/lg-thumbnail.min.js') }}"></script>
     <script src="{{ asset('vendors/lightGallery/modules/lg-zoom.min.js') }}"></script>
-    <script src="{{ asset('vendors/fileuploader/src/jquery.fileuploader.min.js') }}"></script>
     <script src="https://api-maps.yandex.ru/2.1/?apikey=4c3aa6c1-c0d8-44f6-8421-f0a079f699de&lang=ru_RU" type="text/javascript"></script>
     <script src="{{ asset('js/partials/yamap.js') }}"></script>
     <script src="{{ asset('vendors/jquery_ui/interactions.min.js') }}"></script>

@@ -21,13 +21,13 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('js/fullcalendar/lib/jquery-ui.min.js') }}"></script>
-    <script src="{{ asset('js/fullcalendar/lib/moment.min.js') }}"></script>
-    <script src="{{ asset('js/fullcalendar/fullcalendar.min.js') }}"></script>
-    <script src="{{ asset('js/fullcalendar/locale/ru.js') }}"></script>
+    <script src="{{ asset('vendors/fullcalendar/lib/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('vendors/fullcalendar/lib/moment.min.js') }}"></script>
+    <script src="{{ asset('vendors/fullcalendar/fullcalendar.min.js') }}"></script>
+    <script src="{{ asset('vendors/fullcalendar/locale/ru.js') }}"></script>
     <script src="{{ asset('js/partials/calendar.js') }}"></script>
     @endpush
 
 @push('css')
-    <link href="{{ asset('js/fullcalendar/fullcalendar.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendors/fullcalendar/fullcalendar.min.css') }}" rel="stylesheet">
 @endpush
