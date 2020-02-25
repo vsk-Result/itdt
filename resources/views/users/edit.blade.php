@@ -12,10 +12,17 @@
                         <label>Доступ к разделам</label>
                         {{ Form::select('permissions[]', $permissions, $user->permissions->pluck('id'), ['class' => 'form-control select', 'multiple' => 'multiple']) }}
                     </div>
+                    <div class="form-group">
+                        <label>Привязать к сотруднику</label>
+                        {{ Form::select('employee_id', $employees, $user->employee_id, ['class' => 'form-control select']) }}
+                    </div>
+
                     <div class="text-right">
                         <button type="submit" class="btn btn-primary">Сохранить</button>
                     </div>
+
                 {{ Form::close() }}
+
             </div>
         </div>
     </div>

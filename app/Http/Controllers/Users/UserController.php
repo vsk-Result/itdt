@@ -24,12 +24,23 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $permissions = Permission::pluck('name', 'id');
-        return view('users.edit', compact('user', 'permissions'));
+        $employees = [null => 'Отсутствует'] + Employee::orderBy('fullname')->pluck('fullname', 'id')->toArray();
+        return view('users.edit', compact('user', 'permissions', 'employees'));
     }
 
     public function update(User $user, Request $request)
     {
         $user->permissions()->sync($request->permissions);
+
+        $users = User::where('employee_id', $request->employee_id)->get();
+        foreach ($users as $user) {
+            $user->employee_id = null;
+            $user->update();
+        }
+
+        $user->employee_id = $request->employee_id;
+        $user->update();
+
         return redirect()->route('users.index');
     }
 
