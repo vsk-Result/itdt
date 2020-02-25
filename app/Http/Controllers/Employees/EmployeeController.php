@@ -8,6 +8,7 @@ use App\Models\Employees\Post;
 use App\Services\Upload\Uploader;
 use App\UseCases\SignService;
 use Illuminate\Http\Request;
+use App\User;
 
 class EmployeeController extends Controller
 {
@@ -29,8 +30,9 @@ class EmployeeController extends Controller
     public function show(Employee $employee)
     {
         $posts = [null => 'Отсутствует'] + Post::orderBy('name')->pluck('name', 'id')->toArray();
+        $users = [null => 'Отсутствует'] + User::orderBy('username')->pluck('username', 'id')->toArray();
         $leaders = [null => 'Отсутствует'] + Employee::where('id', '!=', $employee->id)->orderBy('fullname')->pluck('fullname', 'id')->toArray();
-        return view('employees.show', compact('employee', 'leaders', 'posts'));
+        return view('employees.show', compact('employee', 'leaders', 'posts', 'users'));
     }
 
     public function sign(Employee $employee, $company)
@@ -51,6 +53,19 @@ class EmployeeController extends Controller
         $employee->post_id = $request->post_id;
         $employee->leader_id = $request->leader_id;
         $employee->update();
+
+        $users = User::where('employee_id', $employee->id)->get();
+        foreach ($users as $user) {
+            $user->employee_id = null;
+            $user->update();
+        }
+
+        if (!is_null($request->username)) {
+            $user = User::find($request->username);
+            $user->employee_id = $employee->id;
+            $user->update();
+        }
+
 
         $filename = $this->uploader->upload(
             $request->file('avatar_url'),

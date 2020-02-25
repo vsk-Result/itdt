@@ -66,6 +66,16 @@
         </div>
     </div>
 
+    @if (Auth::user()->hasPermission('users'))
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Имя пользователя</label>
+                    {{ Form::select('username', $users, $employee->user->id, ['class' => 'form-control select']) }}
+                </div>
+            </div>
+        </div>
+    @endif
     <div class="text-left">
         <button type="submit" class="btn btn-primary">Сохранить</button>
     </div>

@@ -221,6 +221,7 @@ return [
         'Image' => Intervention\Image\ImageManagerStatic::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Calendar' => MaddHatter\LaravelFullcalendar\Facades\Calendar::class,
+        'Adldap' => Adldap\Laravel\Facades\Adldap::class,
     ],
 
 ];
