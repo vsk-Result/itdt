@@ -1,16 +1,19 @@
 <div class="modal-header">
-    <h4 class="modal-title">
-        <a>{{$event->employee->fullname}}</a>
-    </h4>
+    <div class="">
+        <p>
+            <b>{{$event->title}}</b>
+        </p>
+    </div>
 </div>
 
 <div class="modal-body">
-    <div class="">
-        <b>Заголовок</b>
-        <p>
-            {{$event->title}}
-        </p>
-    </div>
+    <p>
+        <b>Забронировал:</b>
+    </p>
+
+    <h7 class="modal-title">
+        <a>{{$event->employee->fullname}}</a>
+    </h7>
 
     <p>
         <b>Дата начала и окончания события</b>

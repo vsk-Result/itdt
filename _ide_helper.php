@@ -3,19 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
-<<<<<<< HEAD
-<<<<<<< refs/remotes/origin/master
-<<<<<<< refs/remotes/origin/master
- * Generated for Laravel 5.7.28 on 2020-02-03 16:45:36.
-=======
- * Generated for Laravel 5.7.28 on 2020-01-24 12:14:09.
->>>>>>> Привел роуты в порядок. Оформил правильно через сервис провайдер (#29)
-=======
- * Generated for Laravel 5.7.28 on 2020-02-03 16:45:36.
->>>>>>> Онлайн пользователей, поиск по сотрудникам, карточка сотрудника, доступ на изменение, сотрудники (#31)
-=======
- * Generated for Laravel 5.7.28 on 2020-02-04 12:19:36.
->>>>>>> calendar
+ * Generated for Laravel 5.7.28 on 2020-02-20 14:32:05.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -15918,6 +15906,367 @@ namespace Maatwebsite\Excel\Facades {
  
 }
 
+namespace MaddHatter\LaravelFullcalendar\Facades { 
+
+    /**
+     * 
+     *
+     */ 
+    class Calendar {
+        
+        /**
+         * Create an event DTO to add to a calendar
+         *
+         * @param string $title
+         * @param string $isAllDay
+         * @param string|\DateTime $start If string, must be valid datetime format: http://bit.ly/1z7QWbg
+         * @param string|\DateTime $end If string, must be valid datetime format: http://bit.ly/1z7QWbg
+         * @param string $id event Id
+         * @param array $options
+         * @return \MaddHatter\LaravelFullcalendar\SimpleEvent 
+         * @static 
+         */ 
+        public static function event($title, $isAllDay, $start, $end, $id = null, $options = [])
+        {
+                        return \MaddHatter\LaravelFullcalendar\Calendar::event($title, $isAllDay, $start, $end, $id, $options);
+        }
+        
+        /**
+         * Create the <div> the calendar will be rendered into
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function calendar()
+        {
+                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
+                        return $instance->calendar();
+        }
+        
+        /**
+         * Get the <script> block to render the calendar (as a View)
+         *
+         * @return \Illuminate\View\View 
+         * @static 
+         */ 
+        public static function script()
+        {
+                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
+                        return $instance->script();
+        }
+        
+        /**
+         * Customize the ID of the generated <div>
+         *
+         * @param string $id
+         * @return \MaddHatter\LaravelFullcalendar\Calendar 
+         * @static 
+         */ 
+        public static function setId($id)
+        {
+                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
+                        return $instance->setId($id);
+        }
+        
+        /**
+         * Get the ID of the generated <div>
+         * This value is randomized unless a custom value was set via setId
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getId()
+        {
+                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
+                        return $instance->getId();
+        }
+        
+        /**
+         * Add an event
+         *
+         * @param \Event $event
+         * @param array $customAttributes
+         * @return \MaddHatter\LaravelFullcalendar\Calendar 
+         * @static 
+         */ 
+        public static function addEvent($event, $customAttributes = [])
+        {
+                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
+                        return $instance->addEvent($event, $customAttributes);
+        }
+        
+        /**
+         * Add multiple events
+         *
+         * @param array|\MaddHatter\LaravelFullcalendar\ArrayAccess $events
+         * @param array $customAttributes
+         * @return \MaddHatter\LaravelFullcalendar\Calendar 
+         * @static 
+         */ 
+        public static function addEvents($events, $customAttributes = [])
+        {
+                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
+                        return $instance->addEvents($events, $customAttributes);
+        }
+        
+        /**
+         * Set fullcalendar options
+         *
+         * @param array $options
+         * @return \MaddHatter\LaravelFullcalendar\Calendar 
+         * @static 
+         */ 
+        public static function setOptions($options)
+        {
+                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
+                        return $instance->setOptions($options);
+        }
+        
+        /**
+         * Get the fullcalendar options (not including the events list)
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getOptions()
+        {
+                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
+                        return $instance->getOptions();
+        }
+        
+        /**
+         * Set fullcalendar callback options
+         *
+         * @param array $callbacks
+         * @return \MaddHatter\LaravelFullcalendar\Calendar 
+         * @static 
+         */ 
+        public static function setCallbacks($callbacks)
+        {
+                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
+                        return $instance->setCallbacks($callbacks);
+        }
+        
+        /**
+         * Get the callbacks currently defined
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getCallbacks()
+        {
+                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
+                        return $instance->getCallbacks();
+        }
+        
+        /**
+         * Get options+events JSON
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getOptionsJson()
+        {
+                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
+                        return $instance->getOptionsJson();
+        }
+         
+    }
+ 
+}
+
+namespace Adldap\Laravel\Facades { 
+
+    /**
+     * 
+     *
+     * @mixin \Adldap\Connections\Provider
+     */ 
+    class Adldap {
+        
+        /**
+         * Add a provider by the specified name.
+         *
+         * @param mixed $configuration
+         * @param string $name
+         * @param \Adldap\ConnectionInterface $connection
+         * @throws \InvalidArgumentException When an invalid type is given as the configuration argument.
+         * @return \Adldap\Adldap 
+         * @static 
+         */ 
+        public static function addProvider($config, $name = 'default', $connection = null)
+        {
+                        /** @var \Adldap\Adldap $instance */
+                        return $instance->addProvider($config, $name, $connection);
+        }
+        
+        /**
+         * Returns all of the connection providers.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getProviders()
+        {
+                        /** @var \Adldap\Adldap $instance */
+                        return $instance->getProviders();
+        }
+        
+        /**
+         * Retrieves a Provider using its specified name.
+         *
+         * @param string $name
+         * @throws AdldapException When the specified provider does not exist.
+         * @return \Adldap\ProviderInterface 
+         * @static 
+         */ 
+        public static function getProvider($name)
+        {
+                        /** @var \Adldap\Adldap $instance */
+                        return $instance->getProvider($name);
+        }
+        
+        /**
+         * Sets the default provider.
+         *
+         * @param string $name
+         * @throws AdldapException When the specified provider does not exist.
+         * @static 
+         */ 
+        public static function setDefaultProvider($name = 'default')
+        {
+                        /** @var \Adldap\Adldap $instance */
+                        return $instance->setDefaultProvider($name);
+        }
+        
+        /**
+         * Retrieves the first default provider.
+         *
+         * @throws AdldapException When no default provider exists.
+         * @return \Adldap\ProviderInterface 
+         * @static 
+         */ 
+        public static function getDefaultProvider()
+        {
+                        /** @var \Adldap\Adldap $instance */
+                        return $instance->getDefaultProvider();
+        }
+        
+        /**
+         * Removes a provider by the specified name.
+         *
+         * @param string $name
+         * @return \Adldap\Adldap 
+         * @static 
+         */ 
+        public static function removeProvider($name)
+        {
+                        /** @var \Adldap\Adldap $instance */
+                        return $instance->removeProvider($name);
+        }
+        
+        /**
+         * Connects to the specified provider.
+         * 
+         * If no username and password is given, then the providers
+         * configured admin credentials are used.
+         *
+         * @param string|null $name
+         * @param string|null $username
+         * @param string|null $password
+         * @return \Adldap\ProviderInterface 
+         * @static 
+         */ 
+        public static function connect($name = null, $username = null, $password = null)
+        {
+                        /** @var \Adldap\Adldap $instance */
+                        return $instance->connect($name, $username, $password);
+        }
+        
+        /**
+         * Initializes the event logger.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function initEventLogger()
+        {
+                        /** @var \Adldap\Adldap $instance */
+                        $instance->initEventLogger();
+        }
+        
+        /**
+         * Get the event dispatcher instance.
+         *
+         * @return \Adldap\DispatcherInterface 
+         * @static 
+         */ 
+        public static function getEventDispatcher()
+        {
+                        return \Adldap\Adldap::getEventDispatcher();
+        }
+        
+        /**
+         * Set the event dispatcher instance.
+         *
+         * @param \Adldap\DispatcherInterface $dispatcher
+         * @return void 
+         * @static 
+         */ 
+        public static function setEventDispatcher($dispatcher)
+        {
+                        \Adldap\Adldap::setEventDispatcher($dispatcher);
+        }
+        
+        /**
+         * Unset the event dispatcher instance.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function unsetEventDispatcher()
+        {
+                        \Adldap\Adldap::unsetEventDispatcher();
+        }
+        
+        /**
+         * Get the logger instance.
+         *
+         * @return \Adldap\LoggerInterface|null 
+         * @static 
+         */ 
+        public static function getLogger()
+        {
+                        return \Adldap\Adldap::getLogger();
+        }
+        
+        /**
+         * Set the logger instance.
+         *
+         * @param \Adldap\LoggerInterface $logger
+         * @return void 
+         * @static 
+         */ 
+        public static function setLogger($logger)
+        {
+                        \Adldap\Adldap::setLogger($logger);
+        }
+        
+        /**
+         * Unset the logger instance.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function unsetLogger()
+        {
+                        \Adldap\Adldap::unsetLogger();
+        }
+         
+    }
+ 
+}
+
 namespace Barryvdh\Debugbar { 
 
     /**
@@ -16756,178 +17105,6 @@ namespace DaveJamesMiller\Breadcrumbs\Facades {
  
 }
 
-<<<<<<< HEAD
-=======
-namespace MaddHatter\LaravelFullcalendar\Facades { 
-
-    /**
-     * 
-     *
-     */ 
-    class Calendar {
-        
-        /**
-         * Create an event DTO to add to a calendar
-         *
-         * @param string $title
-         * @param string $isAllDay
-         * @param string|\DateTime $start If string, must be valid datetime format: http://bit.ly/1z7QWbg
-         * @param string|\DateTime $end If string, must be valid datetime format: http://bit.ly/1z7QWbg
-         * @param string $id event Id
-         * @param array $options
-         * @return \MaddHatter\LaravelFullcalendar\SimpleEvent 
-         * @static 
-         */ 
-        public static function event($title, $isAllDay, $start, $end, $id = null, $options = [])
-        {
-                        return \MaddHatter\LaravelFullcalendar\Calendar::event($title, $isAllDay, $start, $end, $id, $options);
-        }
-        
-        /**
-         * Create the <div> the calendar will be rendered into
-         *
-         * @return string 
-         * @static 
-         */ 
-        public static function calendar()
-        {
-                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
-                        return $instance->calendar();
-        }
-        
-        /**
-         * Get the <script> block to render the calendar (as a View)
-         *
-         * @return \Illuminate\View\View 
-         * @static 
-         */ 
-        public static function script()
-        {
-                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
-                        return $instance->script();
-        }
-        
-        /**
-         * Customize the ID of the generated <div>
-         *
-         * @param string $id
-         * @return \MaddHatter\LaravelFullcalendar\Calendar 
-         * @static 
-         */ 
-        public static function setId($id)
-        {
-                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
-                        return $instance->setId($id);
-        }
-        
-        /**
-         * Get the ID of the generated <div>
-         * This value is randomized unless a custom value was set via setId
-         *
-         * @return string 
-         * @static 
-         */ 
-        public static function getId()
-        {
-                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
-                        return $instance->getId();
-        }
-        
-        /**
-         * Add an event
-         *
-         * @param \Event $event
-         * @param array $customAttributes
-         * @return \MaddHatter\LaravelFullcalendar\Calendar 
-         * @static 
-         */ 
-        public static function addEvent($event, $customAttributes = [])
-        {
-                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
-                        return $instance->addEvent($event, $customAttributes);
-        }
-        
-        /**
-         * Add multiple events
-         *
-         * @param array|\MaddHatter\LaravelFullcalendar\ArrayAccess $events
-         * @param array $customAttributes
-         * @return \MaddHatter\LaravelFullcalendar\Calendar 
-         * @static 
-         */ 
-        public static function addEvents($events, $customAttributes = [])
-        {
-                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
-                        return $instance->addEvents($events, $customAttributes);
-        }
-        
-        /**
-         * Set fullcalendar options
-         *
-         * @param array $options
-         * @return \MaddHatter\LaravelFullcalendar\Calendar 
-         * @static 
-         */ 
-        public static function setOptions($options)
-        {
-                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
-                        return $instance->setOptions($options);
-        }
-        
-        /**
-         * Get the fullcalendar options (not including the events list)
-         *
-         * @return array 
-         * @static 
-         */ 
-        public static function getOptions()
-        {
-                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
-                        return $instance->getOptions();
-        }
-        
-        /**
-         * Set fullcalendar callback options
-         *
-         * @param array $callbacks
-         * @return \MaddHatter\LaravelFullcalendar\Calendar 
-         * @static 
-         */ 
-        public static function setCallbacks($callbacks)
-        {
-                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
-                        return $instance->setCallbacks($callbacks);
-        }
-        
-        /**
-         * Get the callbacks currently defined
-         *
-         * @return array 
-         * @static 
-         */ 
-        public static function getCallbacks()
-        {
-                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
-                        return $instance->getCallbacks();
-        }
-        
-        /**
-         * Get options+events JSON
-         *
-         * @return string 
-         * @static 
-         */ 
-        public static function getOptionsJson()
-        {
-                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
-                        return $instance->getOptionsJson();
-        }
-         
-    }
- 
-}
-
->>>>>>> calendar
 
 namespace  { 
 
@@ -19550,14 +19727,13 @@ namespace  {
 
     class Excel extends \Maatwebsite\Excel\Facades\Excel {}
 
+    class Calendar extends \MaddHatter\LaravelFullcalendar\Facades\Calendar {}
+
+    class Adldap extends \Adldap\Laravel\Facades\Adldap {}
+
     class Debugbar extends \Barryvdh\Debugbar\Facade {}
 
     class Breadcrumbs extends \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs {}
-<<<<<<< HEAD
-=======
-
-    class Calendar extends \MaddHatter\LaravelFullcalendar\Facades\Calendar {}
->>>>>>> calendar
  
 }
 

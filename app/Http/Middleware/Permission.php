@@ -19,9 +19,11 @@ class Permission
         if (app('auth')->guest()) {
             return $next($request);
         }
+    
         if (! app('auth')->user()->hasPermission($permissionSlug)) {
             abort(403);
         }
+
         return $next($request);
     }
 }
