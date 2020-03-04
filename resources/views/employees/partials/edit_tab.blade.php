@@ -66,12 +66,12 @@
         </div>
     </div>
 
-    @if (Auth::user()->hasPermission('users') && $employee->user)
+    @if (Auth::user()->hasPermission('users'))
         <div class="form-group">
             <div class="row">
                 <div class="col-md-6">
                     <label>Привязать к пользователю</label>
-                    {{ Form::select('username', $users, $employee->user->id, ['class' => 'form-control select']) }}
+                    {{ Form::select('username', $users, $employee->user ? $employee->user->id : null, ['class' => 'form-control select']) }}
                 </div>
             </div>
         </div>

@@ -54,18 +54,19 @@ class EmployeeController extends Controller
         $employee->leader_id = $request->leader_id;
         $employee->update();
 
-        $users = User::where('employee_id', $employee->id)->get();
-        foreach ($users as $user) {
-            $user->employee_id = null;
-            $user->update();
-        }
+        if (auth()->user()->hasPermission('users')) {
+            $users = User::where('employee_id', $employee->id)->get();
+            foreach ($users as $user) {
+                $user->employee_id = null;
+                $user->update();
+            }
 
-        if (!is_null($request->username)) {
-            $user = User::find($request->username);
-            $user->employee_id = $employee->id;
-            $user->update();
+            if (!is_null($request->username)) {
+                $user = User::find($request->username);
+                $user->employee_id = $employee->id;
+                $user->update();
+            }
         }
-
 
         $filename = $this->uploader->upload(
             $request->file('avatar_url'),

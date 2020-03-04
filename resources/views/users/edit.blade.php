@@ -32,8 +32,6 @@
 @push('scripts')
     <script src="{{ asset('vendors/select2/select2.min.js') }}"></script>
     <script>
-        $('.select').select2({
-            minimumResultsForSearch: -1
-        });
+        $('.select').select2();
     </script>
 @endpush
