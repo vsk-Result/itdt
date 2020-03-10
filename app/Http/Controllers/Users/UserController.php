@@ -39,6 +39,7 @@ class UserController extends Controller
         }
 
         $user->employee_id = $request->employee_id;
+        $user->is_active = $request->is_active;
         $user->update();
 
         return redirect()->route('users.index');
@@ -60,5 +61,13 @@ class UserController extends Controller
         $view_render = view('employees.search_list', compact('employees'))->render();
         $count = $employees->count();
         return response()->json(compact('view_render', 'count'));
+    }
+
+    public function toggleActive(User $user)
+    {
+        $user->update([
+            'is_active' => !$user->isActive()
+        ]);
+        return response()->json(['is_active' => $user->isActive()]);
     }
 }

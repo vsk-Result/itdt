@@ -16,7 +16,7 @@ class User extends Authenticatable
     const ACTIVITY_MINUTES = 5;
 
     protected $fillable = [
-        'name', 'email', 'password', 'username', 'last_activity', 'last_ip'
+        'name', 'email', 'password', 'username', 'last_activity', 'last_ip', 'is_active'
     ];
 
     protected $hidden = [
@@ -59,6 +59,11 @@ class User extends Authenticatable
     {
         $matchDateTime = Carbon::now()->subMinutes(self::ACTIVITY_MINUTES);
         return self::where('last_activity', '>=', $matchDateTime)->pluck('employee_id')->toArray();
+    }
+
+    public function isActive()
+    {
+        return $this->is_active;
     }
 }
 

@@ -76,7 +76,13 @@
             </div>
         </div>
     @endif
-    <div class="text-left">
-        <button type="submit" class="btn btn-primary">Сохранить</button>
-    </div>
+
+    @if (Auth::user()->hasPermission('users'))
+        <div class="row">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary float-left">Сохранить</button>
+                <a class="btn btn-danger float-right" href="{{ route('employees.destroy', $employee) }}">Удалить</a>
+            </div>
+        </div>
+    @endif
 {{ Form::close() }}
