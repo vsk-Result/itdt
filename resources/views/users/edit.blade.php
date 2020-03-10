@@ -13,7 +13,11 @@
                         {{ Form::select('permissions[]', $permissions, $user->permissions->pluck('id'), ['class' => 'form-control select', 'multiple' => 'multiple']) }}
                     </div>
                     <div class="form-group">
-                        <label>Привязать к сотруднику</label>
+                        <label>Доступ к системе</label>
+                        {{ Form::select('is_active', ['Не активен', 'Активен'], $user->isActive(), ['class' => 'form-control select']) }}
+                    </div>
+                    <div class="form-group">
+                        <label>Привязать к профилю</label>
                         {{ Form::select('employee_id', $employees, $user->employee_id, ['class' => 'form-control select']) }}
                     </div>
 

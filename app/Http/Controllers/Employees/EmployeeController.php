@@ -80,4 +80,19 @@ class EmployeeController extends Controller
 
         return redirect()->back();
     }
+
+    public function destroy(Employee $employee)
+    {
+        if (auth()->user()->hasPermission('users')) {
+            $users = User::where('employee_id', $employee->id)->get();
+            foreach ($users as $user) {
+                $user->employee_id = null;
+                $user->update();
+            }
+
+            $employee->delete();
+        }
+
+        return redirect()->route('employees.index');
+    }
 }
