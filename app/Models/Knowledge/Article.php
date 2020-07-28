@@ -50,4 +50,9 @@ class Article extends Model
     {
         return route('knowledge.articles.short_link', $this->link);
     }
+
+    public function scopeForUser($query)
+    {
+        return $query->where('link_access', true);
+    }
 }

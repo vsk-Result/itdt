@@ -26,6 +26,8 @@ class Category extends Model
 
     public function scopeForUser($query)
     {
-        return $query->where('visible_for_user', true);
+        return $query->whereHas('articles', function($query) {
+            $query->where('link_access', true);
+        });
     }
 }

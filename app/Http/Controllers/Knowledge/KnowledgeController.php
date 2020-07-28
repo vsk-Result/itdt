@@ -39,18 +39,41 @@ class KnowledgeController extends Controller
         }
 
         if (is_null($request->tags))  {
-            $categoryList = $categoriesQuery->with('articles')->orderBy('name')->get();
+
+            if (!auth()->user()->hasPermission('task_manager')) {
+                $categoryList = $categoriesQuery->with(['articles' => function ($query) {
+                    $query->where('link_access', true);
+                }])->orderBy('name')->get();
+            } else {
+                $categoryList = $categoriesQuery->with('articles')->orderBy('name')->get();
+            }
+
             if ($category != 'all') {
-                $categoryList = $categoriesQuery->where('id', $category)->with('articles')->orderBy('name')->get();
+                if (!auth()->user()->hasPermission('task_manager')) {
+                    $categoryList = $categoriesQuery->where('id', $category)->with(['articles' => function ($query) {
+                        $query->where('link_access', true);
+                    }])->orderBy('name')->get();
+                } else {
+                    $categoryList = $categoriesQuery->where('id', $category)->with('articles')->orderBy('name')->get();
+                }
+
             }
             return response()->json(['view_render' => view('knowledge.partials.categories', compact('categoryList'))->render()]);
         }
 
         $articleIds = [];
         foreach ($request->tags as $tag) {
-            $articlesIds = Article::whereHas('tags', function ($query) use ($tag) {
+
+            $articlesQuery = Article::query();
+
+            if (!auth()->user()->hasPermission('task_manager')) {
+                $articlesQuery->forUser();
+            }
+
+            $articlesIds = $articlesQuery->whereHas('tags', function ($query) use ($tag) {
                 $query->where('name', 'LIKE', '%' . $tag['value'] . '%');
             })->pluck('id')->toArray();
+
             if (count($articlesIds) > 0) {
                 $articleIds = array_merge($articleIds, $articlesIds);
             }
