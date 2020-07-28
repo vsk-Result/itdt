@@ -10,7 +10,7 @@ class Category extends Model
 {
     protected $table = 'knowledge_categories';
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'visible_for_user'];
 
     public $timestamps = false;
 
@@ -22,5 +22,10 @@ class Category extends Model
     public function icon()
     {
         return $this->belongsTo(Icon::class, 'icon_id', 'id');
+    }
+
+    public function scopeForUser($query)
+    {
+        return $query->where('visible_for_user', true);
     }
 }

@@ -26,8 +26,14 @@ class ObjectController extends Controller
 
     public function index()
     {
-        $objects = CObject::orderBy('is_active', 'DESC')->orderBy('code')->get();
-        return view('objects.index', compact('objects'));
+        return view('objects.index');
+    }
+
+    public function all(Request $request)
+    {
+        $objects = $request->is_active == 'true' ? CObject::active()->orderBy('code')->get() : CObject::orderBy('is_active', 'DESC')->orderBy('code')->get();
+        $view_render = view('objects.list', compact('objects'))->render();
+        return response()->json(compact('view_render'));
     }
 
     public function create()
