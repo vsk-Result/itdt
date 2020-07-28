@@ -18,17 +18,30 @@ class KnowledgeController extends Controller
     public function index(Request $request)
     {
         $icons = Icon::all();
-        $categories = Category::with('articles')->orderBy('name')->get();
+        $categoriesQuery = Category::query();
+
+        if (!auth()->user()->hasPermission('task_manager')) {
+            $categoriesQuery->forUser();
+        }
+
+        $categories = $categoriesQuery->with('articles')->orderBy('name')->get();
+
         return view('knowledge.index', compact('categories', 'icons'));
     }
 
     public function filter(Request $request)
     {
         $category = $request->category;
+        $categoriesQuery = Category::query();
+
+        if (!auth()->user()->hasPermission('task_manager')) {
+            $categoriesQuery->forUser();
+        }
+
         if (is_null($request->tags))  {
-            $categoryList = Category::with('articles')->orderBy('name')->get();
+            $categoryList = $categoriesQuery->with('articles')->orderBy('name')->get();
             if ($category != 'all') {
-                $categoryList = Category::where('id', $category)->with('articles')->orderBy('name')->get();
+                $categoryList = $categoriesQuery->where('id', $category)->with('articles')->orderBy('name')->get();
             }
             return response()->json(['view_render' => view('knowledge.partials.categories', compact('categoryList'))->render()]);
         }
@@ -44,13 +57,13 @@ class KnowledgeController extends Controller
         }
         $articleIds = array_unique($articleIds);
         if ($category == 'all') {
-            $categoryList = Category::whereHas('articles', function ($query) use ($articleIds) {
+            $categoryList = $categoriesQuery->whereHas('articles', function ($query) use ($articleIds) {
                 $query->whereIn('id', $articleIds);
             })->with(['articles' => function ($query) use ($articleIds) {
                 $query->whereIn('id', $articleIds);
             }])->get();
         } else {
-            $categoryList = Category::where('id', $category)->whereHas('articles', function ($query) use ($articleIds) {
+            $categoryList = $categoriesQuery->where('id', $category)->whereHas('articles', function ($query) use ($articleIds) {
                 $query->whereIn('id', $articleIds);
             })->with(['articles' => function ($query) use ($articleIds) {
                 $query->whereIn('id', $articleIds);

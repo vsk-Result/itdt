@@ -14,11 +14,27 @@
 @endsection
 
 @section('content')
-    @foreach($objects->chunk(4) as $chunk_objects)
-        <div class="row">
-            @each('objects.partials.object_card', $chunk_objects, 'object')
+
+    <div id="filter-bar" class="navbar navbar-expand-lg navbar-light navbar-component rounded py-2">
+        <div class="text-center d-lg-none w-100">
+            <button type="button" class="navbar-toggler dropdown-toggle" data-toggle="collapse" data-target="#navbar-filter">
+                <i class="icon-unfold mr-2"></i>
+                Фильтры
+            </button>
         </div>
-    @endforeach
+
+        <div class="navbar-collapse collapse" id="navbar-filter">
+            <div class="form-check form-check-switchery form-check-switchery-double form-check-switchery mb-3 mb-lg-0">
+                <label class="form-check-label">
+                    Активные
+                    <input id="objects-active" type="checkbox" class="form-check-input-switchery" data-fouc>
+                    Все
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div id="objects-container" data-url="{{ route('objects.all') }}"></div>
 @endsection
 
 @push('css')
@@ -34,4 +50,9 @@
             padding-bottom: 0;
         }
     </style>
+@endpush
+
+@push('scripts')
+    <script src="{{ asset('vendors/styling/switchery.min.js') }}"></script>
+    <script src="{{ asset('js/partials/objects.js') }}"></script>
 @endpush

@@ -1,6 +1,7 @@
 <?php
 
 Route::get('/', 'ObjectController@index')->name('index');
+Route::get('/all', 'ObjectController@all')->name('all');
 Route::get('/create', 'ObjectController@create')->name('create');
 Route::post('/create', 'ObjectController@store')->name('store');
 Route::get('/{id}/edit', 'ObjectController@edit')->name('edit');
