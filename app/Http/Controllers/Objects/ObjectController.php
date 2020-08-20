@@ -40,7 +40,7 @@ class ObjectController extends Controller
     public function create()
     {
         $icons = Icon::all();
-        $employees = Employee::pluck('fullname', 'id')->toArray();
+        $employees = Employee::orderBy('fullname')->pluck('fullname', 'id')->toArray();
         return view('objects.create', compact('icons', 'employees'));
     }
 
@@ -55,7 +55,7 @@ class ObjectController extends Controller
     {
         $icons = Icon::all();
         $object = CObject::findOrFail($id);
-        $employees = Employee::pluck('fullname', 'id')->toArray();
+        $employees = Employee::orderBy('fullname')->pluck('fullname', 'id')->toArray();
         return view('objects.edit', compact('object', 'icons', 'employees'));
     }
 
