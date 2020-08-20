@@ -63,6 +63,15 @@ class Employee extends Model
         return substr_count($this->email2, $domain) > 0 ? $this->email2 : '';
     }
 
+    public function getAnyEmail()
+    {
+        if (!empty($this->email) && !is_null($this->email)) {
+            return $this->email;
+        }
+
+        return (!empty($this->email2) && !is_null($this->email2)) ? $this->email2 : '';
+    }
+
     public function getFilename()
     {
         return is_null($this->avatar_url) ? self::DEFAULT_FILENAME : $this->avatar_url;
