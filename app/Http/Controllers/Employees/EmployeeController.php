@@ -95,4 +95,16 @@ class EmployeeController extends Controller
 
         return redirect()->route('employees.index');
     }
+
+    public function getInfo(Request $request)
+    {
+        $employee = Employee::find($request->employee_id);
+        return response()->json([
+           'fullname' => $employee->fullname,
+            'appointment' => $employee->getPostName() == 'Не указана' ? '' : $employee->getPostName(),
+            'phone' => $employee->phone_number,
+            'email' => $employee->getAnyEmail(),
+            'link' => route('employees.show', $employee)
+        ]);
+    }
 }

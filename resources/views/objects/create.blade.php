@@ -16,6 +16,7 @@
 @section('content')
 
     @include('knowledge.partials.icon_list')
+    @include('objects.modals.employee_list')
 
     <div class="row">
         <div class="col-md-12">
@@ -108,8 +109,14 @@
 @push('scripts')
     <script src="{{ asset('vendors/fileuploader/src/jquery.fileuploader.min.js') }}"></script>
     <script src="{{ asset('vendors/summernote/summernote.min.js') }}"></script>
+    <script src="{{ asset('vendors/select2/select2.min.js') }}"></script>
     <script>
+
+        var personCard;
+
         $(document).ready(function() {
+            $('.employee-select').select2();
+
             $('.fileuplouder').fileuploader({
                 addMore: true,
                 theme: 'onebutton',
@@ -212,6 +219,32 @@
             } else {
                 icons_container.html($('#our-icon-list').html()).show();
             }
+        });
+
+        $('body').on('click', '.open-employee-list', function () {
+            personCard = $(this).closest('.card');
+            $('#employeeListModal').modal('show');
+        });
+
+        $('.employee-select-btn').on('click', function () {
+
+            var employee_id = $('.employee-select').val();
+
+            $.ajax({
+                url: '/employees/info',
+                type: 'POST',
+                data: {
+                    employee_id: employee_id
+                }
+            }).done(function(data) {
+                personCard.find('.employee-fullname').val(data.fullname);
+                personCard.find('.employee-appointment').val(data.appointment);
+                personCard.find('.employee-phone').val(data.phone);
+                personCard.find('.employee-email').val(data.email);
+                personCard.find('.employee-link').val(data.link);
+            }).always(function() {
+                $('#employeeListModal').modal('hide');
+            });
         });
     </script>
 @endpush

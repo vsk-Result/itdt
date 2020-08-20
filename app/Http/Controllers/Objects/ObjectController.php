@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Objects;
 
+use App\Models\Employees\Employee;
 use App\Models\Icon;
 use App\Models\Objects\CObject;
 use App\Models\Objects\Image;
@@ -39,11 +40,13 @@ class ObjectController extends Controller
     public function create()
     {
         $icons = Icon::all();
-        return view('objects.create', compact('icons'));
+        $employees = Employee::pluck('fullname', 'id')->toArray();
+        return view('objects.create', compact('icons', 'employees'));
     }
 
     public function store(Request $request)
     {
+        dd($request->all());
         $object = $this->service->create($request);
         return redirect()->route('objects.show', $object->id);
     }
@@ -52,7 +55,8 @@ class ObjectController extends Controller
     {
         $icons = Icon::all();
         $object = CObject::findOrFail($id);
-        return view('objects.edit', compact('object', 'icons'));
+        $employees = Employee::pluck('fullname', 'id')->toArray();
+        return view('objects.edit', compact('object', 'icons', 'employees'));
     }
 
     public function update($id, Request $request)
