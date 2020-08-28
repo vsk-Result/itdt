@@ -46,7 +46,6 @@ class ObjectController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
         $object = $this->service->create($request);
         return redirect()->route('objects.show', $object->id);
     }
